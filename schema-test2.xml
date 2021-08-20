@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:DataServices>
+        <Schema Namespace="Telerik.Sitefinity.Analytics.Server.Infrastructure.Web.Services" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityType Name="AnalyticsDto">
+                <Key>
+                    <PropertyRef Name="Id" />
+                </Key>
+                <!-- <Property Name="Id" Type="Edm.Guid" Nullable="false" />
+                <Property Name="AnalyticsUrl" Type="Edm.String" /> -->
+                <Property Name="AlternateAddresses" Type="Collection">
+                    <TypeRef Type="Model.Address" />
+                </Property>
+            </EntityType>
+            <!-- <EntityType Name="AnalyticsSettingsDto">
+                <Property Name="Installed" Type="Edm.Boolean" Nullable="false" />
+                <Property Name="Configured" Type="Edm.Boolean" Nullable="false" />
+                <Property Name="ItemSupport" Type="Edm.Boolean" Nullable="false" />
+            </EntityType> -->
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
