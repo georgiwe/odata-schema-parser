@@ -1,0 +1,195 @@
+Nav property count mismatch. EntitySet: Customers, EntitySet count: 0, NavProp count: 1
+Nav property count mismatch. EntitySet: Orders, EntitySet count: 0, NavProp count: 2
+Nav property count mismatch. EntitySet: OrderLines, EntitySet count: 0, NavProp count: 1
+{
+  "Name": "SampleEntities",
+  "Collections": [
+    {
+      "Name": "Customers",
+      "Properties": {
+        "Address": {
+          "Type": "\u003cunknown Sample.CAddress\u003e"
+        },
+        "AlternateAddresses": {
+          "Type": "\u003cunknown Collection\u003e"
+        },
+        "CompanyName": {
+          "Type": "string"
+        },
+        "CustomerID": {
+          "Type": "string"
+        },
+        "EmailAddresses": {
+          "Type": "\u003cunknown Collection\u003e"
+        },
+        "Orders": {
+          "Type": "\u003cunknown \u003e"
+        },
+        "Version": {
+          "Type": "binary"
+        }
+      },
+      "Key": [
+        "CustomerID"
+      ]
+    },
+    {
+      "Name": "Orders",
+      "Properties": {
+        "Customer": {
+          "Type": "\u003cunknown \u003e"
+        },
+        "OrderID": {
+          "Type": "int32"
+        },
+        "OrderLines": {
+          "Type": "\u003cunknown \u003e"
+        },
+        "ShippedDate": {
+          "Type": "datetime"
+        }
+      },
+      "Key": [
+        "OrderID"
+      ]
+    },
+    {
+      "Name": "OrderLines",
+      "Properties": {
+        "Order": {
+          "Type": "\u003cunknown \u003e"
+        },
+        "OrderLineID": {
+          "Type": "int32"
+        },
+        "Quantity": {
+          "Type": "int32"
+        },
+        "UnitPrice": {
+          "Type": "decimal"
+        }
+      },
+      "Key": [
+        "OrderLineID"
+      ]
+    },
+    {
+      "Name": "Employees",
+      "Properties": {
+        "Address": {
+          "Type": "\u003cunknown Sample.EAddress\u003e"
+        },
+        "EmployeeID": {
+          "Type": "string"
+        },
+        "EmployeeName": {
+          "Type": "string"
+        },
+        "Version": {
+          "Type": "binary"
+        }
+      },
+      "Key": [
+        "EmployeeID"
+      ]
+    },
+    {
+      "Name": "Documents",
+      "Properties": {
+        "Author": {
+          "Type": "string"
+        },
+        "DocumentID": {
+          "Type": "int32"
+        },
+        "Title": {
+          "Type": "string"
+        }
+      },
+      "Key": [
+        "DocumentID"
+      ]
+    },
+    {
+      "Name": "Companies",
+      "Properties": {
+        "CompanyID": {
+          "Type": "string"
+        },
+        "CompanySize": {
+          "Type": "string"
+        }
+      },
+      "Key": [
+        "CompanyID"
+      ]
+    },
+    {
+      "Name": "Photos",
+      "Properties": {
+        "ID": {
+          "Type": "int32"
+        },
+        "Name": {
+          "Type": "string"
+        },
+        "PrintReady": {
+          "Type": "stream"
+        },
+        "Thumbnail": {
+          "Type": "stream"
+        }
+      },
+      "Key": [
+        "ID"
+      ]
+    }
+  ],
+  "Endpoints": [],
+  "Structures": [
+    {
+      "Name": "CAddress",
+      "Properties": {
+        "City": {
+          "Type": "string"
+        },
+        "Location": {
+          "Type": "geopoint"
+        },
+        "Street": {
+          "Type": "string"
+        }
+      }
+    },
+    {
+      "Name": "CustomerCredit",
+      "Properties": {
+        "Balance": {
+          "Type": "int32"
+        },
+        "CreditLimit": {
+          "Type": "int32"
+        }
+      }
+    },
+    {
+      "Name": "Address",
+      "Properties": {
+        "Apartment": {
+          "Type": "int32"
+        }
+      }
+    },
+    {
+      "Name": "EAddress",
+      "Properties": {
+        "City": {
+          "Type": "string"
+        },
+        "Street": {
+          "Type": "string"
+        }
+      }
+    }
+  ]
+}
