@@ -66,6 +66,8 @@ func mapEdmType(edmType string) (string, error) {
 		return "string", nil
 	case "Edm.Boolean":
 		return "boolean", nil
+	case "Edm.DateTime": // TODO: consolidate somehow
+		return "datetime", nil
 	case "Edm.DateTimeOffset":
 		return "datetime", nil
 	case "Edm.Single":
@@ -74,10 +76,18 @@ func mapEdmType(edmType string) (string, error) {
 		return "float64", nil
 	case "Edm.Int32":
 		return "int32", nil
+	case "Edm.Int":
+		return "int32", nil
 	case "Edm.Int64":
 		return "int64", nil
 	case "Edm.Decimal":
 		return "decimal", nil
+	case "Edm.Binary":
+		return "binary", nil
+	case "Edm.Stream":
+		return "stream", nil
+	case "Edm.GeographyPoint":
+		return "geopoint", nil
 	default:
 		if strings.HasPrefix(edmType, "Edm.") {
 			panic(edmType)
