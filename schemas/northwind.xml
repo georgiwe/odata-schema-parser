@@ -1,0 +1,48 @@
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <edmx:DataServices>
+        <Schema Namespace="NorthwindModel" xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+            <EntityContainer Name="NorthwindEntities" m:IsDefaultEntityContainer="true">
+                <EntitySet Name="OrderDetails" EntityType="NorthwindModel.OrderDetail" />
+                <EntitySet Name="Orders" EntityType="NorthwindModel.Order" />
+                <AssociationSet Name="OrderDetails_Orders" Association="NorthwindModel.OrderDetails_Orders">
+                    <End Role="Orders" EntitySet="Orders" />
+                    <End Role="OrderDetails" EntitySet="OrderDetails" />
+                </AssociationSet>
+            </EntityContainer>
+            <EntityType Name="OrderDetail">
+                <Key>
+                    <PropertyRef Name="OrderID" />
+                    <PropertyRef Name="ProductID" />
+                </Key>
+                <Property Name="Discount" Type="Edm.Single" Nullable="false" />
+                <Property Name="OrderID" Type="Edm.Int32" Nullable="false" />
+                <Property Name="ProductID" Type="Edm.Int32" Nullable="false" />
+                <Property Name="Quantity" Type="Edm.Int16" Nullable="false" />
+                <Property Name="UnitPrice" Type="Edm.Decimal" Nullable="false" Precision="19" Scale="4" />
+                <NavigationProperty Name="Order" Relationship="NorthwindModel.OrderDetails_Orders" FromRole="OrderDetails" ToRole="Orders" />
+            </EntityType>
+            <EntityType Name="Order">
+                <Key>
+                    <PropertyRef Name="OrderID" />
+                </Key>
+                <Property Name="CustomerID" Type="Edm.String" Nullable="true" MaxLength="5" Unicode="true" FixedLength="true" />
+                <Property Name="OrderDate" Type="Edm.DateTime" Nullable="true" />
+                <Property Name="OrderID" Type="Edm.Int32" Nullable="false" />
+                <Property Name="ShipAddress" Type="Edm.String" Nullable="true" MaxLength="60" Unicode="true" FixedLength="false" />
+                <NavigationProperty Name="OrderDetails" Relationship="NorthwindModel.OrderDetails_Orders" FromRole="Orders" ToRole="OrderDetails" />
+            </EntityType>
+            <Association Name="OrderDetails_Orders">
+                <End Role="Orders" Type="NorthwindModel.Order" Multiplicity="1" />
+                <End Role="OrderDetails" Type="NorthwindModel.OrderDetail" Multiplicity="*" />
+                <ReferentialConstraint>
+                    <Principal Role="Orders">
+                        <PropertyRef Name="OrderID" />
+                    </Principal>
+                    <Dependent Role="OrderDetails">
+                        <PropertyRef Name="OrderID" />
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

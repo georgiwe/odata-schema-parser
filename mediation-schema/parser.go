@@ -74,6 +74,8 @@ func mapEdmType(edmType string) (string, error) {
 		return "float32", nil
 	case "Edm.Double":
 		return "float64", nil
+	case "Edm.Int16":
+		return "int16", nil
 	case "Edm.Int32":
 		return "int32", nil
 	case "Edm.Int":
@@ -96,21 +98,31 @@ func mapEdmType(edmType string) (string, error) {
 	}
 }
 
-func mapType(edmType string, objects *edmObjects) string {
-	if mappedType, err := mapEdmType(edmType); err == nil {
-		return mappedType
+func mapType(typeName string, objects *edmObjects) Property {
+	result := Property{
+		PropertyType: "unknown",
+		Type:         fmt.Sprintf("unknown %s", typeName),
+		IsCollection: false,
 	}
-	if strings.HasPrefix(edmType, collectionPrefix) {
-		actualType := edmType[len(collectionPrefix) : len(edmType)-1]
-		return fmt.Sprintf("[]%s", mapType(actualType, objects))
-	} else if entityType, ok := objects.entityTypes[edmType]; ok {
-		return entityType.Name
-	} else if _, ok := objects.complexTypes[edmType]; ok {
-		return "structure"
-	} else if _, ok := objects.enumTypes[edmType]; ok {
-		return "structure"
+	if mappedType, err := mapEdmType(typeName); err == nil {
+		result.PropertyType = "primitive"
+		result.Type = mappedType
+	} else if strings.HasPrefix(typeName, collectionPrefix) {
+		actualType := typeName[len(collectionPrefix) : len(typeName)-1]
+		mapped := mapType(actualType, objects)
+		mapped.IsCollection = true
+		result = mapped
+	} else if entityType, ok := objects.entityTypes[typeName]; ok {
+		result.Type = entityType.Name
+		result.PropertyType = "relation"
+	} else if complexType, ok := objects.complexTypes[typeName]; ok {
+		result.PropertyType = "structure"
+		result.Type = complexType.Name
+	} else if enumType, ok := objects.enumTypes[typeName]; ok {
+		result.PropertyType = "enum"
+		result.Type = enumType.Name
 	}
-	return fmt.Sprintf("<unknown %s>", edmType)
+	return result
 }
 
 func getTypeProperties(typeName string, objects *edmObjects) []ods.Property {
@@ -147,36 +159,32 @@ func getTypeNavProperties(typeName string, objects *edmObjects) []ods.Navigation
 	return properties
 }
 
-func addStructuralProperties(typeName string, objects *edmObjects, result map[string]Property) {
+func addStructuralProperties(typeName string, objects *edmObjects, result map[string]EntityProperty) {
 	properties := getTypeProperties(typeName, objects)
 	for _, property := range properties {
-		prop := Property{
-			Type: mapType(property.Type, objects),
+		prop := EntityProperty{
+			Property: mapType(property.Type, objects),
 		}
-		if ref := getStructureName(property.Type, objects); ref != nil && typeName != property.Type {
-			prop.StructureRef = ref
-		}
+		// if ref := getStructureName(property.Type, objects); ref != nil {
+		// 	prop.TypeRef = ref
+		// }
 		result[property.Name] = prop
 	}
 }
 
-func addNavProperties(entitySet *ods.EntitySet, objects *edmObjects, result map[string]Property) {
+func addNavProperties(entitySet *ods.EntitySet, objects *edmObjects, result map[string]EntityProperty) {
 	properties := getTypeNavProperties(entitySet.EntityType, objects)
 
 	for _, property := range properties {
-		propDescriptor := Property{
-			Type: mapType(property.Type, objects),
-		}
-
-		if ref := getStructureName(property.Type, objects); ref != nil {
-			propDescriptor.StructureRef = ref
+		prop := EntityProperty{
+			Property: mapType(property.Type, objects),
 		}
 
 		if bindingTarget, found := getBindingTarget(entitySet, property.Name); found {
-			propDescriptor.RelatedTo = &bindingTarget
+			prop.RelatedTo = &bindingTarget
 		}
 
-		result[property.Name] = propDescriptor
+		result[property.Name] = prop
 	}
 
 	if len(entitySet.NavigationPropertyBindings) != len(properties) {
@@ -184,29 +192,14 @@ func addNavProperties(entitySet *ods.EntitySet, objects *edmObjects, result map[
 	}
 }
 
-func getStructureName(propType string, objects *edmObjects) *string {
-	if complexType, ok := objects.complexTypes[propType]; ok {
-		return &complexType.Name
-	} else if enumType, ok := objects.enumTypes[propType]; ok {
-		return &enumType.Name
-	}
-	return nil
-}
-
-func addComplexTypeNavProperties(typeName string, objects *edmObjects, result map[string]Property) {
-	properties := getTypeNavProperties(typeName, objects)
-
-	for _, property := range properties {
-		prop := Property{
-			Type: mapType(property.Type, objects),
-		}
-		if ref := getStructureName(property.Type, objects); ref != nil && typeName != property.Type {
-			prop.StructureRef = ref
-		}
-
-		result[property.Name] = prop
-	}
-}
+// func getStructureName(propType string, objects *edmObjects) *string {
+// 	if complexType, ok := objects.complexTypes[propType]; ok {
+// 		return &complexType.Name
+// 	} else if enumType, ok := objects.enumTypes[propType]; ok {
+// 		return &enumType.Name
+// 	}
+// 	return nil
+// }
 
 func mapEntitySet(entitySet *ods.EntitySet, objects *edmObjects) *Collection {
 	entityType := objects.entityTypes[entitySet.EntityType]
@@ -217,10 +210,11 @@ func mapEntitySet(entitySet *ods.EntitySet, objects *edmObjects) *Collection {
 	}
 
 	collection := Collection{
-		Key: keys,
+		Key:       keys,
+		HasStream: entityType.HasStream,
 		Structure: Structure{
 			Name:       entitySet.Name,
-			Properties: make(map[string]Property),
+			Properties: make(map[string]EntityProperty),
 		},
 	}
 
@@ -233,12 +227,31 @@ func mapEntitySet(entitySet *ods.EntitySet, objects *edmObjects) *Collection {
 func mapComplexType(complexTypeName string, complexType *ods.ComplexType, objects *edmObjects) *Structure {
 	cType := Structure{
 		Name:       complexType.Name,
-		Properties: make(map[string]Property),
+		Properties: make(map[string]EntityProperty),
 	}
 
 	addStructuralProperties(complexTypeName, objects, cType.Properties)
-	addComplexTypeNavProperties(complexTypeName, objects, cType.Properties)
 	return &cType
+}
+
+func mapEnumType(enumName string, enum *ods.EnumType, objects *edmObjects) *Enum {
+	eType := Enum{
+		Name:       enum.Name,
+		Members:    make(map[string]string),
+		ValuesType: enum.UnderlyingType,
+		IsFlags:    enum.IsFlags,
+	}
+
+	if eType.ValuesType == "" {
+		mappedType, _ := mapEdmType("Edm.Int32") // Specified in MC-CSDL
+		eType.ValuesType = mappedType
+	}
+
+	for _, member := range enum.Members {
+		eType.Members[member.Name] = member.Value
+	}
+
+	return &eType
 }
 
 func extractObjects(edm *ods.EdmxDocument) *edmObjects {
@@ -269,9 +282,12 @@ func extractObjects(edm *ods.EdmxDocument) *edmObjects {
 
 func Parse(edm *ods.EdmxDocument) (Service, error) {
 	schema := Service{
+		// TODO: use make() with appropriate sizes
 		Collections: []Collection{},
 		Endpoints:   []Endpoint{},
 		Structures:  []Structure{},
+		Enums:       []Enum{},
+		Invocations: []Invocation{},
 	}
 
 	objects := extractObjects(edm)
@@ -283,6 +299,10 @@ func Parse(edm *ods.EdmxDocument) (Service, error) {
 
 	for typeName, complexType := range objects.complexTypes {
 		schema.Structures = append(schema.Structures, *mapComplexType(typeName, complexType, objects))
+	}
+
+	for enumName, enum := range objects.enumTypes {
+		schema.Enums = append(schema.Enums, *mapEnumType(enumName, enum, objects))
 	}
 
 	schema.Name = objects.entityContainer.Name
