@@ -85,18 +85,22 @@ type EntitySet struct {
 }
 
 type EntityContainer struct {
-	Name       string      `xml:"Name,attr"`
-	EntitySets []EntitySet `xml:"EntitySet"`
+	Name            string           `xml:"Name,attr"`
+	EntitySets      []EntitySet      `xml:"EntitySet"`
+	FunctionImports []FunctionImport `xml:"FunctionImport"`
+	ActionImports   []ActionImport   `xml:"ActionImport"`
 }
 
 type Schema struct {
 	XMLName         xml.Name         `xml:"Schema"`
 	Namespace       string           `xml:"Namespace,attr"`
+	Alias           *string          `xml:"Alias,attr"`
 	EntityContainer *EntityContainer `xml:"EntityContainer"`
 	EntityTypes     []EntityType     `xml:"EntityType"`
 	ComplexTypes    []ComplexType    `xml:"ComplexType"`
 	EnumTypes       []EnumType       `xml:"EnumType"`
-	Alias           *string          `xml:"Alias,attr"`
+	Functions       []Function       `xml:"Function"`
+	Actions         []Action         `xml:"Action"`
 }
 
 type DataServices struct {
@@ -107,4 +111,49 @@ type DataServices struct {
 type EdmxDocument struct {
 	XMLName      xml.Name     `xml:"Edmx"`
 	DataServices DataServices `xml:"DataServices"`
+}
+
+type ReturnType struct {
+	XMLName  xml.Name `xml:"ReturnType"`
+	Type     string   `xml:",attr"`
+	Nullable bool     `xml:",attr"`
+}
+
+type Parameter struct {
+	XMLName xml.Name `xml:"Parameter"`
+	Name    string   `xml:",attr"`
+	Type    string   `xml:",attr"`
+}
+
+type Function struct {
+	XMLName       xml.Name    `xml:"Function"`
+	Name          string      `xml:",attr"`
+	IsBound       bool        `xml:",attr"`
+	EntitySetPath *string     `xml:",attr"`
+	IsComposable  bool        `xml:",attr"`
+	Parameters    []Parameter `xml:"Parameter"`
+	ReturnType    ReturnType  `xml:"ReturnType"`
+}
+
+type Action struct {
+	XMLName       xml.Name    `xml:"Action"`
+	Name          string      `xml:",attr"`
+	EntitySetPath *string     `xml:",attr"`
+	IsBound       bool        `xml:",attr"`
+	Parameters    []Parameter `xml:"Parameter"`
+	ReturnType    *ReturnType `xml:"ReturnType"`
+}
+
+type FunctionImport struct {
+	XMLName   xml.Name `xml:"FunctionImport"`
+	Name      string   `xml:",attr"`
+	EntitySet string   `xml:",attr"`
+	Function  string   `xml:",attr"`
+}
+
+type ActionImport struct {
+	XMLName   xml.Name `xml:"ActionImport"`
+	Name      string   `xml:",attr"`
+	EntitySet string   `xml:",attr"`
+	Action    string   `xml:",attr"`
 }

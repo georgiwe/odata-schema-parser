@@ -3,52 +3,47 @@ package mediationschema
 type Service struct {
 	Name        string
 	Collections []Collection
-	Endpoints   []Endpoint
 	Structures  []Structure
 	Enums       []Enum
 	Invocations []Invocation
 }
 
 type Invocation struct {
-	Arguments  map[string]Property
-	ReturnType string
+	Name             string
+	BindingType      string
+	BoundTo          *string `json:",omitempty"`
+	BoundDataPointer *string `json:",omitempty"`
+	Arguments        []Property
+	Result           *Property
 }
 
 type Collection struct {
-	Key []string
+	Key        []string
+	EntityType string
+	HasStream  bool `json:",omitempty"`
 	Structure
-	HasStream bool `json:",omitempty"`
 }
 
 type Structure struct {
 	Name       string
-	Properties map[string]EntityProperty
-}
-
-type Endpoint struct {
-	Name       string
-	Properties []EntityProperty
+	Properties map[string]Property
 }
 
 type Enum struct {
 	Name       string
 	ValuesType string
-	IsFlags    bool
+	IsFlags    bool              `json:",omitempty"`
 	Members    map[string]string // TODO: in MC-CSDL enum members are order-comparable, here they are not - do we need them to be
 }
 
 type Property struct {
-	Type         string
-	PropertyType string
-	IsCollection bool `json:",omitempty"`
+	Type               string
+	PropertyType       string
+	IsCollection       bool    `json:",omitempty"`
+	RelationCollection *string `json:",omitempty"`
 }
 
 type EnumProperty struct {
-	EntityProperty
-	Value string
-}
-
-type EntityProperty struct {
 	Property
-	RelatedTo *string `json:",omitempty"`
+	Value string
 }
