@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	edm, _ := odataschema.Parse("./schemas/trip-pin-schema.xml")
+	edm, _ := odataschema.Parse("./schemas/sitefinity.xml")
 	odataService, _ := mediationschema.Parse(edm)
 	bytes, _ := json.MarshalIndent(odataService, "", "  ")
 	// fmt.Println(string(bytes))

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
     <edmx:DataServices>
-        <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Schema Namespace="Added additionally" xmlns="http://docs.oasis-open.org/odata/ns/edm">
             <EntityContainer Name="Default">
                 <EntitySet Name="sites" EntityType="Telerik.Sitefinity.Multisite.Model.Site">
                     <Annotation Term="Org.OData.Core.V1.FilterRestrictions">

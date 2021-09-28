@@ -144,26 +144,26 @@ func mapEdmType(edmType string) (string, error) {
 func typeToProperty(typeName string, objects *edmObjects) Property {
 	result := Property{
 		PropertyType: "unknown",
-		Type:         fmt.Sprintf("unknown %s", typeName),
+		ValueType:    fmt.Sprintf("unknown %s", typeName),
 		IsCollection: false,
 	}
 	if mappedType, err := mapEdmType(typeName); err == nil {
 		result.PropertyType = "primitive"
-		result.Type = mappedType
+		result.ValueType = mappedType
 	} else if strings.HasPrefix(typeName, collectionPrefix) {
 		actualType := typeName[len(collectionPrefix) : len(typeName)-1]
 		mapped := typeToProperty(actualType, objects)
 		mapped.IsCollection = true
 		result = mapped
-	} else if entityType, ok := objects.entityTypes[typeName]; ok {
-		result.Type = entityType.Name
+	} else if _, ok := objects.entityTypes[typeName]; ok {
+		result.ValueType = typeName
 		result.PropertyType = "relation"
-	} else if complexType, ok := objects.complexTypes[typeName]; ok {
+	} else if _, ok := objects.complexTypes[typeName]; ok {
 		result.PropertyType = "structure"
-		result.Type = complexType.Name
-	} else if enumType, ok := objects.enumTypes[typeName]; ok {
+		result.ValueType = typeName
+	} else if _, ok := objects.enumTypes[typeName]; ok {
 		result.PropertyType = "enum"
-		result.Type = enumType.Name
+		result.ValueType = typeName
 	}
 	// There is also a type of "entity", not listed here
 	return result
@@ -217,9 +217,9 @@ func addNavProperties(entitySet *ods.EntitySet, objects *edmObjects, result map[
 	for _, property := range properties {
 		prop := typeToProperty(property.Type, objects)
 
-		if target, found := getEntitySetBindingTarget(entitySet, property.Name); prop.PropertyType == "relation" && found {
-			prop.RelationCollection = &target
-		}
+		// if target, found := getEntitySetBindingTarget(entitySet, property.Name); prop.PropertyType == "relation" && found {
+		// 	prop.RelationCollection = &target
+		// }
 
 		result[property.Name] = prop
 	}
@@ -234,18 +234,18 @@ func addComplexTypeNavProperties(cTypeName string, objects *edmObjects, result m
 
 	for _, property := range properties {
 		prop := typeToProperty(property.Type, objects)
-		if prop.PropertyType == "relation" {
-			relatedEntityType := objects.entityTypes[property.Type] // complex types can only related to entity types
-			if relationCollection, found := getComplexTypeBindingTarget(relatedEntityType.Name, objects.entityContainer.EntitySets); found {
-				prop.RelationCollection = &relationCollection
-			}
-		}
+		// if prop.PropertyType == "relation" {
+		// 	relatedEntityType := objects.entityTypes[property.Type] // complex types can only related to entity types
+		// 	if relationCollection, found := getComplexTypeBindingTarget(relatedEntityType.Name, objects.entityContainer.EntitySets); found {
+		// 		prop.RelationCollection = &relationCollection
+		// 	}
+		// }
 
 		result[property.Name] = prop
 	}
 }
 
-func mapEntitySet(entitySet *ods.EntitySet, objects *edmObjects) Collection {
+func mapEntityType(entitySet *ods.EntitySet, objects *edmObjects) EntityType {
 	entityType := objects.entityTypes[entitySet.EntityType]
 	keys := make([]string, len(*entityType.Key))
 
@@ -253,20 +253,34 @@ func mapEntitySet(entitySet *ods.EntitySet, objects *edmObjects) Collection {
 		keys[i] = keyRef.Name
 	}
 
-	collection := Collection{
-		Key:        keys,
-		EntityType: entityType.Name,
-		HasStream:  entityType.HasStream,
+	mappedEntityType := EntityType{
+		Key:       keys,
+		HasStream: entityType.HasStream,
 		Structure: Structure{
-			Name:       entitySet.Name,
+			Name:       entityType.Name,
 			Properties: make(map[string]Property),
 		},
 	}
 
-	addStructuralProperties(entitySet.EntityType, objects, collection.Properties)
-	addNavProperties(entitySet, objects, collection.Properties)
+	addStructuralProperties(entitySet.EntityType, objects, mappedEntityType.Properties)
+	addNavProperties(entitySet, objects, mappedEntityType.Properties)
 
-	return collection
+	return mappedEntityType
+}
+
+func mapCollection(entitySet ods.EntitySet, objects *edmObjects) (Collection, EntityType) {
+	entityType := mapEntityType(&entitySet, objects)
+	res := Collection{
+		Name:          entitySet.Name,
+		EntityType:    entitySet.EntityType,
+		Relationships: make(map[string]string),
+	}
+
+	for _, binding := range entitySet.NavigationPropertyBindings {
+		res.Relationships[binding.Path] = binding.Target
+	}
+
+	return res, entityType
 }
 
 func mapComplexType(complexTypeName string, complexType *ods.ComplexType, objects *edmObjects) Structure {
@@ -283,10 +297,10 @@ func mapComplexType(complexTypeName string, complexType *ods.ComplexType, object
 
 func mapEnumType(enumName string, enum *ods.EnumType, objects *edmObjects) Enum {
 	eType := Enum{
-		Name:       enum.Name,
-		Members:    make(map[string]string),
-		ValuesType: enum.UnderlyingType,
-		IsFlags:    enum.IsFlags,
+		Name:        enum.Name,
+		Members:     make(map[string]string),
+		ValuesType:  enum.UnderlyingType,
+		Multiselect: enum.IsFlags,
 	}
 
 	if eType.ValuesType == "" {
@@ -328,7 +342,7 @@ func mapFunction(funcName string, function *ods.Function, objects *edmObjects) I
 		}
 
 		// inv.BoundTo = &function.Parameters[0].Type
-		inv.BoundTo = &inv.Arguments[0].Type
+		inv.BoundTo = &inv.Arguments[0].ValueType
 	}
 
 	return inv
@@ -367,7 +381,7 @@ func mapAction(actionName string, action *ods.Action, objects *edmObjects) Invoc
 		}
 
 		// inv.BoundTo = &action.Parameters[0].Type
-		inv.BoundTo = &inv.Arguments[0].Type
+		inv.BoundTo = &inv.Arguments[0].ValueType
 	}
 
 	return inv
@@ -419,39 +433,41 @@ func extractObjects(edm *ods.EdmxDocument) *edmObjects {
 
 func Parse(edm *ods.EdmxDocument) (Service, error) {
 	service := Service{
-		// TODO: use make() with appropriate sizes
-		Collections: []Collection{},
-		Structures:  []Structure{},
-		Enums:       []Enum{},
-		Invocations: []Invocation{},
+		Collections: make(map[string]Collection),
+		EntityTypes: make(map[string]EntityType),
+		Structures:  make(map[string]Structure),
+		Enums:       make(map[string]Enum),
+		Invocations: make(map[string]Invocation),
 	}
 
 	objects := extractObjects(edm)
 
 	for _, entitySet := range objects.entityContainer.EntitySets {
-		collection := mapEntitySet(&entitySet, objects)
-		service.Collections = append(service.Collections, collection)
+		collection, entityType := mapCollection(entitySet, objects)
+		service.EntityTypes[entitySet.EntityType] = entityType
+		service.Collections[entitySet.Name] = collection
 	}
 
 	for typeName, complexType := range objects.complexTypes {
-		service.Structures = append(service.Structures, mapComplexType(typeName, complexType, objects))
+		service.Structures[typeName] = mapComplexType(typeName, complexType, objects)
 	}
 
 	for enumName, enum := range objects.enumTypes {
-		service.Enums = append(service.Enums, mapEnumType(enumName, enum, objects))
+		service.Enums[enumName] = mapEnumType(enumName, enum, objects)
 	}
 
 	for funcName, function := range objects.functions {
-		service.Invocations = append(service.Invocations, mapFunction(funcName, function, objects))
+		service.Invocations[funcName] = mapFunction(funcName, function, objects)
 	}
 
 	for actionName, action := range objects.actions {
-		service.Invocations = append(service.Invocations, mapAction(actionName, action, objects))
+		service.Invocations[actionName] = mapAction(actionName, action, objects)
 	}
 
 	// TODO: singleton for /me
 	// TODO: figure out if this "Nav property count mismatch. EntitySet: People, EntitySet count: 6, NavProp count: 3" is ok
 
 	service.Name = objects.entityContainer.Name
+	service.Type = "OData4"
 	return service, nil
 }
