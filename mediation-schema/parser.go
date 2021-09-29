@@ -71,35 +71,35 @@ func addToActions(objects edmObjects, schema *ods.Schema, action ods.Action) {
 	}
 }
 
-func getEntitySetBindingTarget(entitySet *ods.EntitySet, navPropertyName string) (string, bool) {
-	for _, navBindings := range entitySet.NavigationPropertyBindings {
-		if navBindings.Path == navPropertyName {
-			return navBindings.Target, true
-		}
-	}
-	return "", false
-}
+// func getEntitySetBindingTarget(entitySet *ods.EntitySet, navPropertyName string) (string, bool) {
+// 	for _, navBindings := range entitySet.NavigationPropertyBindings {
+// 		if navBindings.Path == navPropertyName {
+// 			return navBindings.Target, true
+// 		}
+// 	}
+// 	return "", false
+// }
 
-func getEntitySetsByTypeName(typeName string, entitySets []ods.EntitySet, stopAt int) []ods.EntitySet {
-	sets := []ods.EntitySet{}
-	for _, entitySet := range entitySets {
-		if entitySet.EntityType == typeName {
-			sets = append(sets, entitySet)
-			if stopAt > 0 && len(sets) >= stopAt {
-				return sets
-			}
-		}
-	}
-	return sets
-}
+// func getEntitySetsByTypeName(typeName string, entitySets []ods.EntitySet, stopAt int) []ods.EntitySet {
+// 	sets := []ods.EntitySet{}
+// 	for _, entitySet := range entitySets {
+// 		if entitySet.EntityType == typeName {
+// 			sets = append(sets, entitySet)
+// 			if stopAt > 0 && len(sets) >= stopAt {
+// 				return sets
+// 			}
+// 		}
+// 	}
+// 	return sets
+// }
 
-func getComplexTypeBindingTarget(targetType string, entitySets []ods.EntitySet) (string, bool) {
-	sets := getEntitySetsByTypeName(targetType, entitySets, 1)
-	if len(sets) > 0 {
-		return sets[0].Name, true
-	}
-	return "", false
-}
+// func getComplexTypeBindingTarget(targetType string, entitySets []ods.EntitySet) (string, bool) {
+// 	sets := getEntitySetsByTypeName(targetType, entitySets, 1)
+// 	if len(sets) > 0 {
+// 		return sets[0].Name, true
+// 	}
+// 	return "", false
+// }
 
 func mapEdmType(edmType string) (string, error) {
 	switch edmType {
@@ -133,6 +133,8 @@ func mapEdmType(edmType string) (string, error) {
 		return "stream", nil
 	case "Edm.GeographyPoint":
 		return "geopoint", nil
+	case "Edm.Duration": // TODO: what?
+		return "duration", nil
 	default:
 		if strings.HasPrefix(edmType, "Edm.") {
 			panic(edmType)
@@ -211,21 +213,13 @@ func addStructuralProperties(typeName string, objects *edmObjects, result map[st
 	}
 }
 
-func addNavProperties(entitySet *ods.EntitySet, objects *edmObjects, result map[string]Property) {
-	properties := getTypeNavProperties(entitySet.EntityType, objects)
+func addNavProperties(entityTypeQualifiedName string, objects *edmObjects, result map[string]Property) {
+	properties := getTypeNavProperties(entityTypeQualifiedName, objects)
 
 	for _, property := range properties {
 		prop := typeToProperty(property.Type, objects)
 
-		// if target, found := getEntitySetBindingTarget(entitySet, property.Name); prop.PropertyType == "relation" && found {
-		// 	prop.RelationCollection = &target
-		// }
-
 		result[property.Name] = prop
-	}
-
-	if len(entitySet.NavigationPropertyBindings) != len(properties) {
-		fmt.Printf("Nav property count mismatch. EntitySet: %s, EntitySet count: %d, NavProp count: %d\n", entitySet.Name, len(entitySet.NavigationPropertyBindings), len(properties))
 	}
 }
 
@@ -234,42 +228,48 @@ func addComplexTypeNavProperties(cTypeName string, objects *edmObjects, result m
 
 	for _, property := range properties {
 		prop := typeToProperty(property.Type, objects)
-		// if prop.PropertyType == "relation" {
-		// 	relatedEntityType := objects.entityTypes[property.Type] // complex types can only related to entity types
-		// 	if relationCollection, found := getComplexTypeBindingTarget(relatedEntityType.Name, objects.entityContainer.EntitySets); found {
-		// 		prop.RelationCollection = &relationCollection
-		// 	}
-		// }
 
 		result[property.Name] = prop
 	}
 }
 
-func mapEntityType(entitySet *ods.EntitySet, objects *edmObjects) EntityType {
-	entityType := objects.entityTypes[entitySet.EntityType]
-	keys := make([]string, len(*entityType.Key))
+func getTypeKeys(srcQualifiedName string, objects *edmObjects) []string {
+	src := objects.entityTypes[srcQualifiedName]
+	if src.Key != nil {
+		keys := make([]string, len(*src.Key))
 
-	for i, keyRef := range *entityType.Key {
-		keys[i] = keyRef.Name
+		for i, keyRef := range *src.Key {
+			keys[i] = keyRef.Name
+		}
+
+		return keys
+	} else if src.BaseType != nil {
+		return getTypeKeys(*src.BaseType, objects)
+	} else {
+		panic("could not find key")
 	}
+}
+
+func mapEntityType(qualifiedName string, objects *edmObjects) EntityType {
+	entityType := objects.entityTypes[qualifiedName]
 
 	mappedEntityType := EntityType{
-		Key:       keys,
+		Key:       getTypeKeys(qualifiedName, objects),
 		HasStream: entityType.HasStream,
+		BaseType:  entityType.BaseType,
 		Structure: Structure{
 			Name:       entityType.Name,
 			Properties: make(map[string]Property),
 		},
 	}
 
-	addStructuralProperties(entitySet.EntityType, objects, mappedEntityType.Properties)
-	addNavProperties(entitySet, objects, mappedEntityType.Properties)
+	addStructuralProperties(qualifiedName, objects, mappedEntityType.Properties)
+	addNavProperties(qualifiedName, objects, mappedEntityType.Properties)
 
 	return mappedEntityType
 }
 
-func mapCollection(entitySet ods.EntitySet, objects *edmObjects) (Collection, EntityType) {
-	entityType := mapEntityType(&entitySet, objects)
+func mapCollection(entitySet ods.EntitySet, objects *edmObjects) Collection {
 	res := Collection{
 		Name:          entitySet.Name,
 		EntityType:    entitySet.EntityType,
@@ -280,7 +280,7 @@ func mapCollection(entitySet ods.EntitySet, objects *edmObjects) (Collection, En
 		res.Relationships[binding.Path] = binding.Target
 	}
 
-	return res, entityType
+	return res
 }
 
 func mapComplexType(complexTypeName string, complexType *ods.ComplexType, objects *edmObjects) Structure {
@@ -341,7 +341,6 @@ func mapFunction(funcName string, function *ods.Function, objects *edmObjects) I
 			inv.BindingType = "entity"
 		}
 
-		// inv.BoundTo = &function.Parameters[0].Type
 		inv.BoundTo = &inv.Arguments[0].ValueType
 	}
 
@@ -443,9 +442,12 @@ func Parse(edm *ods.EdmxDocument) (Service, error) {
 	objects := extractObjects(edm)
 
 	for _, entitySet := range objects.entityContainer.EntitySets {
-		collection, entityType := mapCollection(entitySet, objects)
-		service.EntityTypes[entitySet.EntityType] = entityType
+		collection := mapCollection(entitySet, objects)
 		service.Collections[entitySet.Name] = collection
+	}
+
+	for name := range objects.entityTypes {
+		service.EntityTypes[name] = mapEntityType(name, objects)
 	}
 
 	for typeName, complexType := range objects.complexTypes {

@@ -22,6 +22,7 @@ type Invocation struct {
 type EntityType struct {
 	Key       []string
 	HasStream bool `json:",omitempty"`
+	BaseType  *string
 	Structure
 }
 
@@ -47,5 +48,11 @@ type Property struct {
 	ValueType    string
 	PropertyType string
 	IsCollection bool `json:",omitempty"`
+	Required     bool `json:",omitempty"`
 	// RelationCollection *string `json:",omitempty"`
+}
+
+type Backend struct {
+	Name     string
+	Services []Service
 }
