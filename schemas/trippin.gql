@@ -1,0 +1,177 @@
+type Person {
+  Concurrency: Int
+  Gender: PersonGender
+  LastName: String
+  UserName: ID
+  Photo: Photo
+  Trips: [Trip]
+  AddressInfo: [Location]
+  Emails: [String]
+  FirstName: String
+  Friends: [Person]
+}
+
+input PersonInput {
+  Concurrency: Int
+  Gender: PersonGender
+  LastName: String
+  UserName: String
+  AddressInfo: [Location]
+  Emails: [String]
+  FirstName: String
+}
+
+type PlanItem {
+  PlanItemId: ID
+  StartsAt: Datetime
+  ConfirmationCode: String
+  Duration: Duration
+  EndsAt: Datetime
+}
+
+input PlanItemInput {
+  ConfirmationCode: String
+  Duration: Duration
+  EndsAt: Datetime
+  PlanItemId: Int
+  StartsAt: Datetime
+}
+
+type Trip {
+  Budget: Float
+  EndsAt: Datetime
+  Name: String
+  PlanItems: [PlanItem]
+  ShareId: String
+  Description: String
+  Photos: [Photo]
+  StartsAt: Datetime
+  Tags: [String]
+  TripId: ID
+}
+
+input TripInput {
+  Description: String
+  StartsAt: Datetime
+  Tags: [String]
+  TripId: Int
+  Budget: Float
+  EndsAt: Datetime
+  Name: String
+  ShareId: String
+}
+
+type Flight {
+  EndsAt: Datetime
+  StartsAt: Datetime
+  To: Airport
+  Airline: Airline
+  ConfirmationCode: String
+  Duration: Duration
+  FlightNumber: String
+  From: Airport
+  PlanItemId: ID
+  SeatNumber: String
+}
+
+input FlightInput {
+  Duration: Duration
+  FlightNumber: String
+  PlanItemId: Int
+  SeatNumber: String
+  ConfirmationCode: String
+  EndsAt: Datetime
+  StartsAt: Datetime
+}
+
+type Photo {
+  Id: ID
+  Name: String
+}
+
+input PhotoInput {
+  Id: Int
+  Name: String
+}
+
+type PublicTransportation {
+  ConfirmationCode: String
+  Duration: Duration
+  EndsAt: Datetime
+  PlanItemId: ID
+  SeatNumber: String
+  StartsAt: Datetime
+}
+
+input PublicTransportationInput {
+  StartsAt: Datetime
+  ConfirmationCode: String
+  Duration: Duration
+  EndsAt: Datetime
+  PlanItemId: Int
+  SeatNumber: String
+}
+
+type Airline {
+  AirlineCode: ID
+  Name: String
+}
+
+input AirlineInput {
+  AirlineCode: String
+  Name: String
+}
+
+type Airport {
+  IataCode: String
+  IcaoCode: ID
+  Location: AirportLocation
+  Name: String
+}
+
+input AirportInput {
+  Location: AirportLocation
+  Name: String
+  IataCode: String
+  IcaoCode: String
+}
+
+type Event {
+  PlanItemId: ID
+  StartsAt: Datetime
+  ConfirmationCode: String
+  Description: String
+  Duration: Duration
+  EndsAt: Datetime
+  OccursAt: EventLocation
+}
+
+input EventInput {
+  Description: String
+  Duration: Duration
+  EndsAt: Datetime
+  OccursAt: EventLocation
+  PlanItemId: Int
+  StartsAt: Datetime
+  ConfirmationCode: String
+}
+
+type AirportLocation {
+  Loc: Geopoint
+}
+
+type City {
+  Region: String
+  CountryRegion: String
+  Name: String
+}
+
+type EventLocation {
+  BuildingInfo: String
+}
+
+type Location {
+  City: City
+  Address: String
+}
+

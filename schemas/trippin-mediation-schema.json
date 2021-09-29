@@ -1,0 +1,505 @@
+{
+  "Name": "DefaultContainer",
+  "Type": "OData4",
+  "Collections": {
+    "Airlines": {
+      "Name": "Airlines",
+      "EntityType": "Microsoft.OData.SampleService.Models.TripPin.Airline"
+    },
+    "Airports": {
+      "Name": "Airports",
+      "EntityType": "Microsoft.OData.SampleService.Models.TripPin.Airport"
+    },
+    "People": {
+      "Name": "People",
+      "EntityType": "Microsoft.OData.SampleService.Models.TripPin.Person",
+      "Relationships": {
+        "Friends": "People",
+        "Microsoft.OData.SampleService.Models.TripPin.Flight/Airline": "Airlines",
+        "Microsoft.OData.SampleService.Models.TripPin.Flight/From": "Airports",
+        "Microsoft.OData.SampleService.Models.TripPin.Flight/To": "Airports",
+        "Microsoft.OData.SampleService.Models.TripPin.Trip/Photos": "Photos",
+        "Photo": "Photos"
+      }
+    },
+    "Photos": {
+      "Name": "Photos",
+      "EntityType": "Microsoft.OData.SampleService.Models.TripPin.Photo"
+    }
+  },
+  "EntityTypes": {
+    "Microsoft.OData.SampleService.Models.TripPin.Airline": {
+      "Key": [
+        "AirlineCode"
+      ],
+      "BaseType": null,
+      "Name": "Airline",
+      "Properties": {
+        "AirlineCode": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Name": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      }
+    },
+    "Microsoft.OData.SampleService.Models.TripPin.Airport": {
+      "Key": [
+        "IcaoCode"
+      ],
+      "BaseType": null,
+      "Name": "Airport",
+      "Properties": {
+        "IataCode": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "IcaoCode": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Location": {
+          "ValueType": "Microsoft.OData.SampleService.Models.TripPin.AirportLocation",
+          "PropertyType": "structure"
+        },
+        "Name": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      }
+    },
+    "Microsoft.OData.SampleService.Models.TripPin.Event": {
+      "Key": [
+        "PlanItemId"
+      ],
+      "BaseType": "Microsoft.OData.SampleService.Models.TripPin.PlanItem",
+      "Name": "Event",
+      "Properties": {
+        "ConfirmationCode": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Description": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Duration": {
+          "ValueType": "duration",
+          "PropertyType": "primitive"
+        },
+        "EndsAt": {
+          "ValueType": "datetime",
+          "PropertyType": "primitive"
+        },
+        "OccursAt": {
+          "ValueType": "Microsoft.OData.SampleService.Models.TripPin.EventLocation",
+          "PropertyType": "structure"
+        },
+        "PlanItemId": {
+          "ValueType": "int32",
+          "PropertyType": "primitive"
+        },
+        "StartsAt": {
+          "ValueType": "datetime",
+          "PropertyType": "primitive"
+        }
+      }
+    },
+    "Microsoft.OData.SampleService.Models.TripPin.Flight": {
+      "Key": [
+        "PlanItemId"
+      ],
+      "BaseType": "Microsoft.OData.SampleService.Models.TripPin.PublicTransportation",
+      "Name": "Flight",
+      "Properties": {
+        "Airline": {
+          "ValueType": "Microsoft.OData.SampleService.Models.TripPin.Airline",
+          "PropertyType": "relation"
+        },
+        "ConfirmationCode": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Duration": {
+          "ValueType": "duration",
+          "PropertyType": "primitive"
+        },
+        "EndsAt": {
+          "ValueType": "datetime",
+          "PropertyType": "primitive"
+        },
+        "FlightNumber": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "From": {
+          "ValueType": "Microsoft.OData.SampleService.Models.TripPin.Airport",
+          "PropertyType": "relation"
+        },
+        "PlanItemId": {
+          "ValueType": "int32",
+          "PropertyType": "primitive"
+        },
+        "SeatNumber": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "StartsAt": {
+          "ValueType": "datetime",
+          "PropertyType": "primitive"
+        },
+        "To": {
+          "ValueType": "Microsoft.OData.SampleService.Models.TripPin.Airport",
+          "PropertyType": "relation"
+        }
+      }
+    },
+    "Microsoft.OData.SampleService.Models.TripPin.Person": {
+      "Key": [
+        "UserName"
+      ],
+      "BaseType": null,
+      "Name": "Person",
+      "Properties": {
+        "AddressInfo": {
+          "ValueType": "Microsoft.OData.SampleService.Models.TripPin.Location",
+          "PropertyType": "structure",
+          "IsCollection": true
+        },
+        "Concurrency": {
+          "ValueType": "int64",
+          "PropertyType": "primitive"
+        },
+        "Emails": {
+          "ValueType": "string",
+          "PropertyType": "primitive",
+          "IsCollection": true
+        },
+        "FirstName": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Friends": {
+          "ValueType": "Microsoft.OData.SampleService.Models.TripPin.Person",
+          "PropertyType": "relation",
+          "IsCollection": true
+        },
+        "Gender": {
+          "ValueType": "Microsoft.OData.SampleService.Models.TripPin.PersonGender",
+          "PropertyType": "enum"
+        },
+        "LastName": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Photo": {
+          "ValueType": "Microsoft.OData.SampleService.Models.TripPin.Photo",
+          "PropertyType": "relation"
+        },
+        "Trips": {
+          "ValueType": "Microsoft.OData.SampleService.Models.TripPin.Trip",
+          "PropertyType": "relation",
+          "IsCollection": true
+        },
+        "UserName": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      }
+    },
+    "Microsoft.OData.SampleService.Models.TripPin.Photo": {
+      "Key": [
+        "Id"
+      ],
+      "HasStream": true,
+      "BaseType": null,
+      "Name": "Photo",
+      "Properties": {
+        "Id": {
+          "ValueType": "int64",
+          "PropertyType": "primitive"
+        },
+        "Name": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      }
+    },
+    "Microsoft.OData.SampleService.Models.TripPin.PlanItem": {
+      "Key": [
+        "PlanItemId"
+      ],
+      "BaseType": null,
+      "Name": "PlanItem",
+      "Properties": {
+        "ConfirmationCode": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Duration": {
+          "ValueType": "duration",
+          "PropertyType": "primitive"
+        },
+        "EndsAt": {
+          "ValueType": "datetime",
+          "PropertyType": "primitive"
+        },
+        "PlanItemId": {
+          "ValueType": "int32",
+          "PropertyType": "primitive"
+        },
+        "StartsAt": {
+          "ValueType": "datetime",
+          "PropertyType": "primitive"
+        }
+      }
+    },
+    "Microsoft.OData.SampleService.Models.TripPin.PublicTransportation": {
+      "Key": [
+        "PlanItemId"
+      ],
+      "BaseType": "Microsoft.OData.SampleService.Models.TripPin.PlanItem",
+      "Name": "PublicTransportation",
+      "Properties": {
+        "ConfirmationCode": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Duration": {
+          "ValueType": "duration",
+          "PropertyType": "primitive"
+        },
+        "EndsAt": {
+          "ValueType": "datetime",
+          "PropertyType": "primitive"
+        },
+        "PlanItemId": {
+          "ValueType": "int32",
+          "PropertyType": "primitive"
+        },
+        "SeatNumber": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "StartsAt": {
+          "ValueType": "datetime",
+          "PropertyType": "primitive"
+        }
+      }
+    },
+    "Microsoft.OData.SampleService.Models.TripPin.Trip": {
+      "Key": [
+        "TripId"
+      ],
+      "BaseType": null,
+      "Name": "Trip",
+      "Properties": {
+        "Budget": {
+          "ValueType": "float32",
+          "PropertyType": "primitive"
+        },
+        "Description": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "EndsAt": {
+          "ValueType": "datetime",
+          "PropertyType": "primitive"
+        },
+        "Name": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Photos": {
+          "ValueType": "Microsoft.OData.SampleService.Models.TripPin.Photo",
+          "PropertyType": "relation",
+          "IsCollection": true
+        },
+        "PlanItems": {
+          "ValueType": "Microsoft.OData.SampleService.Models.TripPin.PlanItem",
+          "PropertyType": "relation",
+          "IsCollection": true
+        },
+        "ShareId": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "StartsAt": {
+          "ValueType": "datetime",
+          "PropertyType": "primitive"
+        },
+        "Tags": {
+          "ValueType": "string",
+          "PropertyType": "primitive",
+          "IsCollection": true
+        },
+        "TripId": {
+          "ValueType": "int32",
+          "PropertyType": "primitive"
+        }
+      }
+    }
+  },
+  "Structures": {
+    "Microsoft.OData.SampleService.Models.TripPin.AirportLocation": {
+      "Name": "AirportLocation",
+      "Properties": {
+        "Loc": {
+          "ValueType": "geopoint",
+          "PropertyType": "primitive"
+        }
+      }
+    },
+    "Microsoft.OData.SampleService.Models.TripPin.City": {
+      "Name": "City",
+      "Properties": {
+        "CountryRegion": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Name": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Region": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      }
+    },
+    "Microsoft.OData.SampleService.Models.TripPin.EventLocation": {
+      "Name": "EventLocation",
+      "Properties": {
+        "BuildingInfo": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      }
+    },
+    "Microsoft.OData.SampleService.Models.TripPin.Location": {
+      "Name": "Location",
+      "Properties": {
+        "Address": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "City": {
+          "ValueType": "Microsoft.OData.SampleService.Models.TripPin.City",
+          "PropertyType": "structure"
+        }
+      }
+    }
+  },
+  "Enums": {
+    "Microsoft.OData.SampleService.Models.TripPin.PersonGender": {
+      "Name": "PersonGender",
+      "ValuesType": "int32",
+      "Members": {
+        "Female": "1",
+        "Male": "0",
+        "Unknown": "2"
+      }
+    }
+  },
+  "Invocations": {
+    "Microsoft.OData.SampleService.Models.TripPin.GetFavoriteAirline": {
+      "Name": "GetFavoriteAirline",
+      "BindingType": "entity",
+      "BoundTo": "Microsoft.OData.SampleService.Models.TripPin.Person",
+      "BoundDataPointer": "person/Trips/PlanItems/Microsoft.OData.SampleService.Models.TripPin.Flight/Airline",
+      "Arguments": [
+        {
+          "ValueType": "Microsoft.OData.SampleService.Models.TripPin.Person",
+          "PropertyType": "relation"
+        }
+      ],
+      "Result": {
+        "ValueType": "Microsoft.OData.SampleService.Models.TripPin.Airline",
+        "PropertyType": "relation"
+      }
+    },
+    "Microsoft.OData.SampleService.Models.TripPin.GetFriendsTrips": {
+      "Name": "GetFriendsTrips",
+      "BindingType": "entity",
+      "BoundTo": "Microsoft.OData.SampleService.Models.TripPin.Person",
+      "BoundDataPointer": "person/Friends/Trips",
+      "Arguments": [
+        {
+          "ValueType": "Microsoft.OData.SampleService.Models.TripPin.Person",
+          "PropertyType": "relation"
+        },
+        {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      ],
+      "Result": {
+        "ValueType": "Microsoft.OData.SampleService.Models.TripPin.Trip",
+        "PropertyType": "relation",
+        "IsCollection": true
+      }
+    },
+    "Microsoft.OData.SampleService.Models.TripPin.GetInvolvedPeople": {
+      "Name": "GetInvolvedPeople",
+      "BindingType": "entity",
+      "BoundTo": "Microsoft.OData.SampleService.Models.TripPin.Trip",
+      "Arguments": [
+        {
+          "ValueType": "Microsoft.OData.SampleService.Models.TripPin.Trip",
+          "PropertyType": "relation"
+        }
+      ],
+      "Result": {
+        "ValueType": "Microsoft.OData.SampleService.Models.TripPin.Person",
+        "PropertyType": "relation",
+        "IsCollection": true
+      }
+    },
+    "Microsoft.OData.SampleService.Models.TripPin.GetNearestAirport": {
+      "Name": "GetNearestAirport",
+      "BindingType": "unbound",
+      "Arguments": [
+        {
+          "ValueType": "float64",
+          "PropertyType": "primitive"
+        },
+        {
+          "ValueType": "float64",
+          "PropertyType": "primitive"
+        }
+      ],
+      "Result": {
+        "ValueType": "Microsoft.OData.SampleService.Models.TripPin.Airport",
+        "PropertyType": "relation"
+      }
+    },
+    "Microsoft.OData.SampleService.Models.TripPin.ResetDataSource": {
+      "Name": "ResetDataSource",
+      "BindingType": "unbound",
+      "Arguments": [],
+      "Result": null
+    },
+    "Microsoft.OData.SampleService.Models.TripPin.ShareTrip": {
+      "Name": "ShareTrip",
+      "BindingType": "entity",
+      "BoundTo": "Microsoft.OData.SampleService.Models.TripPin.Person",
+      "Arguments": [
+        {
+          "ValueType": "Microsoft.OData.SampleService.Models.TripPin.Person",
+          "PropertyType": "relation"
+        },
+        {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        {
+          "ValueType": "int32",
+          "PropertyType": "primitive"
+        }
+      ],
+      "Result": null
+    }
+  }
+}
