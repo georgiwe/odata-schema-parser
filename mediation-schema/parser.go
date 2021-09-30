@@ -241,8 +241,9 @@ func mapEntityType(qualifiedName string, objects *edmObjects) EntityType {
 
 func mapCollection(entitySet ods.EntitySet, objects *edmObjects) Collection {
 	res := Collection{
-		Name:       entitySet.Name,
-		EntityType: entitySet.EntityType,
+		Name:         entitySet.Name,
+		EntityType:   entitySet.EntityType,
+		Downloadable: objects.entityTypes[entitySet.EntityType].HasStream,
 	}
 
 	return res

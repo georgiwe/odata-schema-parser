@@ -32,7 +32,8 @@
     },
     "documents": {
       "Name": "documents",
-      "EntityType": "Telerik.Sitefinity.Libraries.Model.Document"
+      "EntityType": "Telerik.Sitefinity.Libraries.Model.Document",
+      "Downloadable": true
     },
     "events": {
       "Name": "events",
@@ -60,7 +61,8 @@
     },
     "images": {
       "Name": "images",
-      "EntityType": "Telerik.Sitefinity.Libraries.Model.Image"
+      "EntityType": "Telerik.Sitefinity.Libraries.Model.Image",
+      "Downloadable": true
     },
     "listitems": {
       "Name": "listitems",
@@ -116,7 +118,8 @@
     },
     "videos": {
       "Name": "videos",
-      "EntityType": "Telerik.Sitefinity.Libraries.Model.Video"
+      "EntityType": "Telerik.Sitefinity.Libraries.Model.Video",
+      "Downloadable": true
     }
   },
   "Types": {

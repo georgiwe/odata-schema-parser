@@ -1,737 +1,113 @@
-type CultureModel {
-  Name: String
-  DisplayName: String
-}
-
-type SiteDataSourceLinkViewModel {
-  Id: String
-  IsDefault: Boolean
-  IsGlobalProvider: Boolean
-  ProviderName: String
-  ProviderTitle: String
-  SiteId: String
-  DataSourceName: String
-}
-
-type DataSourceConfiguration {
-  IsChecked: Boolean
-  Links: [DataSourceLinkConfiguration]
-  Name: String
-}
-
-type SectionGroup {
-  Name: String
-  Sections: [Section]
-}
-
-type TaxonDTO {
-  TaxonomyId: String
-  Title: String
-  UrlName: String
-  AvailableLanguages: [String]
-  Description: String
-  Id: String
-  LastModified: Datetime
-  Name: String
-}
-
-type Result {
-  Key: String
-  Title: String
-  Description: String
-  ImageUrl: String
-}
-
-type RuleAction {
-  Action: FormRuleAction
-  Target: String
-}
-
-type FlatTaxon {
-  Name: String
-  Provider: String
-  TaxonomyId: String
-  Title: String
-  UrlName: String
-  AppliedTo: Int
-  Description: String
-  Id: ID
-  LastModified: Datetime
-  Ordinal: Float
-  Synonyms: String
-}
-
-input FlatTaxonInput {
-  Name: String
-  Provider: String
-  TaxonomyId: String
-  AppliedTo: Int
-  Description: String
-  Id: String
-  LastModified: Datetime
-  Ordinal: Float
-  Synonyms: String
-  Title: String
-  UrlName: String
-}
-
-type Template {
-  Name: String
-  Renderer: String
-  ThumbnailUrl: String
-  Title: String
-  UsedByNumberOfPages: Int
-  Framework: PageTemplateFramework
-  Id: String
-  LayoutPath: String
-}
-
-type TemplateStatistic {
-  Count: Int
-  Name: String
-}
-
-type SortItem {
-  Name: String
-  Value: String
-}
-
-type MarkedItem {
-  ContentType: String
-  ContentTypeInfo: TypeInfo
-  LockedStatus: ItemEventInfo
-  Provider: String
-  Title: String
-  AvailableLanguages: [String]
-  DisplayStatus: [DisplayStatus]
-  Id: String
-  LastPublished: PublicationInfo
-}
-
-type DisplayStatus {
-  DetailedLabel: String
-  ExpirationDate: Datetime
-  Label: String
-  Name: String
-  Date: Datetime
-  Id: String
-  Message: Message
-  PublicationDate: Datetime
-  Source: String
-  User: String
-}
-
-enum AddressFieldMode {
-  FormOnly @meta(value: 0, valueType: int32)
-  Hybrid @meta(value: 2, valueType: int32)
-  MapOnly @meta(value: 1, valueType: int32)
-}
-
-type AnalyticsDto {
-  AnalyticsUrl: String
-  Id: String
-}
-
-type DocumentLibrary {
-  BlobStorageProvider: String
-  ClientCacheProfile: String
-  CoverId: String
-  Description: String
-  DateCreated: Datetime
-  LastModified: Datetime
-  ParentId: String
-  ThumbnailProfiles: [String]
-  IncludeInSitemap: Boolean
-  MaxSize: Int
-  OutputCacheProfile: String
-  Title: String
-  PublicationDate: Datetime
-  UrlName: String
-  ChildrenCount: Int
-  Id: ID
-  ItemDefaultUrl: String
-  MaxItemSize: Int
-  Provider: String
-}
-
-input DocumentLibraryInput {
-  DateCreated: Datetime
-  LastModified: Datetime
-  ParentId: String
-  ThumbnailProfiles: [String]
-  IncludeInSitemap: Boolean
-  MaxSize: Int
-  OutputCacheProfile: String
-  Title: String
-  PublicationDate: Datetime
-  UrlName: String
-  ChildrenCount: Int
-  Id: String
-  ItemDefaultUrl: String
-  MaxItemSize: Int
-  Provider: String
-  BlobStorageProvider: String
-  ClientCacheProfile: String
-  CoverId: String
-  Description: String
-}
-
-type DefaultAddWidgetContext {
-  Name: String
-  ParentPlaceholderKey: String
-  PlaceholderName: String
-  Properties: [PropertyValueContainer]
-  SiblingKey: String
-  Id: String
-}
-
-type PageScriptAttribute {
-  Key: String
-  Value: String
-}
-
-type FieldSettingsContext {
-  FieldSettings: [FieldSettings]
-}
-
-type Calendar {
-  ExpirationDate: Datetime
-  Id: ID
-  LastModified: Datetime
-  UrlName: String
-  Description: String
-  DateCreated: Datetime
-  Provider: String
-  PublicationDate: Datetime
-  Title: String
-  Color: String
-}
-
-input CalendarInput {
-  LastModified: Datetime
-  UrlName: String
-  Description: String
-  ExpirationDate: Datetime
-  Id: String
-  PublicationDate: Datetime
-  Title: String
-  Color: String
-  DateCreated: Datetime
-  Provider: String
-}
-
-type SharedInLocation {
-  DisplayStatus: [DisplayStatus]
-  IsPage: Boolean
-  SiteId: String
-  Title: String
-  Url: String
-  Breadcrumb: [String]
-}
-
-type ItemEventInfo {
-  User: String
-  Date: Datetime
-  Id: String
-}
-
-type Video {
-  Tags: [String]
-  ThumbnailUrl: String
-  UrlName: String
-  DateCreated: Datetime
-  Description: String
-  Extension: String
-  Parent: VideoLibrary
-  ParentId: String
-  Provider: String
-  Url: String
-  Category: [String]
-  FolderId: String
-  Height: Int
-  LastModified: Datetime
-  Width: Int
-  IncludeInSitemap: Boolean
-  MimeType: String
-  Ordinal: Float
-  Title: String
-  TotalSize: Int
-  Author: String
-  Id: ID
-  ItemDefaultUrl: String
-  PublicationDate: Datetime
-}
-
-input VideoInput {
-  Id: String
-  ItemDefaultUrl: String
-  PublicationDate: Datetime
-  TotalSize: Int
-  Author: String
-  Description: String
-  Extension: String
-  Tags: [String]
-  ThumbnailUrl: String
-  UrlName: String
-  DateCreated: Datetime
-  FolderId: String
-  Height: Int
-  LastModified: Datetime
-  ParentId: String
-  Provider: String
-  Url: String
-  Category: [String]
-  MimeType: String
-  Ordinal: Float
-  Title: String
-  Width: Int
-  IncludeInSitemap: Boolean
-}
-
-type ServiceHookActivityDto {
-  ServiceHookTitle: String
-  TriggeredByContentItem: Boolean
-  ServiceHookId: String
-  StartTime: Datetime
-  Status: ServiceHookActivityStatus
-  Title: String
-  Duration: Float
-  Id: String
-  Result: String
-}
-
-type WcfScheduledTask {
-  IsManageable: Boolean
-  ProgressStatus: Int
-  TaskData: String
-  TaskName: String
-  ConcurrentTaskKey: String
-  Description: String
-  Id: String
-  Status: TaskStatus
-  StatusMessage: String
-  Title: String
-}
-
-type ValidationRequest {
-}
-
-type ParentTemplate {
-  Id: String
-  Renderer: String
-  Title: String
-}
-
-type ValidationResult {
-  Errors: ValidationErrors
-}
-
-enum ContentUIStatus {
-  Draft @meta(value: 0, valueType: int32)
-  NotSupported @meta(value: 666, valueType: int32)
-  PrivateCopy @meta(value: 1, valueType: int32)
-  Published @meta(value: 2, valueType: int32)
-  Scheduled @meta(value: 3, valueType: int32)
-}
-
-type Address {
-  CountryCode: String
-  MapZoomLevel: Int
-  StateCode: String
-  Street: String
-  Zip: String
-  City: String
-  Id: String
-  Latitude: Float
-  Longitude: Float
-}
-
-type ExtendedMediaLink {
-  FileId: String
-  TotalSize: Int
-  ChunkSize: Int
-  Cultures: [String]
-  DefaultUrl: String
-  Extension: String
-  Height: Int
-  NumberOfChunks: Int
-  Url: String
-  ApplicationName: String
-  Id: String
-  MediaFileUrlName: String
-  ThumbnailUrl: String
-  Width: Int
-  Culture: Int
-  MediaContentId: String
-  MimeType: String
-  Title: String
-  FilePath: String
-}
-
 type ParentOperationInfo {
   Name: String
   Required: Boolean
 }
 
-type ServiceHook {
-  Title: String
-  Trigger: ParameterizedSetting
-  Action: ParameterizedSetting
-  FailedRunsCount: Int
-  Id: ID
-  SuccessfulRunsCount: Int
-}
-
-input ServiceHookInput {
-  SuccessfulRunsCount: Int
-  Title: String
-  Trigger: ParameterizedSetting
-  Action: ParameterizedSetting
-  FailedRunsCount: Int
-  Id: String
-}
-
-type SharePreviewLink {
-  ExpirationMessage: String
-  PreviewLink: String
-}
-
-type ValidationErrors {
-}
-
-type Step {
-  Key: String
+type ServiceHookSettingChoice {
+  ParametersMetadata: [Section]
+  Priority: Float
   Value: String
-}
-
-type FormRule {
-  Actions: [RuleAction]
-  Conditions: [RuleCondition]
-  Operator: LogicalOperator
-}
-
-type WidgetOperationResult {
-  Type: NotificationType
-  AvailableActions: [String]
-  FailedItemsIds: [String]
-  MultipleItemsMessage: String
-  State: WidgetState
-  Success: Boolean
-  UndoOperation: ItemOperation
-  Link: String
-  Message: String
-  Properties: [PropertyValueContainer]
-  SucceededItemsIds: [String]
-  Title: String
-}
-
-type Message {
-  Description: String
-  Operations: [ItemOperation]
-  Title: String
-}
-
-type ParameterArgument {
-  Value: String
-  Warning: String
-  AdditionalValue: String
-  AdditionalValueLabel: String
-  Label: String
-}
-
-type PageDtoWithContext {
-  ComponentContext: ComponentContext
-  Culture: String
-  DetailItem: ResolvedDetailItem
-  Id: String
-  Scripts: [PageScript]
-  SiteId: String
-  TemplateName: String
-  UrlParameters: [String]
-}
-
-type ResolvedDetailItem {
-  ProviderName: String
-  ErrorMessage: String
-  Id: String
-  ItemType: String
-}
-
-type AvailableAction {
-  Key: FormRuleAction
-  Value: String
-}
-
-type OperationParameter {
+  Module: String
   Name: String
-  Placeholder: String
-  Title: String
-  Tooltip: String
-  Type: String
-  FriendlyTitle: String
-  Hint: String
-  Required: Boolean
-  Value: String
-  Arguments: [ParameterArgument]
 }
 
-type DiagnosticsDto {
-  HelpLink: String
-  Message: String
-  Name: String
-  Success: Boolean
-}
-
-type Author {
-  UrlName: String
-  Avatar: Image
-  DateCreated: Datetime
-  IncludeInSitemap: Boolean
-  ItemDefaultUrl: String
-  Name: String
-  Provider: String
-  PublicationDate: Datetime
-  Bio: String
-  Id: ID
-  JobTitle: String
+type TaxonDTO {
   LastModified: Datetime
-}
-
-input AuthorInput {
-  Bio: String
-  Id: String
-  JobTitle: String
-  LastModified: Datetime
-  PublicationDate: Datetime
+  Name: String
+  TaxonomyId: String
+  Title: String
   UrlName: String
-  DateCreated: Datetime
-  IncludeInSitemap: Boolean
-  ItemDefaultUrl: String
-  Name: String
-  Provider: String
-}
-
-type FilterParameters {
-}
-
-enum PostRights {
-  RegisteredUsers @meta(value: 2, valueType: int32)
-  Everyone @meta(value: 1, valueType: int32)
-  None @meta(value: 0, valueType: int32)
-}
-
-type ItemOperation {
-  Description: String
-  GroupName: String
-  Title: String
-  Warning: String
-  RequiresItemUpdate: Boolean
-  SubText: String
-  Category: OperationCategory
-  ContextParameters: [OperationContextParameter]
-  HasLinkResult: Boolean
-  IsGroup: Boolean
-  Ordinal: Int
-  ParentOperation: ParentOperationInfo
-  Link: String
-  Name: String
-  PerformsDelete: Boolean
-  RequiresConfirmation: Boolean
-  Actions: [OperationAction]
-  DetailedTitle: String
-  ExecuteOnServer: Boolean
-  KeepFocus: Boolean
-  Parameters: [OperationParameter]
-  SubOperation: ItemOperation
-}
-
-type SitemapPage {
-  EditUrl: String
-  IsHomePage: Boolean
-  PageType: PageType
-  Renderer: String
-  Children: [SitemapPage]
-  HasChildren: Boolean
-  Title: String
   AvailableLanguages: [String]
-  Id: String
-  LastModified: Datetime
-  LastModifiedBy: String
-  LockedStatus: ItemEventInfo
-  ViewUrl: String
-  BreadCrumb: [String]
-  DateCreated: Datetime
-  DisplayStatus: [DisplayStatus]
-  Marketing: MarketingPropertyValue
-  ParentId: String
-  CreatedBy: String
-}
-
-type ValidationContainer {
-}
-
-type Operator {
-  Key: ConditionOperator
-  Value: String
-}
-
-type Document {
-  FolderId: String
-  LastModified: Datetime
-  MimeType: String
-  Parent: DocumentLibrary
-  Author: String
-  DateCreated: Datetime
   Description: String
-  Extension: String
+  Id: String
+}
+
+type Showcase {
   Provider: String
-  Tags: [String]
-  ThumbnailUrl: String
-  IncludeInSitemap: Boolean
-  PublicationDate: Datetime
-  Title: String
-  TotalSize: Int
-  UrlName: String
+  Solution: String
+  Category: [String]
+  Challenge: String
   Id: ID
-  Image: Image
+  IncludeInSitemap: Boolean
+  Results: String
+  Title: String
+  Client: String
+  Download: Document
   ItemDefaultUrl: String
-  Ordinal: Float
-  Category: [String]
-  ParentId: String
-  Parts: String
-  Url: String
+  PublicationDate: Datetime
+  Tags: [String]
+  UrlName: String
+  Website: String
+  DateCreated: Datetime
+  LastModified: Datetime
+  Thumbnail: Image
 }
 
-input DocumentInput {
+input ShowcaseInput {
+  Client: String
+  ItemDefaultUrl: String
+  PublicationDate: Datetime
+  Results: String
+  Title: String
+  Tags: [String]
+  UrlName: String
+  Website: String
+  DateCreated: Datetime
+  LastModified: Datetime
+  Category: [String]
+  Challenge: String
+  Id: String
   IncludeInSitemap: Boolean
+  Provider: String
+  Solution: String
+}
+
+type Album {
+  Id: ID
+  IncludeInSitemap: Boolean
+  LastModified: Datetime
+  ThumbnailProfiles: [String]
+  Title: String
+  BlobStorageProvider: String
+  CoverId: String
+  DateCreated: Datetime
+  MaxItemSize: Int
+  MaxSize: Int
+  OutputCacheProfile: String
   PublicationDate: Datetime
   UrlName: String
-  Id: String
-  ItemDefaultUrl: String
-  Ordinal: Float
-  Title: String
-  TotalSize: Int
-  Category: [String]
-  ParentId: String
-  Parts: String
-  Url: String
-  MimeType: String
-  Author: String
-  DateCreated: Datetime
+  ClientCacheProfile: String
   Description: String
-  Extension: String
-  FolderId: String
-  LastModified: Datetime
-  Provider: String
-  Tags: [String]
-  ThumbnailUrl: String
-}
-
-enum SiteConfigurationMode {
-  ConfigureByDeployment @meta(value: 1, valueType: int32)
-  ConfigureManually @meta(value: 0, valueType: int32)
-}
-
-type AuthSettings {
-  Scope: String
-}
-
-type Folder {
-  Breadcrumb: [String]
-  ImagesUrl: [String]
-  ParentId: String
-  RootId: String
-  Title: String
+  ItemDefaultUrl: String
+  ResizeOnUpload: Boolean
   ChildrenCount: Int
-  FoldersCount: Int
-  Id: String
-  LastModified: Datetime
-}
-
-type FrontendPageNodeExtended {
-  Title: String
-  Url: String
-  ChildNodes: [FrontendPageNodeExtended]
-  HasChildOpen: Boolean
-  IsCurrentlyOpened: Boolean
-  Key: String
-  LinkTarget: String
-  PageSiteMapNode: FrontendSitemapPage
-}
-
-type FrontendSitemapPage {
-  BreadCrumb: [String]
-  Children: [FrontendSitemapPage]
-  HasChildren: Boolean
-  Id: String
-  PageType: PageType
-  Title: String
-  ViewUrl: String
-  AvailableLanguages: [String]
+  NewSize: String
   ParentId: String
-  IsHomePage: Boolean
+  Provider: String
 }
 
-enum PageType {
-  Standard @meta(value: 0, valueType: int32)
-  Group @meta(value: 1, valueType: int32)
-  Redirect @meta(value: 2, valueType: int32)
-}
-
-type CountryModel {
-  states: [StateModel]
-  hasStates: Boolean
-  isoCode: String
-  name: String
-}
-
-type MarketingPropertyValue {
+input AlbumInput {
+  Title: String
+  BlobStorageProvider: String
+  CoverId: String
+  DateCreated: Datetime
+  MaxItemSize: Int
+  MaxSize: Int
+  OutputCacheProfile: String
+  PublicationDate: Datetime
+  UrlName: String
+  ClientCacheProfile: String
   Description: String
-  Link: String
-  LinkTitle: String
-}
-
-type OperationContextParameter {
-  Name: String
-  Value: String
-}
-
-type SiteConfigurationViewModel {
-  IsAllowedStartStop: Boolean
-  IsCurrentSite: Boolean
-  RequiresSsl: Boolean
-  SystemCultures: [CultureViewModel]
-  DomainAliases: [String]
+  ItemDefaultUrl: String
+  ResizeOnUpload: Boolean
+  ChildrenCount: Int
+  NewSize: String
+  ParentId: String
+  Provider: String
   Id: String
-  Name: String
-  RedirectIfOffline: Boolean
-  SiteConfigurationMode: SiteConfigurationMode
-  FrontEndLoginPageId: String
-  FrontEndLoginPageUrl: String
-  OfflinePageToRedirect: String
-  SiteMapRootNodeId: String
-  HomePageId: String
-  LiveUrl: String
-  IsOffline: Boolean
-  OfflineSiteMessage: String
-  PublicContentCultures: [CultureViewModel]
-  SourcePagesSiteId: String
-  StagingUrl: String
-  UseSystemCultures: Boolean
-  DataSources: [SiteDataSourceConfigViewModel]
-  IsDefault: Boolean
-}
-
-type ReorderAction {
-  Id: String
-  Position: ReorderPosition
-  TargetId: String
-}
-
-enum CanonicalUrlSettings {
-  Default @meta(value: 0, valueType: int32)
-  Disabled @meta(value: 1, valueType: int32)
-  Enabled @meta(value: 2, valueType: int32)
+  IncludeInSitemap: Boolean
+  LastModified: Datetime
+  ThumbnailProfiles: [String]
 }
 
 type Lstring {
@@ -739,39 +115,77 @@ type Lstring {
   Value: String
 }
 
-type PageTemplate {
+type SharedInSiteModel {
+  Name: String
+  Id: String
+  IsShared: Boolean
+}
+
+type BreadcrumbItem {
+  FolderId: String
+  Title: String
+}
+
+type Location {
+  DateCreated: Datetime
+  Image: Image
+  IncludeInSitemap: Boolean
+  UrlName: String
+  WorkingHours: String
+  Fax: String
+  Phone: String
+  Provider: String
   Title: String
   Id: ID
   LastModified: Datetime
-  Name: String
-  ParentTemplate: ParentTemplate
-  Provider: String
-  TemplateId: String
-  DateCreated: Datetime
-  Framework: PageTemplateFramework
-  Renderer: String
-  TemplateName: String
-  Thumbnail: String
-  ThumbnailUrl: String
+  Address: Address
+  Email: String
+  ItemDefaultUrl: String
+  PublicationDate: Datetime
 }
 
-input PageTemplateInput {
+input LocationInput {
+  PublicationDate: Datetime
+  Address: Address
+  Email: String
+  ItemDefaultUrl: String
+  UrlName: String
+  WorkingHours: String
+  DateCreated: Datetime
+  IncludeInSitemap: Boolean
+  Title: String
+  Fax: String
+  Phone: String
+  Provider: String
   Id: String
   LastModified: Datetime
-  Name: String
-  ParentTemplate: ParentTemplate
-  Provider: String
-  TemplateId: String
-  Title: String
-  DateCreated: Datetime
-  Framework: PageTemplateFramework
-  Renderer: String
-  TemplateName: String
-  Thumbnail: String
-  ThumbnailUrl: String
 }
 
-type PropertiesModel {
+type ExtendedFolder {
+  ChildrenCount: Int
+  ParentId: String
+  RootId: String
+  TotalLibrarySizeInKb: Int
+  Description: String
+  RunningTask: String
+  Title: String
+  Id: String
+  LastUploaded: Datetime
+  LastUploadedBy: String
+  PreviewItems: [MediaContent]
+  Breadcrumb: [BreadcrumbItem]
+  FoldersCount: Int
+  MaxLibrarySizeInKb: Int
+  Storage: String
+}
+
+type SharedInLocation {
+  Url: String
+  Breadcrumb: [String]
+  DisplayStatus: [DisplayStatus]
+  IsPage: Boolean
+  SiteId: String
+  Title: String
 }
 
 enum TaskStatus {
@@ -781,418 +195,152 @@ enum TaskStatus {
   Stopped @meta(value: 3, valueType: int32)
 }
 
-type Section {
+type HierarchicalTaxon {
+  TaxonomyId: String
+  Title: String
+  AppliedTo: Int
+  FullUrl: String
+  Id: ID
+  LastModified: Datetime
   Name: String
-  Properties: [PropertyContainer]
-  Title: String
-}
-
-type TypeInfo {
-  DisplayName: String
-  ProviderDisplayName: String
-}
-
-type BreadcrumbItem {
-  Title: String
-  FolderId: String
-}
-
-type VideoLibrary {
-  IncludeInSitemap: Boolean
-  MaxSize: Int
-  OutputCacheProfile: String
-  PublicationDate: Datetime
-  MaxItemSize: Int
   ParentId: String
-  ThumbnailProfiles: [String]
-  ChildrenCount: Int
-  DateCreated: Datetime
-  Description: String
-  Id: ID
-  ClientCacheProfile: String
-  LastModified: Datetime
-  Title: String
   UrlName: String
-  BlobStorageProvider: String
-  CoverId: String
-  ItemDefaultUrl: String
+  Description: String
+  Ordinal: Float
   Provider: String
+  Synonyms: String
 }
 
-input VideoLibraryInput {
-  MaxItemSize: Int
-  ParentId: String
-  ThumbnailProfiles: [String]
-  ChildrenCount: Int
-  DateCreated: Datetime
-  Description: String
+input HierarchicalTaxonInput {
+  Title: String
+  AppliedTo: Int
+  FullUrl: String
   Id: String
-  ClientCacheProfile: String
   LastModified: Datetime
-  Title: String
-  UrlName: String
-  BlobStorageProvider: String
-  CoverId: String
-  ItemDefaultUrl: String
-  Provider: String
-  IncludeInSitemap: Boolean
-  MaxSize: Int
-  OutputCacheProfile: String
-  PublicationDate: Datetime
-}
-
-enum PageTemplateFramework {
-  Mvc @meta(value: 1, valueType: int32)
-  WebForms @meta(value: 2, valueType: int32)
-  Hybrid @meta(value: 0, valueType: int32)
-}
-
-type StateModel {
-  abbreviation: String
-  countryKey: String
-  stateProvinceName: String
-}
-
-type CultureViewModel {
-  IsDefault: Boolean
-  Key: String
-  UICulture: String
-  Culture: String
-  FieldSuffix: String
-  ShortName: String
-  SitesNames: [String]
-  SitesUsingCultureAsDefault: [String]
-  DisplayName: String
-}
-
-type Testimonial {
-  ItemDefaultUrl: String
-  TestimonialAuthor: String
-  PublicationDate: Datetime
-  Id: ID
-  IncludeInSitemap: Boolean
-  JobTitle: String
-  Photo: Image
-  UrlName: String
-  Company: String
-  DateCreated: Datetime
-  Quote: String
-  Title: String
-  LastModified: Datetime
-  Provider: String
-}
-
-input TestimonialInput {
-  Provider: String
-  Quote: String
-  Title: String
-  LastModified: Datetime
-  TestimonialAuthor: String
-  ItemDefaultUrl: String
-  IncludeInSitemap: Boolean
-  PublicationDate: Datetime
-  Id: String
-  DateCreated: Datetime
-  JobTitle: String
-  UrlName: String
-  Company: String
-}
-
-type Event {
-  Parent: Calendar
-  ParentId: String
-  Comments: [CommentContract]
-  ContactCell: String
-  ContactName: String
-  Content: String
-  IncludeInSitemap: Boolean
-  ItemDefaultUrl: String
-  City: String
-  ContactPhone: String
-  ContactWeb: String
-  Description: String
-  EventEndUtcOffset: Float
-  Tags: [String]
-  State: String
-  AllDayEvent: Boolean
-  AllowComments: Boolean
-  ContactEmail: String
-  Country: String
-  DateCreated: Datetime
-  Id: ID
-  EventEnd: Datetime
-  Provider: String
-  Category: [String]
-  EventEndWithOffset: Datetime
-  EventStartUtcOffset: Float
-  Street: String
-  Title: String
-  PublicationDate: Datetime
-  EventStart: Datetime
-  Summary: String
-  TimeZoneId: String
-  UrlName: String
-  EventStartWithOffset: Datetime
-  IsRecurrent: Boolean
-  LastModified: Datetime
-  Location: String
-  RecurrenceExpression: String
-}
-
-input EventInput {
-  PublicationDate: Datetime
-  UrlName: String
-  EventStart: Datetime
-  Summary: String
-  TimeZoneId: String
-  Location: String
-  RecurrenceExpression: String
-  EventStartWithOffset: Datetime
-  IsRecurrent: Boolean
-  LastModified: Datetime
-  Content: String
-  IncludeInSitemap: Boolean
-  ItemDefaultUrl: String
-  ParentId: String
-  Comments: [CommentContract]
-  ContactCell: String
-  ContactName: String
-  Description: String
-  EventEndUtcOffset: Float
-  Tags: [String]
-  City: String
-  ContactPhone: String
-  ContactWeb: String
-  Country: String
-  DateCreated: Datetime
-  Id: String
-  State: String
-  AllDayEvent: Boolean
-  AllowComments: Boolean
-  ContactEmail: String
-  EventEnd: Datetime
-  Provider: String
-  Street: String
-  Title: String
-  Category: [String]
-  EventEndWithOffset: Datetime
-  EventStartUtcOffset: Float
-}
-
-type FormDraft {
-  AvailableActions: [AvailableAction]
-  Fields: [FormField]
-  LastModified: Datetime
-  Provider: String
-  Rules: [FormRule]
-  Steps: [Step]
-  Title: String
-  Id: ID
   Name: String
-  SuccessMessage: String
+  ParentId: String
+  TaxonomyId: String
+  UrlName: String
+  Description: String
+  Ordinal: Float
+  Provider: String
+  Synonyms: String
 }
 
-input FormDraftInput {
-  Rules: [FormRule]
-  Steps: [Step]
-  Title: String
-  AvailableActions: [AvailableAction]
-  Fields: [FormField]
-  LastModified: Datetime
-  Provider: String
-  Id: String
-  Name: String
-  SuccessMessage: String
+enum ReorderPosition {
+  After @meta(value: 1, valueType: int32)
+  Before @meta(value: 0, valueType: int32)
+  Under @meta(value: 2, valueType: int32)
+}
+
+enum PostRights {
+  Everyone @meta(value: 1, valueType: int32)
+  None @meta(value: 0, valueType: int32)
+  RegisteredUsers @meta(value: 2, valueType: int32)
 }
 
 type MediaContent {
   Description: Lstring
-  ItemDefaultUrl: Lstring
-  PublicationDate: Datetime
+  EmailAuthor: Boolean
+  ParentId: String
   ThumbnailNames: [String]
-  Version: Int
   VotesSum: Decimal
   AvailableLanguages: [String]
-  EmbedUrl: String
-  Owner: String
-  Author: Lstring
-  DateCreated: Datetime
-  EmailAuthor: Boolean
-  IncludeInSitemap: Boolean
-  ParentId: String
+  Extension: String
+  PublicationDate: Datetime
+  UrlName: Lstring
+  VotesCount: Int
+  PostRights: PostRights
   ThumbnailUrl: String
   AllowTrackBacks: Boolean
-  DefaultPageId: String
-  PostRights: PostRights
-  Title: Lstring
-  TotalSize: Int
-  Visible: Boolean
-  ApprovalWorkflowState: Lstring
   ApproveComments: Boolean
-  MediaFileUrlName: Lstring
-  OriginalContentId: String
-  UrlName: Lstring
-  BlobStorageProvider: String
-  Extension: String
-  Id: String
-  Status: ContentLifecycleStatus
-  VotesCount: Int
-  AllowComments: Boolean
-  ExpirationDate: Datetime
-  FolderId: String
-  LastModifiedBy: String
-  MediaUrl: String
+  EmbedUrl: String
+  ItemDefaultUrl: Lstring
+  Owner: String
   UIStatus: ContentUIStatus
-  ViewsCount: Int
-}
-
-type LockContext {
-  Version: Int
-}
-
-type WidgetState {
-  Name: String
-  WidgetSegmentId: String
-  DeleteAllowed: Boolean
-  EditAllowed: Boolean
-  IsPersonalized: Boolean
-  Key: String
-  LabelTooltip: String
-  MoveAllowed: Boolean
-}
-
-type NewsItem {
-  DateCreated: Datetime
-  ItemDefaultUrl: String
-  OpenGraphImage: String
-  PublicationDate: Datetime
-  SourceSite: String
-  UrlName: String
-  IncludeInSitemap: Boolean
-  OpenGraphDescription: String
-  Provider: String
-  Summary: String
-  Title: String
-  Comments: [CommentContract]
-  Description: String
-  OpenGraphTitle: String
-  Tags: [String]
-  Thumbnail: Image
-  Id: ID
-  LastModified: Datetime
-  SourceName: String
   AllowComments: Boolean
-  Author: String
-  Category: [String]
-  Content: String
-  Featured: Boolean
-}
-
-input NewsItemInput {
-  Tags: [String]
-  Comments: [CommentContract]
-  Description: String
-  OpenGraphTitle: String
-  Content: String
-  Featured: Boolean
+  BlobStorageProvider: String
+  FolderId: String
+  MediaUrl: String
+  Title: Lstring
+  ApprovalWorkflowState: Lstring
   Id: String
-  LastModified: Datetime
-  SourceName: String
-  AllowComments: Boolean
-  Author: String
-  Category: [String]
-  PublicationDate: Datetime
-  SourceSite: String
+  MediaFileUrlName: Lstring
+  ViewsCount: Int
+  DefaultPageId: String
+  TotalSize: Int
+  Version: Int
+  Visible: Boolean
   DateCreated: Datetime
-  ItemDefaultUrl: String
-  OpenGraphImage: String
-  Summary: String
-  Title: String
-  UrlName: String
+  ExpirationDate: Datetime
+  LastModifiedBy: String
+  OriginalContentId: String
+  Status: ContentLifecycleStatus
+  Author: Lstring
   IncludeInSitemap: Boolean
-  OpenGraphDescription: String
-  Provider: String
 }
 
-type TimeZoneModel {
-  id: String
+type RuleAction {
+  Action: FormRuleAction
+  Target: String
+}
+
+enum PageTemplateFramework {
+  Hybrid @meta(value: 0, valueType: int32)
+  Mvc @meta(value: 1, valueType: int32)
+  WebForms @meta(value: 2, valueType: int32)
+}
+
+type CountryModel {
+  states: [StateModel]
+  hasStates: Boolean
+  isoCode: String
   name: String
 }
 
-type FormField {
-  Type: String
-  Values: [String]
-  Hideable: Boolean
-  Id: String
-  InputType: String
-  Operators: [Operator]
-  Title: String
+type CultureViewModel {
+  DisplayName: String
+  FieldSuffix: String
+  ShortName: String
+  UICulture: String
+  Culture: String
+  Key: String
+  SitesNames: [String]
+  SitesUsingCultureAsDefault: [String]
+  IsDefault: Boolean
 }
 
-type ChoiceValue {
-  Name: String
-  Title: String
-  Value: String
-}
-
-type Void {
-}
-
-enum FormRuleAction {
-  ShowMessage @meta(value: 4, valueType: int32)
-  Skip @meta(value: 2, valueType: int32)
-  GoTo @meta(value: 3, valueType: int32)
-  Hide @meta(value: 1, valueType: int32)
-  SendNotification @meta(value: 5, valueType: int32)
-  Show @meta(value: 0, valueType: int32)
-}
-
-type Album {
-  ThumbnailProfiles: [String]
-  LastModified: Datetime
-  MaxSize: Int
-  ResizeOnUpload: Boolean
-  ParentId: String
-  PublicationDate: Datetime
-  UrlName: String
-  CoverId: String
+type Testimonial {
   DateCreated: Datetime
-  Description: String
-  ItemDefaultUrl: String
-  MaxItemSize: Int
-  NewSize: String
-  OutputCacheProfile: String
-  BlobStorageProvider: String
+  LastModified: Datetime
+  Quote: String
   Id: ID
+  ItemDefaultUrl: String
+  Photo: Image
+  Company: String
   IncludeInSitemap: Boolean
-  Title: String
-  ChildrenCount: Int
-  ClientCacheProfile: String
+  TestimonialAuthor: String
+  JobTitle: String
   Provider: String
+  PublicationDate: Datetime
+  Title: String
+  UrlName: String
 }
 
-input AlbumInput {
-  Id: String
-  IncludeInSitemap: Boolean
-  ItemDefaultUrl: String
-  MaxItemSize: Int
-  NewSize: String
-  OutputCacheProfile: String
-  BlobStorageProvider: String
-  ClientCacheProfile: String
-  Provider: String
-  Title: String
-  ChildrenCount: Int
-  MaxSize: Int
-  ResizeOnUpload: Boolean
-  ThumbnailProfiles: [String]
-  LastModified: Datetime
+input TestimonialInput {
   DateCreated: Datetime
-  Description: String
-  ParentId: String
+  LastModified: Datetime
+  Quote: String
+  Id: String
+  ItemDefaultUrl: String
+  Company: String
+  IncludeInSitemap: Boolean
+  TestimonialAuthor: String
+  JobTitle: String
+  Provider: String
   PublicationDate: Datetime
+  Title: String
   UrlName: String
-  CoverId: String
 }
 
 enum LocalizationStrategy {
@@ -1201,519 +349,118 @@ enum LocalizationStrategy {
   Synced @meta(value: 2, valueType: int32)
 }
 
-type PageScript {
-  Attributes: [PageScriptAttribute]
-  Source: String
-  Value: String
-}
-
-type HierarchicalTaxon {
-  Ordinal: Float
-  ParentId: String
-  Synonyms: String
-  TaxonomyId: String
-  UrlName: String
-  AppliedTo: Int
-  Description: String
-  LastModified: Datetime
-  Name: String
-  Provider: String
+type ExtendedMediaLink {
+  Height: Int
+  MediaFileUrlName: String
   Title: String
-  FullUrl: String
-  Id: ID
-}
-
-input HierarchicalTaxonInput {
-  FullUrl: String
-  Id: String
-  LastModified: Datetime
-  Name: String
-  Provider: String
-  Title: String
-  UrlName: String
-  AppliedTo: Int
-  Description: String
-  Ordinal: Float
-  ParentId: String
-  Synonyms: String
-  TaxonomyId: String
-}
-
-type PublicationInfo {
-  Date: Datetime
-  User: String
-}
-
-type Location {
-  Id: ID
-  Phone: String
-  Provider: String
-  Title: String
-  Fax: String
-  WorkingHours: String
-  Image: Image
-  LastModified: Datetime
-  UrlName: String
-  Address: Address
-  Email: String
-  IncludeInSitemap: Boolean
-  ItemDefaultUrl: String
-  PublicationDate: Datetime
-  DateCreated: Datetime
-}
-
-input LocationInput {
-  DateCreated: Datetime
-  Email: String
-  IncludeInSitemap: Boolean
-  ItemDefaultUrl: String
-  PublicationDate: Datetime
-  Fax: String
-  Id: String
-  Phone: String
-  Provider: String
-  Title: String
-  WorkingHours: String
-  Address: Address
-  LastModified: Datetime
-  UrlName: String
-}
-
-type RuleCondition {
-  Operator: ConditionOperator
-  Value: String
-  Id: String
-}
-
-type DiagnosticResult {
-  Diagnostics: [DiagnosticsDto]
-}
-
-type ComponentsResponse {
-  Components: [ComponentDto]
-}
-
-type SharedInSiteModel {
-  Id: String
-  IsShared: Boolean
-  Name: String
-}
-
-type ControlMetadata {
-  Caption: String
-  Name: String
-  PropertyMetadata: [SectionGroup]
-  PropertyMetadataFlat: [PropertyContainer]
-  ViewName: String
-}
-
-enum TextPosition {
-  Left @meta(value: 1, valueType: int32)
-  Right @meta(value: 2, valueType: int32)
-}
-
-enum ContentLifecycleStatus {
-  Temp @meta(value: 1, valueType: int32)
-  Deleted @meta(value: 4, valueType: int32)
-  Live @meta(value: 2, valueType: int32)
-  Master @meta(value: 0, valueType: int32)
-  PartialTemp @meta(value: 8, valueType: int32)
-}
-
-type DataSourceLinkConfiguration {
-  IsDefault: Boolean
-  ProviderName: String
-}
-
-type Showcase {
-  Category: [String]
-  ItemDefaultUrl: String
-  LastModified: Datetime
-  PublicationDate: Datetime
-  Results: String
-  Solution: String
-  Title: String
-  Client: String
-  Id: ID
-  Provider: String
-  Tags: [String]
-  DateCreated: Datetime
-  Download: Document
-  IncludeInSitemap: Boolean
-  UrlName: String
-  Challenge: String
-  Thumbnail: Image
-  Website: String
-}
-
-input ShowcaseInput {
-  Category: [String]
-  ItemDefaultUrl: String
-  LastModified: Datetime
-  PublicationDate: Datetime
-  Results: String
-  Solution: String
-  Title: String
-  Client: String
-  Id: String
-  Provider: String
-  Tags: [String]
-  DateCreated: Datetime
-  IncludeInSitemap: Boolean
-  UrlName: String
-  Challenge: String
-  Website: String
-}
-
-type SiteDataSourceConfigViewModel {
-  Links: [SiteDataSourceLinkViewModel]
-  Name: String
-  SampleLink: SiteDataSourceLinkViewModel
-  Title: String
-  AllowMultipleProviders: Boolean
-  DependantDataSources: [String]
-  IsChecked: Boolean
-}
-
-type ThumbnailModel {
-  Size: String
-  Title: String
+  DefaultUrl: String
+  MimeType: String
+  NumberOfChunks: Int
+  ThumbnailUrl: String
+  TotalSize: Int
+  Width: Int
+  Extension: String
+  FileId: String
   Url: String
+  Cultures: [String]
+  ChunkSize: Int
+  Culture: Int
+  FilePath: String
+  Id: String
+  MediaContentId: String
+  ApplicationName: String
 }
 
-type PropertyValueGroupContainer {
-  ComponentId: String
-  Properties: [PropertyValueContainer]
-  PropertyLocalizationMode: String
-  PropertyMetadata: [PropertyContainer]
-  Caption: String
+type StateModel {
+  abbreviation: String
+  countryKey: String
+  stateProvinceName: String
 }
 
-type ContentItem {
-  DateCreated: Datetime
-  Description: String
-  Author: String
-  Id: ID
-  Provider: String
-  IncludeInSitemap: Boolean
-  LastModified: Datetime
-  PublicationDate: Datetime
-  Title: String
-  UrlName: String
-  Category: [String]
+type Event {
+  AllDayEvent: Boolean
   Content: String
-  Name: String
-  Tags: [String]
-}
-
-input ContentItemInput {
-  Title: String
-  IncludeInSitemap: Boolean
-  LastModified: Datetime
+  EventEndUtcOffset: Float
+  EventStart: Datetime
+  ItemDefaultUrl: String
+  Location: String
   PublicationDate: Datetime
-  Tags: [String]
-  UrlName: String
   Category: [String]
-  Content: String
-  Name: String
-  DateCreated: Datetime
+  Country: String
   Description: String
-  Author: String
-  Id: String
-  Provider: String
-}
-
-type OperationCategory {
-  Name: String
-  Title: String
-}
-
-enum BulkOperationResultType {
-  Error @meta(value: 2, valueType: int32)
-  Success @meta(value: 0, valueType: int32)
-  Warning @meta(value: 1, valueType: int32)
-}
-
-type FormDescription {
-  Rules: String
-  SuccessMessage: String
+  ContactEmail: String
+  LastModified: Datetime
+  Tags: [String]
+  TimeZoneId: String
   DateCreated: Datetime
+  EventStartWithOffset: Datetime
   Id: ID
-  PublicationDate: Datetime
-  Tags: [String]
-  Title: String
-  Category: [String]
-  Description: String
-  Provider: String
-  DisplayStatus: [DisplayStatus]
+  RecurrenceExpression: String
+  State: String
+  ContactCell: String
+  Street: String
+  EventEnd: Datetime
   IncludeInSitemap: Boolean
-  LastModified: Datetime
-  Name: String
-}
-
-input FormDescriptionInput {
-  Title: String
-  DateCreated: Datetime
-  Id: String
-  PublicationDate: Datetime
-  Tags: [String]
-  Category: [String]
-  Description: String
-  Provider: String
-  DisplayStatus: [DisplayStatus]
-  IncludeInSitemap: Boolean
-  LastModified: Datetime
-  Name: String
-  Rules: String
-  SuccessMessage: String
-}
-
-type ExtendedFolder {
-  PreviewItems: [MediaContent]
-  Description: String
-  LastUploaded: Datetime
-  Id: String
-  MaxLibrarySizeInKb: Int
+  IsRecurrent: Boolean
   ParentId: String
-  RootId: String
-  Title: String
-  Breadcrumb: [BreadcrumbItem]
-  ChildrenCount: Int
-  Storage: String
-  TotalLibrarySizeInKb: Int
-  RunningTask: String
-  FoldersCount: Int
-  LastUploadedBy: String
-}
-
-type CommentContract {
-  ProfilePictureUrl: String
-  DateCreated: Datetime
-  Message: String
-  Name: String
-  ProfilePictureThumbnailUrl: String
-}
-
-enum ReorderPosition {
-  Before @meta(value: 0, valueType: int32)
-  Under @meta(value: 2, valueType: int32)
-  After @meta(value: 1, valueType: int32)
-}
-
-enum PageTemplateCategoryType {
-  CurrentlyUsed @meta(value: 1, valueType: int32)
-  None @meta(value: 0, valueType: int32)
-}
-
-type Slide {
-  ItemDefaultUrl: String
   Provider: String
-  Subtitle: String
-  UrlName: String
-  DateCreated: Datetime
-  Id: ID
-  Image: Image
-  InvertText: Boolean
-  TextPosition: TextPosition
-  industries: [String]
-  IncludeInSitemap: Boolean
-  LastModified: Datetime
-  PublicationDate: Datetime
   Title: String
+  UrlName: String
+  Comments: [CommentContract]
+  ContactPhone: String
+  ContactWeb: String
+  AllowComments: Boolean
+  City: String
+  ContactName: String
+  EventEndWithOffset: Datetime
+  EventStartUtcOffset: Float
+  Parent: Calendar
+  Summary: String
 }
 
-input SlideInput {
-  LastModified: Datetime
-  PublicationDate: Datetime
-  Title: String
-  IncludeInSitemap: Boolean
-  Provider: String
-  Subtitle: String
-  UrlName: String
+input EventInput {
+  AllowComments: Boolean
+  City: String
+  ContactName: String
+  EventEndWithOffset: Datetime
+  EventStartUtcOffset: Float
+  Summary: String
+  AllDayEvent: Boolean
+  Content: String
+  EventEndUtcOffset: Float
+  EventStart: Datetime
   ItemDefaultUrl: String
+  Location: String
+  PublicationDate: Datetime
+  Category: [String]
+  Country: String
+  Description: String
+  ContactEmail: String
+  LastModified: Datetime
+  Tags: [String]
+  TimeZoneId: String
   DateCreated: Datetime
-  InvertText: Boolean
-  TextPosition: TextPosition
-  industries: [String]
+  EventStartWithOffset: Datetime
   Id: String
+  RecurrenceExpression: String
+  State: String
+  ContactCell: String
+  Street: String
+  EventEnd: Datetime
+  IncludeInSitemap: Boolean
+  IsRecurrent: Boolean
+  ParentId: String
+  Provider: String
+  Title: String
+  UrlName: String
+  Comments: [CommentContract]
+  ContactPhone: String
+  ContactWeb: String
 }
 
-type FilterItem {
-  Category: String
+type TemplateStatistic {
   Count: Int
-  IsDynamicFilter: Boolean
   Name: String
-  Parameters: FilterParameters
-  Title: String
-}
-
-type Image {
-  Ordinal: Float
-  ThumbnailUrl: String
-  AlternativeText: String
-  Category: [String]
-  Description: String
-  LastModified: Datetime
-  Title: String
-  TotalSize: Int
-  Width: Int
-  Id: ID
-  ItemDefaultUrl: String
-  MimeType: String
-  PublicationDate: Datetime
-  Tags: [String]
-  Author: String
-  DateCreated: Datetime
-  FolderId: String
-  Parent: Album
-  Provider: String
-  Thumbnails: [ThumbnailModel]
-  Url: String
-  UrlName: String
-  Extension: String
-  Height: Int
-  IncludeInSitemap: Boolean
-  ParentId: String
-}
-
-input ImageInput {
-  Author: String
-  DateCreated: Datetime
-  FolderId: String
-  Tags: [String]
-  Thumbnails: [ThumbnailModel]
-  Url: String
-  UrlName: String
-  Extension: String
-  Height: Int
-  IncludeInSitemap: Boolean
-  ParentId: String
-  Provider: String
-  ThumbnailUrl: String
-  AlternativeText: String
-  Category: [String]
-  Description: String
-  LastModified: Datetime
-  Ordinal: Float
-  TotalSize: Int
-  Width: Int
-  Id: String
-  ItemDefaultUrl: String
-  MimeType: String
-  PublicationDate: Datetime
-  Title: String
-}
-
-type Site {
-  CultureKeys: [String]
-  DefaultCultureKey: String
-  DefaultFrontendTemplateId: String
-  Id: ID
-  IsOffline: Boolean
-  Provider: String
-  CulturesMap: [CultureModel]
-  LiveUrl: String
-  Name: String
-  SiteMapRootNodeId: String
-}
-
-input SiteInput {
-  CulturesMap: [CultureModel]
-  LiveUrl: String
-  Name: String
-  SiteMapRootNodeId: String
-  Provider: String
-  CultureKeys: [String]
-  DefaultCultureKey: String
-  DefaultFrontendTemplateId: String
-  Id: String
-  IsOffline: Boolean
-}
-
-enum ConditionOperator {
-  Equal @meta(value: 0, valueType: int32)
-  FileSelected @meta(value: 8, valueType: int32)
-  IsFilled @meta(value: 4, valueType: int32)
-  IsGreaterThan @meta(value: 7, valueType: int32)
-  IsLessThan @meta(value: 6, valueType: int32)
-  NotContains @meta(value: 3, valueType: int32)
-  NotEqual @meta(value: 1, valueType: int32)
-  Contains @meta(value: 2, valueType: int32)
-  FileNotSelected @meta(value: 9, valueType: int32)
-  IsNotFilled @meta(value: 5, valueType: int32)
-}
-
-enum LogicalOperator {
-  And @meta(value: 0, valueType: int32)
-  Or @meta(value: 1, valueType: int32)
-}
-
-enum NotificationType {
-  Error @meta(value: 2, valueType: int32)
-  None @meta(value: 0, valueType: int32)
-  Success @meta(value: 1, valueType: int32)
-  Warning @meta(value: 3, valueType: int32)
-}
-
-type FieldSettings {
-  AllowView: Boolean
-  Key: String
-  AllowCreate: Boolean
-}
-
-type Folder {
-  ChildrenCount: Int
-  CoverId: String
-  Description: String
-  Id: ID
-  LastModified: Datetime
-  Provider: String
-  UrlName: String
-  Breadcrumb: [BreadcrumbItem]
-  RootId: String
-  Title: String
-  ParentId: String
-}
-
-input FolderInput {
-  CoverId: String
-  Description: String
-  Id: String
-  LastModified: Datetime
-  Provider: String
-  UrlName: String
-  Breadcrumb: [BreadcrumbItem]
-  ChildrenCount: Int
-  Title: String
-  ParentId: String
-  RootId: String
-}
-
-type RendererData {
-  IdentityServerHostHeaderValue: String
-  SitefinityUrl: String
-  Url: String
-  WebService: String
-  AuthRedirectUrl: String
-  HostHeaderName: String
-}
-
-type ComponentDto {
-  Id: String
-  PlaceHolder: String
-  SiblingId: String
-  ViewName: String
-  Caption: String
-  Children: [ComponentDto]
-  Lazy: Boolean
-  Name: String
-  Properties: PropertiesModel
-}
-
-type ParameterizedSetting {
-  Name: String
-  Parameters: PropertiesModel
-  Value: String
 }
 
 type RelatedSiteInfo {
@@ -1721,8 +468,206 @@ type RelatedSiteInfo {
   Url: String
 }
 
-type OperationAction {
-  Type: Int
+type WidgetOperationResult {
+  Message: String
+  Properties: [PropertyValueContainer]
+  State: WidgetState
+  SucceededItemsIds: [String]
+  Success: Boolean
+  UndoOperation: ItemOperation
+  AvailableActions: [String]
+  FailedItemsIds: [String]
+  Link: String
+  MultipleItemsMessage: String
+  Title: String
+  Type: NotificationType
+}
+
+type FrontendPageNodeExtended {
+  LinkTarget: String
+  PageSiteMapNode: FrontendSitemapPage
+  Title: String
+  Url: String
+  ChildNodes: [FrontendPageNodeExtended]
+  HasChildOpen: Boolean
+  IsCurrentlyOpened: Boolean
+  Key: String
+}
+
+type SectionGroup {
+  Name: String
+  Sections: [Section]
+}
+
+type AuthSettings {
+  Scope: String
+}
+
+type FormDescription {
+  LastModified: Datetime
+  Name: String
+  Tags: [String]
+  Title: String
+  Category: [String]
+  Description: String
+  Id: ID
+  IncludeInSitemap: Boolean
+  DateCreated: Datetime
+  Provider: String
+  Rules: String
+  SuccessMessage: String
+  DisplayStatus: [DisplayStatus]
+  PublicationDate: Datetime
+}
+
+input FormDescriptionInput {
+  DateCreated: Datetime
+  SuccessMessage: String
+  Provider: String
+  Rules: String
+  DisplayStatus: [DisplayStatus]
+  PublicationDate: Datetime
+  Id: String
+  IncludeInSitemap: Boolean
+  LastModified: Datetime
+  Name: String
+  Tags: [String]
+  Title: String
+  Category: [String]
+  Description: String
+}
+
+type DefaultExecuteOperationContext {
+  Parameters: [PropertyValueContainer]
+  PropertyMetadata: [PropertyContainer]
+  WidgetKey: String
+  WidgetSegmentId: String
+  ActionName: String
+  Name: String
+}
+
+type ComponentDto {
+  Caption: String
+  Children: [ComponentDto]
+  Lazy: Boolean
+  Name: String
+  SiblingId: String
+  ViewName: String
+  Id: String
+  PlaceHolder: String
+  Properties: PropertiesModel
+}
+
+type FrontendSitemapPage {
+  PageType: PageType
+  AvailableLanguages: [String]
+  BreadCrumb: [String]
+  HasChildren: Boolean
+  IsHomePage: Boolean
+  ViewUrl: String
+  Children: [FrontendSitemapPage]
+  Id: String
+  ParentId: String
+  Title: String
+}
+
+type PropertyValueGroupContainer {
+  PropertyMetadata: [PropertyContainer]
+  Caption: String
+  ComponentId: String
+  Properties: [PropertyValueContainer]
+  PropertyLocalizationMode: String
+}
+
+type DisplayStatus {
+  DetailedLabel: String
+  ExpirationDate: Datetime
+  PublicationDate: Datetime
+  User: String
+  Name: String
+  Source: String
+  Date: Datetime
+  Id: String
+  Label: String
+  Message: Message
+}
+
+enum LogicalOperator {
+  And @meta(value: 0, valueType: int32)
+  Or @meta(value: 1, valueType: int32)
+}
+
+type Document {
+  Tags: [String]
+  DateCreated: Datetime
+  Extension: String
+  FolderId: String
+  ItemDefaultUrl: String
+  Parent: DocumentLibrary
+  Parts: String
+  PublicationDate: Datetime
+  Title: String
+  Url: String
+  Category: [String]
+  Provider: String
+  UrlName: String
+  Author: String
+  Id: ID
+  Image: Image
+  IncludeInSitemap: Boolean
+  LastModified: Datetime
+  ParentId: String
+  TotalSize: Int
+  Description: String
+  MimeType: String
+  Ordinal: Float
+  ThumbnailUrl: String
+}
+
+input DocumentInput {
+  Description: String
+  MimeType: String
+  Ordinal: Float
+  ThumbnailUrl: String
+  Tags: [String]
+  DateCreated: Datetime
+  Extension: String
+  FolderId: String
+  ItemDefaultUrl: String
+  Parts: String
+  PublicationDate: Datetime
+  Title: String
+  Url: String
+  Category: [String]
+  Provider: String
+  UrlName: String
+  Author: String
+  Id: String
+  IncludeInSitemap: Boolean
+  LastModified: Datetime
+  ParentId: String
+  TotalSize: Int
+}
+
+type SiteDataSourceConfigViewModel {
+  Title: String
+  AllowMultipleProviders: Boolean
+  DependantDataSources: [String]
+  IsChecked: Boolean
+  Links: [SiteDataSourceLinkViewModel]
+  Name: String
+  SampleLink: SiteDataSourceLinkViewModel
+}
+
+type ThumbnailModel {
+  Height: Int
+  MimeType: String
+  Title: String
+  Url: String
+  Width: Int
+}
+
+type OperationCategory {
   Name: String
   Title: String
 }
@@ -1736,182 +681,251 @@ type EditorState {
   WidgetState: [WidgetState]
 }
 
-enum ServiceHookActivityStatus {
-  Successful @meta(value: 3, valueType: int32)
-  Failed @meta(value: 2, valueType: int32)
-  Pending @meta(value: 0, valueType: int32)
-  Running @meta(value: 1, valueType: int32)
+type MarkedItem {
+  AvailableLanguages: [String]
+  ContentType: String
+  DisplayStatus: [DisplayStatus]
+  Provider: String
+  ContentTypeInfo: TypeInfo
+  Id: String
+  LastPublished: PublicationInfo
+  LockedStatus: ItemEventInfo
+  Title: String
 }
 
-type ServiceHookSettingChoice {
-  Module: String
+type TypeInfo {
+  DisplayName: String
+  ProviderDisplayName: String
+}
+
+enum ConditionOperator {
+  FileNotSelected @meta(value: 9, valueType: int32)
+  FileSelected @meta(value: 8, valueType: int32)
+  IsLessThan @meta(value: 6, valueType: int32)
+  NotEqual @meta(value: 1, valueType: int32)
+  Equal @meta(value: 0, valueType: int32)
+  IsFilled @meta(value: 4, valueType: int32)
+  IsGreaterThan @meta(value: 7, valueType: int32)
+  IsNotFilled @meta(value: 5, valueType: int32)
+  NotContains @meta(value: 3, valueType: int32)
+  Contains @meta(value: 2, valueType: int32)
+}
+
+type FormDraft {
+  Provider: String
+  SuccessMessage: String
+  Id: ID
+  LastModified: Datetime
   Name: String
-  ParametersMetadata: [Section]
-  Priority: Float
+  Rules: [FormRule]
+  Steps: [Step]
+  Title: String
+  AvailableActions: [AvailableAction]
+  Fields: [FormField]
+}
+
+input FormDraftInput {
+  Id: String
+  LastModified: Datetime
+  Provider: String
+  SuccessMessage: String
+  AvailableActions: [AvailableAction]
+  Fields: [FormField]
+  Name: String
+  Rules: [FormRule]
+  Steps: [Step]
+  Title: String
+}
+
+type Video {
+  Height: Int
+  IncludeInSitemap: Boolean
+  ItemDefaultUrl: String
+  LastModified: Datetime
+  Parent: VideoLibrary
+  PublicationDate: Datetime
+  Title: String
+  DateCreated: Datetime
+  TotalSize: Int
+  ParentId: String
+  Tags: [String]
+  Id: ID
+  Extension: String
+  MimeType: String
+  Provider: String
+  ThumbnailUrl: String
+  Url: String
+  Category: [String]
+  Description: String
+  FolderId: String
+  Ordinal: Float
+  UrlName: String
+  Width: Int
+  Author: String
+}
+
+input VideoInput {
+  PublicationDate: Datetime
+  Title: String
+  DateCreated: Datetime
+  Height: Int
+  IncludeInSitemap: Boolean
+  ItemDefaultUrl: String
+  LastModified: Datetime
+  TotalSize: Int
+  Id: String
+  ParentId: String
+  Tags: [String]
+  Url: String
+  Category: [String]
+  Extension: String
+  MimeType: String
+  Provider: String
+  ThumbnailUrl: String
+  Width: Int
+  Author: String
+  Description: String
+  FolderId: String
+  Ordinal: Float
+  UrlName: String
+}
+
+type ValidationContainer {
+}
+
+type FormField {
+  Hideable: Boolean
+  Id: String
+  InputType: String
+  Operators: [Operator]
+  Title: String
+  Type: String
+  Values: [String]
+}
+
+type Folder {
+  CoverId: String
+  LastModified: Datetime
+  ParentId: String
+  Provider: String
+  Title: String
+  UrlName: String
+  Breadcrumb: [BreadcrumbItem]
+  ChildrenCount: Int
+  Description: String
+  Id: ID
+  RootId: String
+}
+
+input FolderInput {
+  CoverId: String
+  LastModified: Datetime
+  ParentId: String
+  Provider: String
+  Title: String
+  UrlName: String
+  Breadcrumb: [BreadcrumbItem]
+  ChildrenCount: Int
+  Description: String
+  Id: String
+  RootId: String
+}
+
+enum NotificationType {
+  Error @meta(value: 2, valueType: int32)
+  None @meta(value: 0, valueType: int32)
+  Success @meta(value: 1, valueType: int32)
+  Warning @meta(value: 3, valueType: int32)
+}
+
+type PageScriptAttribute {
   Value: String
+  Key: String
 }
 
-enum TaxonomyType {
-  Flat @meta(value: 0, valueType: int32)
-  Hierarchical @meta(value: 1, valueType: int32)
-}
-
-type Owner {
-  UserEmail: String
-  FullName: String
-  Id: String
-  ImageUrl: String
-}
-
-type DataProviderModel {
-  isDefault: Boolean
-  name: String
-  title: String
-}
-
-type SiteConfiguration {
-  IsDefaultSite: Boolean
-  LiveUrl: String
-}
-
-type Blog {
-  DateCreated: Datetime
-  ItemDefaultUrl: String
-  PublicationDate: Datetime
+type PageNode {
+  RelativeUrlPath: String
+  Renderer: String
+  RequireSsl: Boolean
   UrlName: String
-  Provider: String
-  Title: String
-  Description: String
-  Id: ID
-  IncludeInSitemap: Boolean
-  LastModified: Datetime
-}
-
-input BlogInput {
-  LastModified: Datetime
-  Provider: String
-  Title: String
-  Description: String
-  Id: String
-  IncludeInSitemap: Boolean
-  UrlName: String
-  DateCreated: Datetime
-  ItemDefaultUrl: String
+  EditUrl: String
+  HasChildren: Boolean
+  IncludeInSearchIndex: Boolean
+  OutputCacheProfile: String
+  AllowParametersValidation: Boolean
+  Priority: Float
+  RedirectPage: RedirectPage
   PublicationDate: Datetime
-}
-
-type List {
-  Provider: String
-  PublicationDate: Datetime
-  SortOrder: String
-  Title: String
-  UrlName: String
-  DateCreated: Datetime
-  Description: String
-  LastModified: Datetime
-  Id: ID
-  IncludeInSitemap: Boolean
-}
-
-input ListInput {
-  Id: String
-  IncludeInSitemap: Boolean
-  Provider: String
-  PublicationDate: Datetime
-  SortOrder: String
-  Title: String
-  UrlName: String
-  DateCreated: Datetime
-  Description: String
-  LastModified: Datetime
-}
-
-type ListItem {
-  Category: [String]
-  LastModified: Datetime
-  Parent: List
-  Title: String
-  Provider: String
-  DateCreated: Datetime
-  Id: ID
-  IncludeInSitemap: Boolean
+  AvailableLanguages: [String]
+  CanonicalUrlBehaviour: CanonicalUrlSettings
+  IncludeScriptManager: Boolean
+  IsHomePage: Boolean
+  ViewUrl: String
+  Breadcrumb: [String]
+  EnableViewState: Boolean
+  HeadTagContent: String
   ParentId: String
-  Content: String
-  PublicationDate: Datetime
-  Tags: [String]
   Description: String
-  Ordinal: Float
-  UrlName: String
-}
-
-input ListItemInput {
+  TemplateName: String
   Title: String
-  Category: [String]
-  LastModified: Datetime
-  ParentId: String
-  Provider: String
-  DateCreated: Datetime
-  Id: String
-  IncludeInSitemap: Boolean
-  Content: String
-  PublicationDate: Datetime
-  Tags: [String]
-  Description: String
-  Ordinal: Float
-  UrlName: String
-}
-
-type DefaultExecuteOperationContext {
-  WidgetKey: String
-  WidgetSegmentId: String
-  ActionName: String
-  Name: String
-  Parameters: [PropertyValueContainer]
-  PropertyMetadata: [PropertyContainer]
-}
-
-type Taxonomy {
-  RootTaxonomyId: String
-  TaxaUrl: String
-  Type: TaxonomyType
-  Name: String
-  TaxonName: String
-  TaxonomySharedWith: Int
-  DefaultTaxonName: String
-  DefaultTitle: String
-  Description: String
   Id: ID
+  Image: Image
+  LocalizationStrategy: LocalizationStrategy
+  RootId: String
+  Provider: String
+  ShowInNavigation: Boolean
+  CodeBehindType: String
+  Crawlable: Boolean
+  HtmlTitle: String
   LastModified: Datetime
-  Title: String
+  DateCreated: Datetime
+  PageType: PageType
+  TemplateId: String
 }
 
-input TaxonomyInput {
-  RootTaxonomyId: String
-  TaxaUrl: String
-  Type: TaxonomyType
-  Name: String
-  TaxonName: String
-  TaxonomySharedWith: Int
-  DefaultTaxonName: String
-  DefaultTitle: String
+input PageNodeInput {
+  UrlName: String
+  EditUrl: String
+  HasChildren: Boolean
+  IncludeInSearchIndex: Boolean
+  OutputCacheProfile: String
+  RelativeUrlPath: String
+  Renderer: String
+  RequireSsl: Boolean
+  AllowParametersValidation: Boolean
+  Priority: Float
+  RedirectPage: RedirectPage
+  AvailableLanguages: [String]
+  CanonicalUrlBehaviour: CanonicalUrlSettings
+  IncludeScriptManager: Boolean
+  IsHomePage: Boolean
+  PublicationDate: Datetime
+  Breadcrumb: [String]
+  EnableViewState: Boolean
+  HeadTagContent: String
+  ParentId: String
+  ViewUrl: String
   Description: String
+  TemplateName: String
+  Title: String
   Id: String
+  LocalizationStrategy: LocalizationStrategy
+  RootId: String
+  CodeBehindType: String
+  Crawlable: Boolean
+  HtmlTitle: String
   LastModified: Datetime
-  Title: String
+  Provider: String
+  ShowInNavigation: Boolean
+  DateCreated: Datetime
+  PageType: PageType
+  TemplateId: String
 }
 
-type BulkOperationResult {
-  FailedItemsIds: [String]
-  Message: String
-  SucceededItemsIds: [String]
-  Type: BulkOperationResultType
-}
-
-type PageTemplateCategory {
-  Type: PageTemplateCategoryType
-  Subtitle: String
-  Templates: [Template]
-  Title: String
+type ComponentContext {
+  HasLazyComponents: Boolean
+  OrphanedControls: [ComponentDto]
+  Components: [ComponentDto]
 }
 
 type RedirectPage {
@@ -1921,88 +935,816 @@ type RedirectPage {
   RedirectUrl: String
 }
 
-type PropertyValueContainer {
+type SiteDataSourceLinkViewModel {
+  ProviderTitle: String
+  SiteId: String
+  DataSourceName: String
+  Id: String
+  IsDefault: Boolean
+  IsGlobalProvider: Boolean
+  ProviderName: String
+}
+
+enum ServiceHookActivityStatus {
+  Pending @meta(value: 0, valueType: int32)
+  Running @meta(value: 1, valueType: int32)
+  Successful @meta(value: 3, valueType: int32)
+  Failed @meta(value: 2, valueType: int32)
+}
+
+type FieldSettings {
+  AllowCreate: Boolean
+  AllowView: Boolean
+  Key: String
+}
+
+type Blog {
+  IncludeInSitemap: Boolean
+  ItemDefaultUrl: String
+  Provider: String
+  UrlName: String
+  DateCreated: Datetime
+  Description: String
+  Id: ID
+  LastModified: Datetime
+  PublicationDate: Datetime
+  Title: String
+}
+
+input BlogInput {
+  ItemDefaultUrl: String
+  Provider: String
+  UrlName: String
+  DateCreated: Datetime
+  Description: String
+  Id: String
+  IncludeInSitemap: Boolean
+  LastModified: Datetime
+  PublicationDate: Datetime
+  Title: String
+}
+
+enum ContentLifecycleStatus {
+  Deleted @meta(value: 4, valueType: int32)
+  Live @meta(value: 2, valueType: int32)
+  Master @meta(value: 0, valueType: int32)
+  PartialTemp @meta(value: 8, valueType: int32)
+  Temp @meta(value: 1, valueType: int32)
+}
+
+type Site {
+  Provider: String
+  CultureKeys: [String]
+  CulturesMap: [CultureModel]
+  DefaultCultureKey: String
+  Id: ID
+  LiveUrl: String
+  DefaultFrontendTemplateId: String
+  IsOffline: Boolean
+  Name: String
+  SiteMapRootNodeId: String
+}
+
+input SiteInput {
+  CultureKeys: [String]
+  CulturesMap: [CultureModel]
+  DefaultCultureKey: String
+  Id: String
+  LiveUrl: String
+  Provider: String
+  DefaultFrontendTemplateId: String
+  IsOffline: Boolean
+  Name: String
+  SiteMapRootNodeId: String
+}
+
+type PageScript {
+  Value: String
+  Attributes: [PageScriptAttribute]
+  Source: String
+}
+
+type ResolvedDetailItem {
+  ErrorMessage: String
+  Id: String
+  ItemType: String
+  ProviderName: String
+}
+
+type DataSourceLinkConfiguration {
+  IsDefault: Boolean
+  ProviderName: String
+}
+
+type TimeZoneModel {
+  id: String
+  name: String
+}
+
+type MarketingPropertyValue {
+  Description: String
+  Link: String
+  LinkTitle: String
+}
+
+type AnalyticsSettingsDto {
+  Configured: Boolean
+  Installed: Boolean
+  ItemSupport: Boolean
+}
+
+type ListItem {
+  Content: String
+  Tags: [String]
+  IncludeInSitemap: Boolean
+  Ordinal: Float
+  ParentId: String
+  Title: String
+  Description: String
+  PublicationDate: Datetime
+  UrlName: String
+  Provider: String
+  Category: [String]
+  DateCreated: Datetime
+  Id: ID
+  LastModified: Datetime
+  Parent: List
+}
+
+input ListItemInput {
+  IncludeInSitemap: Boolean
+  Ordinal: Float
+  ParentId: String
+  Title: String
+  Description: String
+  PublicationDate: Datetime
+  UrlName: String
+  Provider: String
+  Category: [String]
+  DateCreated: Datetime
+  Id: String
+  LastModified: Datetime
+  Content: String
+  Tags: [String]
+}
+
+type LockContext {
+  Version: Int
+}
+
+type Operator {
+  Key: ConditionOperator
+  Value: String
+}
+
+type FlatTaxon {
+  LastModified: Datetime
+  Name: String
+  Ordinal: Float
+  Synonyms: String
+  TaxonomyId: String
+  UrlName: String
+  AppliedTo: Int
+  Id: ID
+  Provider: String
+  Title: String
+  Description: String
+}
+
+input FlatTaxonInput {
+  LastModified: Datetime
+  Name: String
+  Ordinal: Float
+  Synonyms: String
+  TaxonomyId: String
+  UrlName: String
+  AppliedTo: Int
+  Id: String
+  Provider: String
+  Title: String
+  Description: String
+}
+
+type DataSourceConfiguration {
+  IsChecked: Boolean
+  Links: [DataSourceLinkConfiguration]
+  Name: String
+}
+
+type FieldSettingsContext {
+  FieldSettings: [FieldSettings]
+}
+
+type AvailableAction {
+  Key: FormRuleAction
+  Value: String
+}
+
+type Void {
+}
+
+type DocumentLibrary {
+  ClientCacheProfile: String
+  IncludeInSitemap: Boolean
+  ItemDefaultUrl: String
+  MaxItemSize: Int
+  MaxSize: Int
+  PublicationDate: Datetime
+  ChildrenCount: Int
+  DateCreated: Datetime
+  Id: ID
+  ThumbnailProfiles: [String]
+  Title: String
+  UrlName: String
+  CoverId: String
+  LastModified: Datetime
+  ParentId: String
+  Provider: String
+  Description: String
+  OutputCacheProfile: String
+  BlobStorageProvider: String
+}
+
+input DocumentLibraryInput {
+  ParentId: String
+  Provider: String
+  Description: String
+  LastModified: Datetime
+  BlobStorageProvider: String
+  OutputCacheProfile: String
+  IncludeInSitemap: Boolean
+  ItemDefaultUrl: String
+  MaxItemSize: Int
+  MaxSize: Int
+  PublicationDate: Datetime
+  ChildrenCount: Int
+  ClientCacheProfile: String
+  Id: String
+  ThumbnailProfiles: [String]
+  Title: String
+  UrlName: String
+  CoverId: String
+  DateCreated: Datetime
+}
+
+type SiteConfigurationViewModel {
+  Name: String
+  FrontEndLoginPageUrl: String
+  HomePageId: String
+  Id: String
+  RequiresSsl: Boolean
+  SiteConfigurationMode: SiteConfigurationMode
+  SiteMapRootNodeId: String
+  SourcePagesSiteId: String
+  UseSystemCultures: Boolean
+  IsDefault: Boolean
+  OfflineSiteMessage: String
+  RedirectIfOffline: Boolean
+  PublicContentCultures: [CultureViewModel]
+  SystemCultures: [CultureViewModel]
+  FrontEndLoginPageId: String
+  IsAllowedStartStop: Boolean
+  LiveUrl: String
+  IsOffline: Boolean
+  OfflinePageToRedirect: String
+  StagingUrl: String
+  DataSources: [SiteDataSourceConfigViewModel]
+  DomainAliases: [String]
+  IsCurrentSite: Boolean
+}
+
+type OperationContextParameter {
   Name: String
   Value: String
 }
 
-type PageNode {
-  CodeBehindType: String
-  DateCreated: Datetime
-  OutputCacheProfile: String
-  PageType: PageType
-  ParentId: String
-  Provider: String
-  ViewUrl: String
-  AvailableLanguages: [String]
-  HasChildren: Boolean
-  PublicationDate: Datetime
-  RequireSsl: Boolean
-  CanonicalUrlBehaviour: CanonicalUrlSettings
-  EnableViewState: Boolean
-  HeadTagContent: String
-  Image: Image
-  LastModified: Datetime
+type ComponentsResponse {
+  Components: [ComponentDto]
+}
+
+type ItemEventInfo {
+  Date: Datetime
+  Id: String
+  User: String
+}
+
+type ParentTemplate {
+  Id: String
   Renderer: String
-  RedirectPage: RedirectPage
-  RootId: String
-  TemplateId: String
-  Description: String
-  IsHomePage: Boolean
-  ShowInNavigation: Boolean
   Title: String
-  HtmlTitle: String
-  Id: ID
-  LocalizationStrategy: LocalizationStrategy
-  RelativeUrlPath: String
-  TemplateName: String
-  EditUrl: String
-  IncludeInSearchIndex: Boolean
-  IncludeScriptManager: Boolean
-  Priority: Float
-  AllowParametersValidation: Boolean
+}
+
+type AnalyticsDto {
+  AnalyticsUrl: String
+  Id: String
+}
+
+enum TextPosition {
+  Left @meta(value: 1, valueType: int32)
+  Right @meta(value: 2, valueType: int32)
+}
+
+type Folder {
+  ChildrenCount: Int
+  ImagesUrl: [String]
+  Title: String
   Breadcrumb: [String]
-  Crawlable: Boolean
+  Id: String
+  LastModified: Datetime
+  ParentId: String
+  RootId: String
+  FoldersCount: Int
+}
+
+type CultureModel {
+  DisplayName: String
+  Name: String
+}
+
+type Owner {
+  FullName: String
+  Id: String
+  ImageUrl: String
+  UserEmail: String
+}
+
+type Template {
+  LayoutPath: String
+  Name: String
+  Renderer: String
+  ThumbnailUrl: String
+  Title: String
+  UsedByNumberOfPages: Int
+  Framework: PageTemplateFramework
+  Id: String
+}
+
+type Slide {
+  Id: ID
+  PublicationDate: Datetime
+  UrlName: String
+  IncludeInSitemap: Boolean
+  InvertText: Boolean
+  industries: [String]
+  Title: String
+  DateCreated: Datetime
+  Image: Image
+  ItemDefaultUrl: String
+  LastModified: Datetime
+  Provider: String
+  Subtitle: String
+  TextPosition: TextPosition
+}
+
+input SlideInput {
+  Title: String
+  DateCreated: Datetime
+  ItemDefaultUrl: String
+  LastModified: Datetime
+  Provider: String
+  Subtitle: String
+  TextPosition: TextPosition
+  Id: String
+  PublicationDate: Datetime
+  UrlName: String
+  IncludeInSitemap: Boolean
+  InvertText: Boolean
+  industries: [String]
+}
+
+type DiagnosticResult {
+  Diagnostics: [DiagnosticsDto]
+}
+
+type ValidationResult {
+  Errors: ValidationErrors
+}
+
+type ServiceHook {
+  Action: ParameterizedSetting
+  FailedRunsCount: Int
+  Id: ID
+  SuccessfulRunsCount: Int
+  Title: String
+  Trigger: ParameterizedSetting
+}
+
+input ServiceHookInput {
+  Action: ParameterizedSetting
+  FailedRunsCount: Int
+  Id: String
+  SuccessfulRunsCount: Int
+  Title: String
+  Trigger: ParameterizedSetting
+}
+
+type ValidationRequest {
+}
+
+type Author {
+  Bio: String
+  IncludeInSitemap: Boolean
+  ItemDefaultUrl: String
+  LastModified: Datetime
+  Name: String
+  PublicationDate: Datetime
+  Avatar: Image
+  DateCreated: Datetime
+  Id: ID
+  JobTitle: String
+  Provider: String
   UrlName: String
 }
 
-input PageNodeInput {
-  AvailableLanguages: [String]
-  HasChildren: Boolean
-  PublicationDate: Datetime
-  RequireSsl: Boolean
+input AuthorInput {
+  Bio: String
+  IncludeInSitemap: Boolean
+  ItemDefaultUrl: String
   LastModified: Datetime
-  Renderer: String
-  CanonicalUrlBehaviour: CanonicalUrlSettings
-  EnableViewState: Boolean
-  HeadTagContent: String
-  RedirectPage: RedirectPage
-  RootId: String
-  TemplateId: String
-  Description: String
-  IsHomePage: Boolean
-  ShowInNavigation: Boolean
-  Title: String
-  TemplateName: String
-  HtmlTitle: String
+  Name: String
+  PublicationDate: Datetime
+  DateCreated: Datetime
   Id: String
-  LocalizationStrategy: LocalizationStrategy
-  RelativeUrlPath: String
-  EditUrl: String
-  IncludeInSearchIndex: Boolean
-  IncludeScriptManager: Boolean
-  Priority: Float
-  AllowParametersValidation: Boolean
-  Breadcrumb: [String]
-  Crawlable: Boolean
+  JobTitle: String
+  Provider: String
   UrlName: String
+}
+
+type ContentItem {
+  PublicationDate: Datetime
+  Tags: [String]
+  Author: String
+  Content: String
+  IncludeInSitemap: Boolean
+  Category: [String]
+  LastModified: Datetime
+  Provider: String
+  Description: String
+  Title: String
+  UrlName: String
+  DateCreated: Datetime
+  Id: ID
+  Name: String
+}
+
+input ContentItemInput {
+  DateCreated: Datetime
+  Id: String
+  Name: String
+  UrlName: String
+  Author: String
+  Content: String
+  IncludeInSitemap: Boolean
+  PublicationDate: Datetime
+  Tags: [String]
+  Category: [String]
+  LastModified: Datetime
+  Provider: String
+  Description: String
+  Title: String
+}
+
+type RuleCondition {
+  Id: String
+  Operator: ConditionOperator
+  Value: String
+}
+
+type ThumbnailModel {
+  Size: String
+  Title: String
+  Url: String
+}
+
+type ReorderAction {
+  Id: String
+  Position: ReorderPosition
+  TargetId: String
+}
+
+type SortItem {
+  Value: String
+  Name: String
+}
+
+type Message {
+  Title: String
+  Description: String
+  Operations: [ItemOperation]
+}
+
+type Address {
+  CountryCode: String
+  Id: String
+  Latitude: Float
+  Longitude: Float
+  StateCode: String
+  City: String
+  MapZoomLevel: Int
+  Street: String
+  Zip: String
+}
+
+type DefaultAddWidgetContext {
+  PlaceholderName: String
+  Properties: [PropertyValueContainer]
+  SiblingKey: String
+  Id: String
+  Name: String
+  ParentPlaceholderKey: String
+}
+
+type ServiceHookActivityDto {
+  Id: String
+  Result: String
+  ServiceHookId: String
+  ServiceHookTitle: String
+  StartTime: Datetime
+  Status: ServiceHookActivityStatus
+  Title: String
+  Duration: Float
+  TriggeredByContentItem: Boolean
+}
+
+type ValidationErrors {
+}
+
+enum PageType {
+  Group @meta(value: 1, valueType: int32)
+  Redirect @meta(value: 2, valueType: int32)
+  Standard @meta(value: 0, valueType: int32)
+}
+
+enum AddressFieldMode {
+  FormOnly @meta(value: 0, valueType: int32)
+  Hybrid @meta(value: 2, valueType: int32)
+  MapOnly @meta(value: 1, valueType: int32)
+}
+
+type FilterParameters {
+}
+
+type PageTemplateCategory {
+  Subtitle: String
+  Templates: [Template]
+  Title: String
+  Type: PageTemplateCategoryType
+}
+
+type ControlMetadata {
+  Caption: String
+  Name: String
+  PropertyMetadata: [SectionGroup]
+  PropertyMetadataFlat: [PropertyContainer]
+  ViewName: String
+}
+
+type DataProviderModel {
+  isDefault: Boolean
+  name: String
+  title: String
+}
+
+type VideoLibrary {
+  MaxSize: Int
+  OutputCacheProfile: String
+  ThumbnailProfiles: [String]
+  UrlName: String
+  ChildrenCount: Int
+  IncludeInSitemap: Boolean
+  ItemDefaultUrl: String
+  PublicationDate: Datetime
+  CoverId: String
+  Description: String
+  LastModified: Datetime
+  MaxItemSize: Int
   ParentId: String
   Provider: String
-  ViewUrl: String
-  CodeBehindType: String
+  BlobStorageProvider: String
+  ClientCacheProfile: String
   DateCreated: Datetime
+  Id: ID
+  Title: String
+}
+
+input VideoLibraryInput {
+  ChildrenCount: Int
+  IncludeInSitemap: Boolean
+  ItemDefaultUrl: String
+  PublicationDate: Datetime
+  CoverId: String
+  Description: String
+  LastModified: Datetime
+  MaxItemSize: Int
+  ParentId: String
+  Provider: String
+  BlobStorageProvider: String
+  ClientCacheProfile: String
+  DateCreated: Datetime
+  Id: String
+  Title: String
+  MaxSize: Int
   OutputCacheProfile: String
-  PageType: PageType
+  ThumbnailProfiles: [String]
+  UrlName: String
+}
+
+type List {
+  IncludeInSitemap: Boolean
+  LastModified: Datetime
+  Title: String
+  UrlName: String
+  DateCreated: Datetime
+  Description: String
+  Id: ID
+  Provider: String
+  PublicationDate: Datetime
+  SortOrder: String
+}
+
+input ListInput {
+  Id: String
+  Provider: String
+  PublicationDate: Datetime
+  SortOrder: String
+  DateCreated: Datetime
+  Description: String
+  Title: String
+  UrlName: String
+  IncludeInSitemap: Boolean
+  LastModified: Datetime
+}
+
+type SharePreviewLink {
+  ExpirationMessage: String
+  PreviewLink: String
+}
+
+enum TaxonomyType {
+  Hierarchical @meta(value: 1, valueType: int32)
+  Flat @meta(value: 0, valueType: int32)
+}
+
+type Section {
+  Name: String
+  Properties: [PropertyContainer]
+  Title: String
+}
+
+type BlogPost {
+  Category: [String]
+  Id: ID
+  ParentId: String
+  Tags: [String]
+  Title: String
+  AllowComments: Boolean
+  Description: String
+  LastModified: Datetime
+  Provider: String
+  PublicationDate: Datetime
+  UrlName: String
+  Comments: [CommentContract]
+  Content: String
+  Parent: Blog
+  DateCreated: Datetime
+  IncludeInSitemap: Boolean
+  ItemDefaultUrl: String
+  Summary: String
+}
+
+input BlogPostInput {
+  ItemDefaultUrl: String
+  Summary: String
+  DateCreated: Datetime
+  IncludeInSitemap: Boolean
+  ParentId: String
+  Tags: [String]
+  Title: String
+  Category: [String]
+  Id: String
+  LastModified: Datetime
+  Provider: String
+  PublicationDate: Datetime
+  UrlName: String
+  AllowComments: Boolean
+  Description: String
+  Comments: [CommentContract]
+  Content: String
+}
+
+type FilterItem {
+  Category: String
+  Count: Int
+  IsDynamicFilter: Boolean
+  Name: String
+  Parameters: FilterParameters
+  Title: String
+}
+
+type Taxonomy {
+  Id: ID
+  Name: String
+  TaxonName: String
+  TaxonomySharedWith: Int
+  Title: String
+  Type: TaxonomyType
+  DefaultTaxonName: String
+  DefaultTitle: String
+  Description: String
+  LastModified: Datetime
+  RootTaxonomyId: String
+  TaxaUrl: String
+}
+
+input TaxonomyInput {
+  Description: String
+  LastModified: Datetime
+  RootTaxonomyId: String
+  TaxaUrl: String
+  DefaultTaxonName: String
+  DefaultTitle: String
+  TaxonName: String
+  TaxonomySharedWith: Int
+  Title: String
+  Type: TaxonomyType
+  Id: String
+  Name: String
+}
+
+type BulkOperationResult {
+  FailedItemsIds: [String]
+  Message: String
+  SucceededItemsIds: [String]
+  Type: BulkOperationResultType
+}
+
+enum PageTemplateCategoryType {
+  CurrentlyUsed @meta(value: 1, valueType: int32)
+  None @meta(value: 0, valueType: int32)
+}
+
+enum CanonicalUrlSettings {
+  Default @meta(value: 0, valueType: int32)
+  Disabled @meta(value: 1, valueType: int32)
+  Enabled @meta(value: 2, valueType: int32)
+}
+
+enum SiteConfigurationMode {
+  ConfigureByDeployment @meta(value: 1, valueType: int32)
+  ConfigureManually @meta(value: 0, valueType: int32)
+}
+
+type NewsItem {
+  OpenGraphDescription: String
+  OpenGraphImage: String
+  PublicationDate: Datetime
+  AllowComments: Boolean
+  Content: String
+  Description: String
+  Id: ID
+  ItemDefaultUrl: String
+  SourceName: String
+  SourceSite: String
+  Author: String
+  IncludeInSitemap: Boolean
+  Provider: String
+  Tags: [String]
+  Title: String
+  Category: [String]
+  Featured: Boolean
+  OpenGraphTitle: String
+  Thumbnail: Image
+  Comments: [CommentContract]
+  DateCreated: Datetime
+  LastModified: Datetime
+  Summary: String
+  UrlName: String
+}
+
+input NewsItemInput {
+  AllowComments: Boolean
+  Content: String
+  Description: String
+  Id: String
+  ItemDefaultUrl: String
+  OpenGraphDescription: String
+  OpenGraphImage: String
+  PublicationDate: Datetime
+  SourceName: String
+  SourceSite: String
+  Author: String
+  IncludeInSitemap: Boolean
+  Provider: String
+  Tags: [String]
+  Title: String
+  Category: [String]
+  Featured: Boolean
+  OpenGraphTitle: String
+  Comments: [CommentContract]
+  DateCreated: Datetime
+  LastModified: Datetime
+  Summary: String
+  UrlName: String
 }
 
 type HierarchicalWidgetModelResponse {
@@ -2018,70 +1760,165 @@ type HierarchicalWidgetModelResponse {
   WidgetState: [WidgetState]
 }
 
-type ComponentContext {
-  Components: [ComponentDto]
-  HasLazyComponents: Boolean
-  OrphanedControls: [ComponentDto]
-}
-
-type AnalyticsSettingsDto {
-  Configured: Boolean
-  Installed: Boolean
-  ItemSupport: Boolean
-}
-
-type BlogPost {
-  Tags: [String]
-  IncludeInSitemap: Boolean
-  Content: String
-  Summary: String
-  UrlName: String
-  Category: [String]
-  Comments: [CommentContract]
-  Id: ID
-  ParentId: String
-  Provider: String
-  PublicationDate: Datetime
-  Title: String
-  AllowComments: Boolean
-  Description: String
-  ItemDefaultUrl: String
-  LastModified: Datetime
-  Parent: Blog
-  DateCreated: Datetime
-}
-
-input BlogPostInput {
-  ItemDefaultUrl: String
-  LastModified: Datetime
-  DateCreated: Datetime
-  Description: String
-  IncludeInSitemap: Boolean
-  Tags: [String]
-  Summary: String
-  UrlName: String
-  Category: [String]
-  Content: String
+type PageDtoWithContext {
+  Culture: String
+  DetailItem: ResolvedDetailItem
   Id: String
-  ParentId: String
+  Scripts: [PageScript]
+  SiteId: String
+  TemplateName: String
+  UrlParameters: [String]
+  ComponentContext: ComponentContext
+}
+
+type PropertiesModel {
+}
+
+type CommentContract {
+  ProfilePictureThumbnailUrl: String
+  ProfilePictureUrl: String
+  DateCreated: Datetime
+  Message: String
+  Name: String
+}
+
+enum ContentUIStatus {
+  PrivateCopy @meta(value: 1, valueType: int32)
+  Published @meta(value: 2, valueType: int32)
+  Scheduled @meta(value: 3, valueType: int32)
+  Draft @meta(value: 0, valueType: int32)
+  NotSupported @meta(value: 666, valueType: int32)
+}
+
+type ItemOperation {
+  GroupName: String
+  IsGroup: Boolean
+  KeepFocus: Boolean
+  Parameters: [OperationParameter]
+  RequiresItemUpdate: Boolean
+  ContextParameters: [OperationContextParameter]
+  DetailedTitle: String
+  ExecuteOnServer: Boolean
+  Category: OperationCategory
+  Description: String
+  Link: String
+  Name: String
+  ParentOperation: ParentOperationInfo
+  PerformsDelete: Boolean
+  RequiresConfirmation: Boolean
+  Warning: String
+  Actions: [OperationAction]
+  Ordinal: Int
+  SubOperation: ItemOperation
+  SubText: String
+  Title: String
+  HasLinkResult: Boolean
+}
+
+type ParameterArgument {
+  Value: String
+  Warning: String
+  AdditionalValue: String
+  AdditionalValueLabel: String
+  Label: String
+}
+
+type PublicationInfo {
+  Date: Datetime
+  User: String
+}
+
+type ChoiceValue {
+  Title: String
+  Value: String
+  Name: String
+}
+
+enum FormRuleAction {
+  Show @meta(value: 0, valueType: int32)
+  ShowMessage @meta(value: 4, valueType: int32)
+  Skip @meta(value: 2, valueType: int32)
+  GoTo @meta(value: 3, valueType: int32)
+  Hide @meta(value: 1, valueType: int32)
+  SendNotification @meta(value: 5, valueType: int32)
+}
+
+type WcfScheduledTask {
+  Status: TaskStatus
+  TaskData: String
+  TaskName: String
+  ConcurrentTaskKey: String
+  Description: String
+  IsManageable: Boolean
+  ProgressStatus: Int
+  Id: String
+  StatusMessage: String
+  Title: String
+}
+
+type ParameterizedSetting {
+  Value: String
+  Name: String
+  Parameters: PropertiesModel
+}
+
+type PageTemplate {
+  Id: ID
+  Name: String
+  Renderer: String
+  Thumbnail: String
+  ThumbnailUrl: String
+  Title: String
+  DateCreated: Datetime
+  Framework: PageTemplateFramework
+  LastModified: Datetime
+  ParentTemplate: ParentTemplate
   Provider: String
-  PublicationDate: Datetime
-  Title: String
-  AllowComments: Boolean
-  Comments: [CommentContract]
+  TemplateId: String
+  TemplateName: String
 }
 
-type ThumbnailModel {
-  Width: Int
-  Height: Int
-  MimeType: String
+input PageTemplateInput {
+  Thumbnail: String
+  ThumbnailUrl: String
+  Id: String
+  Name: String
+  Renderer: String
+  ParentTemplate: ParentTemplate
+  Provider: String
+  TemplateId: String
+  TemplateName: String
   Title: String
-  Url: String
+  DateCreated: Datetime
+  Framework: PageTemplateFramework
+  LastModified: Datetime
 }
 
-type ComponentsResponseWithState {
-  Components: [ComponentDto]
-  WidgetState: [WidgetState]
+type SitemapPage {
+  HasChildren: Boolean
+  IsHomePage: Boolean
+  ViewUrl: String
+  DateCreated: Datetime
+  Children: [SitemapPage]
+  CreatedBy: String
+  EditUrl: String
+  Id: String
+  LastModified: Datetime
+  ParentId: String
+  Title: String
+  AvailableLanguages: [String]
+  Marketing: MarketingPropertyValue
+  BreadCrumb: [String]
+  LastModifiedBy: String
+  LockedStatus: ItemEventInfo
+  PageType: PageType
+  Renderer: String
+  DisplayStatus: [DisplayStatus]
+}
+
+type SiteConfiguration {
+  IsDefaultSite: Boolean
+  LiveUrl: String
 }
 
 type PropertyContainer {
@@ -2091,5 +1928,168 @@ type PropertyContainer {
   Properties: PropertiesModel
   Title: String
   Type: String
+}
+
+type Calendar {
+  Provider: String
+  Title: String
+  Color: String
+  Id: ID
+  LastModified: Datetime
+  PublicationDate: Datetime
+  UrlName: String
+  DateCreated: Datetime
+  Description: String
+  ExpirationDate: Datetime
+}
+
+input CalendarInput {
+  DateCreated: Datetime
+  Description: String
+  ExpirationDate: Datetime
+  PublicationDate: Datetime
+  UrlName: String
+  Color: String
+  Id: String
+  LastModified: Datetime
+  Provider: String
+  Title: String
+}
+
+type Result {
+  Description: String
+  ImageUrl: String
+  Key: String
+  Title: String
+}
+
+type Image {
+  Ordinal: Float
+  Parent: Album
+  Tags: [String]
+  TotalSize: Int
+  Url: String
+  Width: Int
+  AlternativeText: String
+  Author: String
+  Height: Int
+  ItemDefaultUrl: String
+  Provider: String
+  Title: String
+  UrlName: String
+  Extension: String
+  Id: ID
+  LastModified: Datetime
+  ParentId: String
+  ThumbnailUrl: String
+  Thumbnails: [ThumbnailModel]
+  Category: [String]
+  DateCreated: Datetime
+  Description: String
+  FolderId: String
+  IncludeInSitemap: Boolean
+  MimeType: String
+  PublicationDate: Datetime
+}
+
+input ImageInput {
+  DateCreated: Datetime
+  Description: String
+  FolderId: String
+  IncludeInSitemap: Boolean
+  MimeType: String
+  PublicationDate: Datetime
+  Thumbnails: [ThumbnailModel]
+  Category: [String]
+  Tags: [String]
+  TotalSize: Int
+  Url: String
+  Width: Int
+  Ordinal: Float
+  Author: String
+  Height: Int
+  ItemDefaultUrl: String
+  Provider: String
+  Title: String
+  UrlName: String
+  AlternativeText: String
+  Id: String
+  LastModified: Datetime
+  ParentId: String
+  ThumbnailUrl: String
+  Extension: String
+}
+
+type ComponentsResponseWithState {
+  Components: [ComponentDto]
+  WidgetState: [WidgetState]
+}
+
+enum BulkOperationResultType {
+  Error @meta(value: 2, valueType: int32)
+  Success @meta(value: 0, valueType: int32)
+  Warning @meta(value: 1, valueType: int32)
+}
+
+type DiagnosticsDto {
+  HelpLink: String
+  Message: String
+  Name: String
+  Success: Boolean
+}
+
+type RendererData {
+  AuthRedirectUrl: String
+  HostHeaderName: String
+  IdentityServerHostHeaderValue: String
+  SitefinityUrl: String
+  Url: String
+  WebService: String
+}
+
+type WidgetState {
+  EditAllowed: Boolean
+  IsPersonalized: Boolean
+  Key: String
+  LabelTooltip: String
+  MoveAllowed: Boolean
+  Name: String
+  WidgetSegmentId: String
+  DeleteAllowed: Boolean
+}
+
+type PropertyValueContainer {
+  Name: String
+  Value: String
+}
+
+type Step {
+  Key: String
+  Value: String
+}
+
+type FormRule {
+  Actions: [RuleAction]
+  Conditions: [RuleCondition]
+  Operator: LogicalOperator
+}
+
+type OperationParameter {
+  Arguments: [ParameterArgument]
+  FriendlyTitle: String
+  Hint: String
+  Placeholder: String
+  Value: String
+  Name: String
+  Required: Boolean
+  Title: String
+  Tooltip: String
+  Type: String
+}
+
+type OperationAction {
+  Type: Int
+  Name: String
+  Title: String
 }
 

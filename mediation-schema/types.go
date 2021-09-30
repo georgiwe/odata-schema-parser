@@ -36,9 +36,9 @@ type EntityType struct {
 }
 
 type Collection struct {
-	Name       string
-	EntityType string
-	// Relationships map[string]string `json:",omitempty"`
+	Name         string
+	EntityType   string
+	Downloadable bool `json:",omitempty"`
 }
 
 type Structure struct {
