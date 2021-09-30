@@ -297,12 +297,12 @@ func Parse(service *mschema.Service) string {
 
 	for _, collection := range service.Collections {
 		queryFields := createQueryFields(&collection, service)
-		funcs := append(*schema.Query.Functions, queryFields...)
-		schema.Query.Functions = &funcs
+		queryFuncs := append(*schema.Query.Functions, queryFields...)
+		schema.Query.Functions = &queryFuncs
 
 		mutationFields := createMutationFields(&collection, service)
-		funcs = append(*schema.Mutation.Functions, mutationFields...)
-		schema.Mutation.Functions = &funcs
+		mutationFuncs := append(*schema.Mutation.Functions, mutationFields...)
+		schema.Mutation.Functions = &mutationFuncs
 	}
 
 	return schema.String()

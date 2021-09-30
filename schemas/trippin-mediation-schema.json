@@ -17,7 +17,7 @@
     "Photos": {
       "Name": "Photos",
       "EntityType": "Microsoft.OData.SampleService.Models.TripPin.Photo",
-      "Downloadable": true
+      "Streamable": true
     }
   },
   "Types": {
@@ -66,6 +66,7 @@
     "Microsoft.OData.SampleService.Models.TripPin.AirportLocation": {
       "Kind": "Structure",
       "Name": "AirportLocation",
+      "OpenType": true,
       "Properties": {
         "Loc": {
           "ValueType": "geopoint",
@@ -98,6 +99,7 @@
       ],
       "BaseType": "Microsoft.OData.SampleService.Models.TripPin.PlanItem",
       "Name": "Event",
+      "OpenType": true,
       "Properties": {
         "ConfirmationCode": {
           "ValueType": "string",
@@ -132,6 +134,7 @@
     "Microsoft.OData.SampleService.Models.TripPin.EventLocation": {
       "Kind": "Structure",
       "Name": "EventLocation",
+      "OpenType": true,
       "Properties": {
         "BuildingInfo": {
           "ValueType": "string",
@@ -192,6 +195,7 @@
     "Microsoft.OData.SampleService.Models.TripPin.Location": {
       "Kind": "Structure",
       "Name": "Location",
+      "OpenType": true,
       "Properties": {
         "Address": {
           "ValueType": "string",
@@ -209,6 +213,7 @@
         "UserName"
       ],
       "Name": "Person",
+      "OpenType": true,
       "Properties": {
         "AddressInfo": {
           "ValueType": "Microsoft.OData.SampleService.Models.TripPin.Location",
@@ -271,7 +276,7 @@
       "Key": [
         "Id"
       ],
-      "HasStream": true,
+      "Streamable": true,
       "Name": "Photo",
       "Properties": {
         "Id": {
