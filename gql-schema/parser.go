@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	mschema "github.com/kinvey/odata-schema/mediation-schema"
+	"github.com/kinvey/odata-schema/utils"
 )
 
 var replaceLastDigitsRegexp = regexp.MustCompile(`\d+$`)
@@ -25,17 +26,25 @@ func addKey(entityType *mschema.EntityType, fieldsRef *[]Field) {
 	}
 }
 
-func getTypeName(typeName string, types map[string]mschema.Type) string {
-	switch types[typeName].Kind {
+func getName(def mschema.Type) string {
+	switch def.Kind {
 	default:
 		panic("should not happen")
 	case "EntityType":
-		return types[typeName].EntityType.Name
+		return def.EntityType.Name
 	case "Structure":
-		return types[typeName].Structure.Name
+		return def.Structure.Name
 	case "Enum":
-		return types[typeName].Enum.Name
+		return def.Enum.Name
 	}
+}
+
+func getTypeName(typeName string, types map[string]mschema.Type) string {
+	return getName(types[typeName])
+}
+
+func typeToCollection(typeName string) string {
+	return fmt.Sprintf("[%s]", typeName)
 }
 
 func propsToFields(properties map[string]mschema.Property, service *mschema.Service) *[]Field {
@@ -58,7 +67,7 @@ func propsToFields(properties map[string]mschema.Property, service *mschema.Serv
 		}
 
 		if prop.IsCollection {
-			field.Type = fmt.Sprintf("[%s]", field.Type)
+			field.Type = typeToCollection(field.Type)
 		}
 
 		fields[i] = field
@@ -87,7 +96,6 @@ func createInputType(entityType *mschema.EntityType, service *mschema.Service) D
 	fields := make([]Field, 0)
 	for _, field := range *typeDef.Fields {
 		isStructuralProp := entityType.Properties[field.Name].PropertyType != "relation"
-		// isKeyProperty := entityType.Key[0] == field.Name // cant handle composite keys yet, should throw in addKey() before this step
 		if field.Type != "ID" && isStructuralProp {
 			fields = append(fields, field)
 		}
@@ -117,13 +125,94 @@ func entityTypeToDefinition(entityType *mschema.EntityType, service *mschema.Ser
 	return typeDef, inputDef
 }
 
-// func createQueryFields(collection *mschema.Collection, service) []Field {
-// 	collection.
-// }
+func createQueryFields(collection *mschema.Collection, service *mschema.Service) []Function {
+	entityTypeName := getName(service.Types[collection.EntityType])
+	fields := []Function{
+		{
+			ReturnType: entityTypeName,
+			Arguments: []Field{
+				{
+					Type:     "ID",
+					Required: true,
+					Element:  Element{Name: "id"},
+				},
+			},
+			Element: Element{
+				Name: utils.LowerFirstLetter(entityTypeName),
+			},
+		},
+		{
+			ReturnType: typeToCollection(entityTypeName),
+			Arguments: []Field{
+				{
+					Type:    "String",
+					Element: Element{Name: "filter"},
+				},
+				{
+					Type:    "String",
+					Element: Element{Name: "sort"},
+				},
+			},
+			Element: Element{
+				Name: fmt.Sprintf("%ss", utils.LowerFirstLetter(entityTypeName)),
+			},
+		},
+	}
 
-// func createMutationFields(collection *mschema.Collection) []Field {
+	return fields
+}
 
-// }
+func createMutationFields(collection *mschema.Collection, service *mschema.Service) []Function {
+	entityTypeName := getName(service.Types[collection.EntityType])
+	fields := []Function{
+		{
+			ReturnType: entityTypeName,
+			Arguments: []Field{
+				{
+					Type:     fmt.Sprintf("%sInput", entityTypeName),
+					Required: true,
+					Element:  Element{Name: "data"},
+				},
+			},
+			Element: Element{
+				Name: fmt.Sprintf("add%s", utils.UpperFirstLetter(entityTypeName)),
+			},
+		},
+		{
+			ReturnType: "Boolean",
+			Arguments: []Field{
+				{
+					Type:     "ID",
+					Required: true,
+					Element:  Element{Name: "id"},
+				},
+				{
+					Type:     fmt.Sprintf("%sInput", entityTypeName),
+					Required: true,
+					Element:  Element{Name: "data"},
+				},
+			},
+			Element: Element{
+				Name: fmt.Sprintf("update%s", utils.UpperFirstLetter(entityTypeName)),
+			},
+		},
+		{
+			ReturnType: "Boolean",
+			Arguments: []Field{
+				{
+					Type:     "ID",
+					Required: true,
+					Element:  Element{Name: "id"},
+				},
+			},
+			Element: Element{
+				Name: fmt.Sprintf("remove%s", utils.UpperFirstLetter(entityTypeName)),
+			},
+		},
+	}
+
+	return fields
+}
 
 func enumMembersToFields(members map[string]string, membersType string) *[]Element {
 	elements := []Element{}
@@ -186,34 +275,35 @@ func typeDefToDefinition(service *mschema.Service) []Definition {
 	return gqlTypes
 }
 
-func Parse(backend *mschema.Backend) string {
+func Parse(service *mschema.Service) string {
 	schema := Schema{
 		Query: Definition{
-			Type:    "type",
-			Fields:  &[]Field{},
-			Element: Element{Name: "Query"},
+			Type:      "type",
+			Fields:    &[]Field{},
+			Functions: &[]Function{},
+			Elements:  &[]Element{},
+			Element:   Element{Name: "Query"},
 		},
 		Mutation: Definition{
-			Type:    "type",
-			Fields:  &[]Field{},
-			Element: Element{Name: "Mutation"},
+			Type:      "type",
+			Fields:    &[]Field{},
+			Functions: &[]Function{},
+			Element:   Element{Name: "Mutation"},
 		},
 		Types: []Definition{},
 	}
 
-	for _, service := range backend.Services {
-		schema.Types = typeDefToDefinition(&service)
+	schema.Types = typeDefToDefinition(service)
+
+	for _, collection := range service.Collections {
+		queryFields := createQueryFields(&collection, service)
+		funcs := append(*schema.Query.Functions, queryFields...)
+		schema.Query.Functions = &funcs
+
+		mutationFields := createMutationFields(&collection, service)
+		funcs = append(*schema.Mutation.Functions, mutationFields...)
+		schema.Mutation.Functions = &funcs
 	}
-
-	// for _, collection := range service.Collections {
-	// 	queryFields := createQueryFields(&collection)
-	// 	fields := append(*schema.Query.Fields, queryFields...)
-	// 	schema.Query.Fields = &fields
-
-	// 	mutationFields := createMutationFields(&collection)
-	// 	fields = append(*schema.Mutation.Fields, mutationFields...)
-	// 	schema.Mutation.Fields = &fields
-	// }
 
 	return schema.String()
 }

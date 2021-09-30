@@ -23,14 +23,14 @@ func generateMediationGqlSchema(backendName string) string {
 
 	json.Unmarshal(bytes, service)
 
-	backend := mediationschema.Backend{
-		Name: backendName,
-		Services: []mediationschema.Service{
-			*service,
-		},
-	}
+	// backend := mediationschema.Backend{
+	// 	Name: backendName,
+	// 	Services: []mediationschema.Service{
+	// 		*service,
+	// 	},
+	// }
 
-	schema := gqlschema.Parse(&backend)
+	schema := gqlschema.Parse(service)
 
 	os.WriteFile(fmt.Sprintf("./schemas/%s.gql", backendName), []byte(schema), 0644)
 

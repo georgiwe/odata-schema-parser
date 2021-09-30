@@ -42,6 +42,20 @@ type Definition struct {
 	Element
 }
 
+func (def *Function) String() string {
+	sb := &strings.Builder{}
+	argCount := len(def.Arguments)
+
+	for i, arg := range def.Arguments {
+		sb.WriteString(arg.String())
+		if i < argCount-1 {
+			sb.WriteString(", ")
+		}
+	}
+
+	return fmt.Sprintf("%s(%s): %s", def.Name, sb.String(), def.ReturnType)
+}
+
 // TODO: Indentation
 func (def *Definition) String() string {
 	sb := &strings.Builder{}
@@ -60,6 +74,12 @@ func (def *Definition) String() string {
 	if def.Fields != nil {
 		for _, field := range *def.Fields {
 			fmt.Fprintf(sb, "  %s\n", field.String())
+		}
+	}
+
+	if def.Functions != nil {
+		for _, function := range *def.Functions {
+			fmt.Fprintf(sb, "  %s\n", function.String())
 		}
 	}
 
@@ -98,17 +118,10 @@ func (field *Field) String() string {
 		requiredFlag = "!"
 	}
 
-	// fmt.Fprintf(sb, "%s: %s%s", field.Name, field.Type, requiredFlag)
 	fieldStr := fmt.Sprintf("%s: %s%s", field.Name, field.Type, requiredFlag)
 	elStr := field.Element.String()
 	result := strings.Replace(elStr, field.Name, fieldStr, 1)
 	sb.WriteString(result)
-
-	// if field.Directives != nil {
-	// 	for _, dir := range *field.Directives {
-	// 		fmt.Fprintf(sb, " %s", dir.String())
-	// 	}
-	// }
 
 	return sb.String()
 }
@@ -133,6 +146,10 @@ func (schema *Schema) String() string {
 	for _, def := range schema.Types {
 		fmt.Fprintf(sb, "%s\n\n", def.String())
 	}
+
+	sb.WriteString(schema.Query.String())
+	sb.WriteString("\n\n")
+	sb.WriteString(schema.Mutation.String())
 
 	return sb.String()
 }
