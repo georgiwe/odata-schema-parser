@@ -143,13 +143,20 @@ func (element *Element) String() string {
 func (schema *Schema) String() string {
 	sb := &strings.Builder{}
 
-	for _, def := range schema.Types {
-		fmt.Fprintf(sb, "%s\n\n", def.String())
-	}
-
 	sb.WriteString(schema.Query.String())
 	sb.WriteString("\n\n")
+
 	sb.WriteString(schema.Mutation.String())
+	sb.WriteString("\n\n")
+
+	typesCount := len(schema.Types)
+	for i, def := range schema.Types {
+		sb.WriteString(def.String())
+		sb.WriteString("\n")
+		if i < typesCount-1 {
+			sb.WriteString("\n")
+		}
+	}
 
 	return sb.String()
 }
