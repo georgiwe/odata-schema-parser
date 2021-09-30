@@ -1,3 +1,31 @@
+type Location {
+  City: City
+  Address: String
+}
+
+type Person {
+  AddressInfo: [Location]
+  Concurrency: Int
+  Emails: [String]
+  FirstName: String
+  Gender: PersonGender
+  Photo: Photo
+  Friends: [Person]
+  LastName: String
+  Trips: [Trip]
+  UserName: ID
+}
+
+input PersonInput {
+  UserName: String
+  LastName: String
+  Emails: [String]
+  FirstName: String
+  Gender: PersonGender
+  AddressInfo: [Location]
+  Concurrency: Int
+}
+
 type Photo {
   Id: ID
   Name: String
@@ -8,92 +36,58 @@ input PhotoInput {
   Name: String
 }
 
+type PlanItem {
+  ConfirmationCode: String
+  Duration: Duration
+  EndsAt: Datetime
+  PlanItemId: ID
+  StartsAt: Datetime
+}
+
+input PlanItemInput {
+  ConfirmationCode: String
+  Duration: Duration
+  EndsAt: Datetime
+  PlanItemId: Int
+  StartsAt: Datetime
+}
+
 type Airline {
   AirlineCode: ID
   Name: String
 }
 
 input AirlineInput {
-  Name: String
   AirlineCode: String
-}
-
-type EventLocation {
-  BuildingInfo: String
-}
-
-type PlanItem {
-  EndsAt: Datetime
-  PlanItemId: ID
-  StartsAt: Datetime
-  ConfirmationCode: String
-  Duration: Duration
-}
-
-input PlanItemInput {
-  EndsAt: Datetime
-  PlanItemId: Int
-  StartsAt: Datetime
-  ConfirmationCode: String
-  Duration: Duration
-}
-
-type City {
-  CountryRegion: String
   Name: String
-  Region: String
 }
 
-type Person {
-  LastName: String
-  Photo: Photo
-  Gender: PersonGender
-  Concurrency: Int
-  Emails: [String]
-  FirstName: String
-  Friends: [Person]
-  Trips: [Trip]
-  UserName: ID
-  AddressInfo: [Location]
+type AirportLocation {
+  Loc: Geopoint
 }
 
-input PersonInput {
-  UserName: String
-  AddressInfo: [Location]
-  Concurrency: Int
-  Emails: [String]
-  FirstName: String
-  Gender: PersonGender
-  LastName: String
-}
-
-type Flight {
+type Trip {
+  Photos: [Photo]
+  PlanItems: [PlanItem]
+  ShareId: String
+  Tags: [String]
+  Description: String
   EndsAt: Datetime
-  PlanItemId: ID
-  SeatNumber: String
+  Name: String
+  Budget: Float
   StartsAt: Datetime
-  Airline: Airline
-  ConfirmationCode: String
-  Duration: Duration
-  FlightNumber: String
-  From: Airport
-  To: Airport
+  TripId: ID
 }
 
-input FlightInput {
+input TripInput {
+  Tags: [String]
+  Description: String
   EndsAt: Datetime
-  FlightNumber: String
-  PlanItemId: Int
-  SeatNumber: String
+  Name: String
+  ShareId: String
+  Budget: Float
   StartsAt: Datetime
-  ConfirmationCode: String
-  Duration: Duration
-}
-
-enum PersonGender {
-  Female @meta(value: 1, valueType: int32)
-  Male @meta(value: 0, valueType: int32)
-  Unknown @meta(value: 2, valueType: int32)
+  TripId: Int
 }
 
 type Event {
@@ -107,18 +101,40 @@ type Event {
 }
 
 input EventInput {
-  PlanItemId: Int
-  StartsAt: Datetime
   ConfirmationCode: String
   Description: String
   Duration: Duration
   EndsAt: Datetime
   OccursAt: EventLocation
+  PlanItemId: Int
+  StartsAt: Datetime
 }
 
-type Location {
-  Address: String
-  City: City
+type EventLocation {
+  BuildingInfo: String
+}
+
+type Flight {
+  Duration: Duration
+  EndsAt: Datetime
+  FlightNumber: String
+  To: Airport
+  Airline: Airline
+  ConfirmationCode: String
+  From: Airport
+  PlanItemId: ID
+  SeatNumber: String
+  StartsAt: Datetime
+}
+
+input FlightInput {
+  FlightNumber: String
+  Duration: Duration
+  EndsAt: Datetime
+  PlanItemId: Int
+  SeatNumber: String
+  StartsAt: Datetime
+  ConfirmationCode: String
 }
 
 type PublicTransportation {
@@ -131,36 +147,12 @@ type PublicTransportation {
 }
 
 input PublicTransportationInput {
-  ConfirmationCode: String
-  Duration: Duration
   EndsAt: Datetime
   PlanItemId: Int
   SeatNumber: String
   StartsAt: Datetime
-}
-
-type Trip {
-  TripId: ID
-  Budget: Float
-  Description: String
-  Name: String
-  Photos: [Photo]
-  ShareId: String
-  StartsAt: Datetime
-  Tags: [String]
-  EndsAt: Datetime
-  PlanItems: [PlanItem]
-}
-
-input TripInput {
-  EndsAt: Datetime
-  ShareId: String
-  StartsAt: Datetime
-  Tags: [String]
-  TripId: Int
-  Budget: Float
-  Description: String
-  Name: String
+  ConfirmationCode: String
+  Duration: Duration
 }
 
 type Airport {
@@ -177,7 +169,15 @@ input AirportInput {
   Name: String
 }
 
-type AirportLocation {
-  Loc: Geopoint
+type City {
+  CountryRegion: String
+  Name: String
+  Region: String
+}
+
+enum PersonGender {
+  Female @meta(value: 1, valueType: int32)
+  Male @meta(value: 0, valueType: int32)
+  Unknown @meta(value: 2, valueType: int32)
 }
 

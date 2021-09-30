@@ -16,7 +16,8 @@
     },
     "Photos": {
       "Name": "Photos",
-      "EntityType": "Microsoft.OData.SampleService.Models.TripPin.Photo"
+      "EntityType": "Microsoft.OData.SampleService.Models.TripPin.Photo",
+      "Downloadable": true
     }
   },
   "Types": {

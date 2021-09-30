@@ -43,14 +43,15 @@ type Collection struct {
 
 type Structure struct {
 	Name       string
+	OpenType   bool `json:",omitempty"`
 	Properties map[string]Property
 }
 
 type Enum struct {
 	Name        string
 	ValuesType  string
-	Multiselect bool              `json:",omitempty"`
-	Members     map[string]string // TODO: in MC-CSDL enum members are order-comparable, here they are not - do we need them to be
+	Multiselect bool `json:",omitempty"`
+	Members     map[string]string
 }
 
 type Property struct {
@@ -58,7 +59,6 @@ type Property struct {
 	PropertyType string
 	IsCollection bool `json:",omitempty"`
 	Required     bool `json:",omitempty"`
-	// RelationCollection *string `json:",omitempty"`
 }
 
 type Backend struct {

@@ -952,6 +952,7 @@
     "Telerik.Sitefinity.Filters.FilterParameters": {
       "Kind": "Structure",
       "Name": "FilterParameters",
+      "OpenType": true,
       "Properties": {}
     },
     "Telerik.Sitefinity.Filters.Result": {
@@ -1895,6 +1896,7 @@
       ],
       "HasStream": true,
       "Name": "Video",
+      "OpenType": true,
       "Properties": {
         "Author": {
           "ValueType": "string",
@@ -3110,6 +3112,7 @@
         "Id"
       ],
       "Name": "PageNode",
+      "OpenType": true,
       "Properties": {
         "AllowParametersValidation": {
           "ValueType": "boolean",
@@ -3269,6 +3272,7 @@
         "Id"
       ],
       "Name": "PageTemplate",
+      "OpenType": true,
       "Properties": {
         "DateCreated": {
           "ValueType": "datetime",
@@ -3811,6 +3815,7 @@
     "Telerik.Sitefinity.Renderer.Web.Services.Dto.PropertiesModel": {
       "Kind": "Structure",
       "Name": "PropertiesModel",
+      "OpenType": true,
       "Properties": {}
     },
     "Telerik.Sitefinity.Renderer.Web.Services.Dto.ResolvedDetailItem": {
@@ -4842,11 +4847,13 @@
     "Telerik.Sitefinity.Web.Api.OData.Operations.Validation.Models.ValidationErrors": {
       "Kind": "Structure",
       "Name": "ValidationErrors",
+      "OpenType": true,
       "Properties": {}
     },
     "Telerik.Sitefinity.Web.Api.OData.Operations.Validation.Models.ValidationRequest": {
       "Kind": "Structure",
       "Name": "ValidationRequest",
+      "OpenType": true,
       "Properties": {}
     },
     "Telerik.Sitefinity.Web.Api.OData.Operations.Validation.Models.ValidationResult": {
@@ -5098,6 +5105,7 @@
     "Telerik.Sitefinity.Web.Services.Contracts.Operations.Pages.PropertyEditor.Adaptors.Model.ValidationContainer": {
       "Kind": "Structure",
       "Name": "ValidationContainer",
+      "OpenType": true,
       "Properties": {}
     },
     "Telerik.Sitefinity.Web.Services.Contracts.Operations.Pages.PropertyEditor.Permissions.FieldSettings": {

@@ -33,7 +33,6 @@ type NavigationProperty struct {
 	Name     string   `xml:"Name,attr"`
 	Type     string   `xml:"Type,attr"`
 	Nullable *bool    `xml:"Nullable,attr"`
-	// ToRole   string   `xml:"ToRole,attr"`
 }
 
 type NavigationPropertyBinding struct {
@@ -62,6 +61,7 @@ type ComplexType struct {
 	BaseType             *string              `xml:"BaseType"`
 	Abstract             bool                 `xml:"Abstract,attr"`
 	Properties           []Property           `xml:"Property"`
+	OpenType             bool                 `xml:"OpenType,attr"`
 	NavigationProperties []NavigationProperty `xml:"NavigationProperty"`
 }
 
@@ -71,7 +71,7 @@ type EntityType struct {
 	HasStream            bool                 `xml:"HasStream,attr"`
 	BaseType             *string              `xml:"BaseType,attr"`
 	Abstract             bool                 `xml:"Abstract,attr"`
-	OpenType             bool                 `xml:"OpenType"`
+	OpenType             bool                 `xml:"OpenType,attr"`
 	Key                  *[]PropertyRef       `xml:">PropertyRef"`
 	Properties           []Property           `xml:"Property"`
 	NavigationProperties []NavigationProperty `xml:"NavigationProperty"`

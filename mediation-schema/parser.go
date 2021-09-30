@@ -230,6 +230,7 @@ func mapEntityType(qualifiedName string, objects *edmObjects) EntityType {
 		Structure: Structure{
 			Name:       entityType.Name,
 			Properties: make(map[string]Property),
+			OpenType:   entityType.OpenType,
 		},
 	}
 
@@ -254,6 +255,7 @@ func mapComplexType(complexTypeName string, objects *edmObjects) Structure {
 	cType := Structure{
 		Name:       complexType.Name,
 		Properties: make(map[string]Property),
+		OpenType:   complexType.OpenType,
 	}
 
 	addStructuralProperties(complexTypeName, objects, cType.Properties)
