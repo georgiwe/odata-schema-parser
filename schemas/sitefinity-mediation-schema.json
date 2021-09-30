@@ -8,17 +8,11 @@
     },
     "authors": {
       "Name": "authors",
-      "EntityType": "Telerik.Sitefinity.DynamicTypes.Model.Authors.Author",
-      "Relationships": {
-        "Avatar": "images"
-      }
+      "EntityType": "Telerik.Sitefinity.DynamicTypes.Model.Authors.Author"
     },
     "blogposts": {
       "Name": "blogposts",
-      "EntityType": "Telerik.Sitefinity.Blogs.Model.BlogPost",
-      "Relationships": {
-        "Parent": "blogs"
-      }
+      "EntityType": "Telerik.Sitefinity.Blogs.Model.BlogPost"
     },
     "blogs": {
       "Name": "blogs",
@@ -38,18 +32,11 @@
     },
     "documents": {
       "Name": "documents",
-      "EntityType": "Telerik.Sitefinity.Libraries.Model.Document",
-      "Relationships": {
-        "Image": "images",
-        "Parent": "documentlibraries"
-      }
+      "EntityType": "Telerik.Sitefinity.Libraries.Model.Document"
     },
     "events": {
       "Name": "events",
-      "EntityType": "Telerik.Sitefinity.Events.Model.Event",
-      "Relationships": {
-        "Parent": "calendars"
-      }
+      "EntityType": "Telerik.Sitefinity.Events.Model.Event"
     },
     "flat-taxa": {
       "Name": "flat-taxa",
@@ -73,17 +60,11 @@
     },
     "images": {
       "Name": "images",
-      "EntityType": "Telerik.Sitefinity.Libraries.Model.Image",
-      "Relationships": {
-        "Parent": "albums"
-      }
+      "EntityType": "Telerik.Sitefinity.Libraries.Model.Image"
     },
     "listitems": {
       "Name": "listitems",
-      "EntityType": "Telerik.Sitefinity.Lists.Model.ListItem",
-      "Relationships": {
-        "Parent": "lists"
-      }
+      "EntityType": "Telerik.Sitefinity.Lists.Model.ListItem"
     },
     "lists": {
       "Name": "lists",
@@ -91,24 +72,15 @@
     },
     "locations": {
       "Name": "locations",
-      "EntityType": "Telerik.Sitefinity.DynamicTypes.Model.Locations.Location",
-      "Relationships": {
-        "Image": "images"
-      }
+      "EntityType": "Telerik.Sitefinity.DynamicTypes.Model.Locations.Location"
     },
     "newsitems": {
       "Name": "newsitems",
-      "EntityType": "Telerik.Sitefinity.News.Model.NewsItem",
-      "Relationships": {
-        "Thumbnail": "images"
-      }
+      "EntityType": "Telerik.Sitefinity.News.Model.NewsItem"
     },
     "pages": {
       "Name": "pages",
-      "EntityType": "Telerik.Sitefinity.Pages.Model.PageNode",
-      "Relationships": {
-        "Image": "images"
-      }
+      "EntityType": "Telerik.Sitefinity.Pages.Model.PageNode"
     },
     "servicehooks": {
       "Name": "servicehooks",
@@ -116,11 +88,7 @@
     },
     "showcases": {
       "Name": "showcases",
-      "EntityType": "Telerik.Sitefinity.DynamicTypes.Model.Showcases.Showcase",
-      "Relationships": {
-        "Download": "documents",
-        "Thumbnail": "images"
-      }
+      "EntityType": "Telerik.Sitefinity.DynamicTypes.Model.Showcases.Showcase"
     },
     "sites": {
       "Name": "sites",
@@ -128,10 +96,7 @@
     },
     "slides": {
       "Name": "slides",
-      "EntityType": "Telerik.Sitefinity.DynamicTypes.Model.Slides.Slide",
-      "Relationships": {
-        "Image": "images"
-      }
+      "EntityType": "Telerik.Sitefinity.DynamicTypes.Model.Slides.Slide"
     },
     "taxonomies": {
       "Name": "taxonomies",
@@ -143,10 +108,7 @@
     },
     "testimonials": {
       "Name": "testimonials",
-      "EntityType": "Telerik.Sitefinity.DynamicTypes.Model.Testimonials.Testimonial",
-      "Relationships": {
-        "Photo": "images"
-      }
+      "EntityType": "Telerik.Sitefinity.DynamicTypes.Model.Testimonials.Testimonial"
     },
     "videolibraries": {
       "Name": "videolibraries",
@@ -154,18 +116,72 @@
     },
     "videos": {
       "Name": "videos",
-      "EntityType": "Telerik.Sitefinity.Libraries.Model.Video",
-      "Relationships": {
-        "Parent": "videolibraries"
-      }
+      "EntityType": "Telerik.Sitefinity.Libraries.Model.Video"
     }
   },
-  "EntityTypes": {
+  "Types": {
+    "Org.OData.Core.V1.AddressFieldMode": {
+      "Kind": "Enum",
+      "Name": "AddressFieldMode",
+      "ValuesType": "int32",
+      "Members": {
+        "FormOnly": "0",
+        "Hybrid": "2",
+        "MapOnly": "1"
+      }
+    },
+    "System.Void": {
+      "Kind": "Structure",
+      "Name": "Void",
+      "Properties": {}
+    },
+    "Telerik.Sitefinity.Analytics.Server.Infrastructure.Web.Services.AnalyticsDto": {
+      "Kind": "Structure",
+      "Name": "AnalyticsDto",
+      "Properties": {
+        "AnalyticsUrl": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Id": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      }
+    },
+    "Telerik.Sitefinity.Analytics.Server.Infrastructure.Web.Services.AnalyticsSettingsDto": {
+      "Kind": "Structure",
+      "Name": "AnalyticsSettingsDto",
+      "Properties": {
+        "Configured": {
+          "ValueType": "boolean",
+          "PropertyType": "primitive"
+        },
+        "Installed": {
+          "ValueType": "boolean",
+          "PropertyType": "primitive"
+        },
+        "ItemSupport": {
+          "ValueType": "boolean",
+          "PropertyType": "primitive"
+        }
+      }
+    },
+    "Telerik.Sitefinity.Authentication.Web.Services.Dto.AuthSettings": {
+      "Kind": "Structure",
+      "Name": "AuthSettings",
+      "Properties": {
+        "Scope": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      }
+    },
     "Telerik.Sitefinity.Blogs.Model.Blog": {
+      "Kind": "EntityType",
       "Key": [
         "Id"
       ],
-      "BaseType": null,
       "Name": "Blog",
       "Properties": {
         "DateCreated": {
@@ -211,10 +227,10 @@
       }
     },
     "Telerik.Sitefinity.Blogs.Model.BlogPost": {
+      "Kind": "EntityType",
       "Key": [
         "Id"
       ],
-      "BaseType": null,
       "Name": "BlogPost",
       "Properties": {
         "AllowComments": {
@@ -294,11 +310,55 @@
         }
       }
     },
+    "Telerik.Sitefinity.Configuration.Web.CultureViewModel": {
+      "Kind": "Structure",
+      "Name": "CultureViewModel",
+      "Properties": {
+        "Culture": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "DisplayName": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "FieldSuffix": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "IsDefault": {
+          "ValueType": "boolean",
+          "PropertyType": "primitive"
+        },
+        "Key": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "ShortName": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "SitesNames": {
+          "ValueType": "string",
+          "PropertyType": "primitive",
+          "IsCollection": true
+        },
+        "SitesUsingCultureAsDefault": {
+          "ValueType": "string",
+          "PropertyType": "primitive",
+          "IsCollection": true
+        },
+        "UICulture": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      }
+    },
     "Telerik.Sitefinity.DynamicTypes.Model.Authors.Author": {
+      "Kind": "EntityType",
       "Key": [
         "Id"
       ],
-      "BaseType": null,
       "Name": "Author",
       "Properties": {
         "Avatar": {
@@ -352,10 +412,10 @@
       }
     },
     "Telerik.Sitefinity.DynamicTypes.Model.Locations.Location": {
+      "Kind": "EntityType",
       "Key": [
         "Id"
       ],
-      "BaseType": null,
       "Name": "Location",
       "Properties": {
         "Address": {
@@ -421,10 +481,10 @@
       }
     },
     "Telerik.Sitefinity.DynamicTypes.Model.Showcases.Showcase": {
+      "Kind": "EntityType",
       "Key": [
         "Id"
       ],
-      "BaseType": null,
       "Name": "Showcase",
       "Properties": {
         "Category": {
@@ -504,10 +564,10 @@
       }
     },
     "Telerik.Sitefinity.DynamicTypes.Model.Slides.Slide": {
+      "Kind": "EntityType",
       "Key": [
         "Id"
       ],
-      "BaseType": null,
       "Name": "Slide",
       "Properties": {
         "DateCreated": {
@@ -569,11 +629,20 @@
         }
       }
     },
+    "Telerik.Sitefinity.DynamicTypes.Model.Slides.Slide.TextPosition.TextPosition": {
+      "Kind": "Enum",
+      "Name": "TextPosition",
+      "ValuesType": "int32",
+      "Members": {
+        "Left": "1",
+        "Right": "2"
+      }
+    },
     "Telerik.Sitefinity.DynamicTypes.Model.Testimonials.Testimonial": {
+      "Kind": "EntityType",
       "Key": [
         "Id"
       ],
-      "BaseType": null,
       "Name": "Testimonial",
       "Properties": {
         "Company": {
@@ -635,10 +704,10 @@
       }
     },
     "Telerik.Sitefinity.Events.Model.Calendar": {
+      "Kind": "EntityType",
       "Key": [
         "Id"
       ],
-      "BaseType": null,
       "Name": "Calendar",
       "Properties": {
         "Color": {
@@ -684,10 +753,10 @@
       }
     },
     "Telerik.Sitefinity.Events.Model.Event": {
+      "Kind": "EntityType",
       "Key": [
         "Id"
       ],
-      "BaseType": null,
       "Name": "Event",
       "Properties": {
         "AllDayEvent": {
@@ -847,11 +916,129 @@
         }
       }
     },
+    "Telerik.Sitefinity.Filters.FilterItem": {
+      "Kind": "Structure",
+      "Name": "FilterItem",
+      "Properties": {
+        "Category": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Count": {
+          "ValueType": "int32",
+          "PropertyType": "primitive"
+        },
+        "IsDynamicFilter": {
+          "ValueType": "boolean",
+          "PropertyType": "primitive"
+        },
+        "Name": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Parameters": {
+          "ValueType": "Telerik.Sitefinity.Filters.FilterParameters",
+          "PropertyType": "structure"
+        },
+        "Title": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      }
+    },
+    "Telerik.Sitefinity.Filters.FilterParameters": {
+      "Kind": "Structure",
+      "Name": "FilterParameters",
+      "Properties": {}
+    },
+    "Telerik.Sitefinity.Filters.Result": {
+      "Kind": "Structure",
+      "Name": "Result",
+      "Properties": {
+        "Description": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "ImageUrl": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Key": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Title": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      }
+    },
+    "Telerik.Sitefinity.Folder": {
+      "Kind": "Structure",
+      "Name": "Folder",
+      "Properties": {
+        "Breadcrumb": {
+          "ValueType": "string",
+          "PropertyType": "primitive",
+          "IsCollection": true
+        },
+        "ChildrenCount": {
+          "ValueType": "int32",
+          "PropertyType": "primitive"
+        },
+        "FoldersCount": {
+          "ValueType": "int32",
+          "PropertyType": "primitive"
+        },
+        "Id": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "ImagesUrl": {
+          "ValueType": "string",
+          "PropertyType": "primitive",
+          "IsCollection": true
+        },
+        "LastModified": {
+          "ValueType": "datetime",
+          "PropertyType": "primitive"
+        },
+        "ParentId": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "RootId": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Title": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      }
+    },
+    "Telerik.Sitefinity.Forms.Model.ConditionOperator": {
+      "Kind": "Enum",
+      "Name": "ConditionOperator",
+      "ValuesType": "int32",
+      "Members": {
+        "Contains": "2",
+        "Equal": "0",
+        "FileNotSelected": "9",
+        "FileSelected": "8",
+        "IsFilled": "4",
+        "IsGreaterThan": "7",
+        "IsLessThan": "6",
+        "IsNotFilled": "5",
+        "NotContains": "3",
+        "NotEqual": "1"
+      }
+    },
     "Telerik.Sitefinity.Forms.Model.FormDescription": {
+      "Kind": "EntityType",
       "Key": [
         "Id"
       ],
-      "BaseType": null,
       "Name": "FormDescription",
       "Properties": {
         "Category": {
@@ -916,10 +1103,10 @@
       }
     },
     "Telerik.Sitefinity.Forms.Model.FormDraft": {
+      "Kind": "EntityType",
       "Key": [
         "Id"
       ],
-      "BaseType": null,
       "Name": "FormDraft",
       "Properties": {
         "AvailableActions": {
@@ -968,11 +1155,33 @@
         }
       }
     },
+    "Telerik.Sitefinity.Forms.Model.FormRuleAction": {
+      "Kind": "Enum",
+      "Name": "FormRuleAction",
+      "ValuesType": "int32",
+      "Members": {
+        "GoTo": "3",
+        "Hide": "1",
+        "SendNotification": "5",
+        "Show": "0",
+        "ShowMessage": "4",
+        "Skip": "2"
+      }
+    },
+    "Telerik.Sitefinity.Forms.Model.LogicalOperator": {
+      "Kind": "Enum",
+      "Name": "LogicalOperator",
+      "ValuesType": "int32",
+      "Members": {
+        "And": "0",
+        "Or": "1"
+      }
+    },
     "Telerik.Sitefinity.GenericContent.Model.ContentItem": {
+      "Kind": "EntityType",
       "Key": [
         "Id"
       ],
-      "BaseType": null,
       "Name": "ContentItem",
       "Properties": {
         "Author": {
@@ -1035,11 +1244,87 @@
         }
       }
     },
+    "Telerik.Sitefinity.GenericContent.Model.ContentLifecycleStatus": {
+      "Kind": "Enum",
+      "Name": "ContentLifecycleStatus",
+      "ValuesType": "int32",
+      "Members": {
+        "Deleted": "4",
+        "Live": "2",
+        "Master": "0",
+        "PartialTemp": "8",
+        "Temp": "1"
+      }
+    },
+    "Telerik.Sitefinity.GenericContent.Model.ContentUIStatus": {
+      "Kind": "Enum",
+      "Name": "ContentUIStatus",
+      "ValuesType": "int32",
+      "Members": {
+        "Draft": "0",
+        "NotSupported": "666",
+        "PrivateCopy": "1",
+        "Published": "2",
+        "Scheduled": "3"
+      }
+    },
+    "Telerik.Sitefinity.GenericContent.Model.PostRights": {
+      "Kind": "Enum",
+      "Name": "PostRights",
+      "ValuesType": "int32",
+      "Members": {
+        "Everyone": "1",
+        "None": "0",
+        "RegisteredUsers": "2"
+      }
+    },
+    "Telerik.Sitefinity.GeoLocations.Model.Address": {
+      "Kind": "Structure",
+      "Name": "Address",
+      "Properties": {
+        "City": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "CountryCode": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Id": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Latitude": {
+          "ValueType": "float64",
+          "PropertyType": "primitive"
+        },
+        "Longitude": {
+          "ValueType": "float64",
+          "PropertyType": "primitive"
+        },
+        "MapZoomLevel": {
+          "ValueType": "int32",
+          "PropertyType": "primitive"
+        },
+        "StateCode": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Street": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Zip": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      }
+    },
     "Telerik.Sitefinity.Libraries.Model.Album": {
+      "Kind": "EntityType",
       "Key": [
         "Id"
       ],
-      "BaseType": null,
       "Name": "Album",
       "Properties": {
         "BlobStorageProvider": {
@@ -1130,11 +1415,11 @@
       }
     },
     "Telerik.Sitefinity.Libraries.Model.Document": {
+      "Kind": "EntityType",
       "Key": [
         "Id"
       ],
       "HasStream": true,
-      "BaseType": null,
       "Name": "Document",
       "Properties": {
         "Author": {
@@ -1238,10 +1523,10 @@
       }
     },
     "Telerik.Sitefinity.Libraries.Model.DocumentLibrary": {
+      "Kind": "EntityType",
       "Key": [
         "Id"
       ],
-      "BaseType": null,
       "Name": "DocumentLibrary",
       "Properties": {
         "BlobStorageProvider": {
@@ -1324,11 +1609,11 @@
       }
     },
     "Telerik.Sitefinity.Libraries.Model.Image": {
+      "Kind": "EntityType",
       "Key": [
         "Id"
       ],
       "HasStream": true,
-      "BaseType": null,
       "Name": "Image",
       "Properties": {
         "AlternativeText": {
@@ -1440,1184 +1725,8 @@
         }
       }
     },
-    "Telerik.Sitefinity.Libraries.Model.Video": {
-      "Key": [
-        "Id"
-      ],
-      "HasStream": true,
-      "BaseType": null,
-      "Name": "Video",
-      "Properties": {
-        "Author": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Category": {
-          "ValueType": "string",
-          "PropertyType": "primitive",
-          "IsCollection": true
-        },
-        "DateCreated": {
-          "ValueType": "datetime",
-          "PropertyType": "primitive"
-        },
-        "Description": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Extension": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "FolderId": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Height": {
-          "ValueType": "int32",
-          "PropertyType": "primitive"
-        },
-        "Id": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "IncludeInSitemap": {
-          "ValueType": "boolean",
-          "PropertyType": "primitive"
-        },
-        "ItemDefaultUrl": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "LastModified": {
-          "ValueType": "datetime",
-          "PropertyType": "primitive"
-        },
-        "MimeType": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Ordinal": {
-          "ValueType": "float32",
-          "PropertyType": "primitive"
-        },
-        "Parent": {
-          "ValueType": "Telerik.Sitefinity.Libraries.Model.VideoLibrary",
-          "PropertyType": "relation"
-        },
-        "ParentId": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Provider": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "PublicationDate": {
-          "ValueType": "datetime",
-          "PropertyType": "primitive"
-        },
-        "Tags": {
-          "ValueType": "string",
-          "PropertyType": "primitive",
-          "IsCollection": true
-        },
-        "ThumbnailUrl": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Title": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "TotalSize": {
-          "ValueType": "int64",
-          "PropertyType": "primitive"
-        },
-        "Url": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "UrlName": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Width": {
-          "ValueType": "int32",
-          "PropertyType": "primitive"
-        }
-      }
-    },
-    "Telerik.Sitefinity.Libraries.Model.VideoLibrary": {
-      "Key": [
-        "Id"
-      ],
-      "BaseType": null,
-      "Name": "VideoLibrary",
-      "Properties": {
-        "BlobStorageProvider": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "ChildrenCount": {
-          "ValueType": "int32",
-          "PropertyType": "primitive"
-        },
-        "ClientCacheProfile": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "CoverId": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "DateCreated": {
-          "ValueType": "datetime",
-          "PropertyType": "primitive"
-        },
-        "Description": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Id": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "IncludeInSitemap": {
-          "ValueType": "boolean",
-          "PropertyType": "primitive"
-        },
-        "ItemDefaultUrl": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "LastModified": {
-          "ValueType": "datetime",
-          "PropertyType": "primitive"
-        },
-        "MaxItemSize": {
-          "ValueType": "int64",
-          "PropertyType": "primitive"
-        },
-        "MaxSize": {
-          "ValueType": "int64",
-          "PropertyType": "primitive"
-        },
-        "OutputCacheProfile": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "ParentId": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Provider": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "PublicationDate": {
-          "ValueType": "datetime",
-          "PropertyType": "primitive"
-        },
-        "ThumbnailProfiles": {
-          "ValueType": "string",
-          "PropertyType": "primitive",
-          "IsCollection": true
-        },
-        "Title": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "UrlName": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        }
-      }
-    },
-    "Telerik.Sitefinity.Lists.Model.List": {
-      "Key": [
-        "Id"
-      ],
-      "BaseType": null,
-      "Name": "List",
-      "Properties": {
-        "DateCreated": {
-          "ValueType": "datetime",
-          "PropertyType": "primitive"
-        },
-        "Description": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Id": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "IncludeInSitemap": {
-          "ValueType": "boolean",
-          "PropertyType": "primitive"
-        },
-        "LastModified": {
-          "ValueType": "datetime",
-          "PropertyType": "primitive"
-        },
-        "Provider": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "PublicationDate": {
-          "ValueType": "datetime",
-          "PropertyType": "primitive"
-        },
-        "SortOrder": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Title": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "UrlName": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        }
-      }
-    },
-    "Telerik.Sitefinity.Lists.Model.ListItem": {
-      "Key": [
-        "Id"
-      ],
-      "BaseType": null,
-      "Name": "ListItem",
-      "Properties": {
-        "Category": {
-          "ValueType": "string",
-          "PropertyType": "primitive",
-          "IsCollection": true
-        },
-        "Content": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "DateCreated": {
-          "ValueType": "datetime",
-          "PropertyType": "primitive"
-        },
-        "Description": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Id": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "IncludeInSitemap": {
-          "ValueType": "boolean",
-          "PropertyType": "primitive"
-        },
-        "LastModified": {
-          "ValueType": "datetime",
-          "PropertyType": "primitive"
-        },
-        "Ordinal": {
-          "ValueType": "float32",
-          "PropertyType": "primitive"
-        },
-        "Parent": {
-          "ValueType": "Telerik.Sitefinity.Lists.Model.List",
-          "PropertyType": "relation"
-        },
-        "ParentId": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Provider": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "PublicationDate": {
-          "ValueType": "datetime",
-          "PropertyType": "primitive"
-        },
-        "Tags": {
-          "ValueType": "string",
-          "PropertyType": "primitive",
-          "IsCollection": true
-        },
-        "Title": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "UrlName": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        }
-      }
-    },
-    "Telerik.Sitefinity.Model.Folder": {
-      "Key": [
-        "Id"
-      ],
-      "BaseType": null,
-      "Name": "Folder",
-      "Properties": {
-        "Breadcrumb": {
-          "ValueType": "Telerik.Sitefinity.Web.Services.Extensibility.BreadcrumbItem",
-          "PropertyType": "structure",
-          "IsCollection": true
-        },
-        "ChildrenCount": {
-          "ValueType": "int32",
-          "PropertyType": "primitive"
-        },
-        "CoverId": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Description": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Id": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "LastModified": {
-          "ValueType": "datetime",
-          "PropertyType": "primitive"
-        },
-        "ParentId": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Provider": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "RootId": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Title": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "UrlName": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        }
-      }
-    },
-    "Telerik.Sitefinity.Multisite.Model.Site": {
-      "Key": [
-        "Id"
-      ],
-      "BaseType": null,
-      "Name": "Site",
-      "Properties": {
-        "CultureKeys": {
-          "ValueType": "string",
-          "PropertyType": "primitive",
-          "IsCollection": true
-        },
-        "CulturesMap": {
-          "ValueType": "Telerik.Sitefinity.Multisite.Web.Services.CultureModel",
-          "PropertyType": "structure",
-          "IsCollection": true
-        },
-        "DefaultCultureKey": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "DefaultFrontendTemplateId": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Id": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "IsOffline": {
-          "ValueType": "boolean",
-          "PropertyType": "primitive"
-        },
-        "LiveUrl": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Name": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Provider": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "SiteMapRootNodeId": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        }
-      }
-    },
-    "Telerik.Sitefinity.News.Model.NewsItem": {
-      "Key": [
-        "Id"
-      ],
-      "BaseType": null,
-      "Name": "NewsItem",
-      "Properties": {
-        "AllowComments": {
-          "ValueType": "boolean",
-          "PropertyType": "primitive"
-        },
-        "Author": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Category": {
-          "ValueType": "string",
-          "PropertyType": "primitive",
-          "IsCollection": true
-        },
-        "Comments": {
-          "ValueType": "Telerik.Sitefinity.Services.Comments.CommentContract",
-          "PropertyType": "structure",
-          "IsCollection": true
-        },
-        "Content": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "DateCreated": {
-          "ValueType": "datetime",
-          "PropertyType": "primitive"
-        },
-        "Description": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Featured": {
-          "ValueType": "boolean",
-          "PropertyType": "primitive"
-        },
-        "Id": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "IncludeInSitemap": {
-          "ValueType": "boolean",
-          "PropertyType": "primitive"
-        },
-        "ItemDefaultUrl": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "LastModified": {
-          "ValueType": "datetime",
-          "PropertyType": "primitive"
-        },
-        "OpenGraphDescription": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "OpenGraphImage": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "OpenGraphTitle": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Provider": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "PublicationDate": {
-          "ValueType": "datetime",
-          "PropertyType": "primitive"
-        },
-        "SourceName": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "SourceSite": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Summary": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Tags": {
-          "ValueType": "string",
-          "PropertyType": "primitive",
-          "IsCollection": true
-        },
-        "Thumbnail": {
-          "ValueType": "Telerik.Sitefinity.Libraries.Model.Image",
-          "PropertyType": "relation"
-        },
-        "Title": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "UrlName": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        }
-      }
-    },
-    "Telerik.Sitefinity.Pages.Model.PageNode": {
-      "Key": [
-        "Id"
-      ],
-      "BaseType": null,
-      "Name": "PageNode",
-      "Properties": {
-        "AllowParametersValidation": {
-          "ValueType": "boolean",
-          "PropertyType": "primitive"
-        },
-        "AvailableLanguages": {
-          "ValueType": "string",
-          "PropertyType": "primitive",
-          "IsCollection": true
-        },
-        "Breadcrumb": {
-          "ValueType": "string",
-          "PropertyType": "primitive",
-          "IsCollection": true
-        },
-        "CanonicalUrlBehaviour": {
-          "ValueType": "Telerik.Sitefinity.Web.Api.Strategies.Pages.CanonicalUrlSettings",
-          "PropertyType": "enum"
-        },
-        "CodeBehindType": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Crawlable": {
-          "ValueType": "boolean",
-          "PropertyType": "primitive"
-        },
-        "DateCreated": {
-          "ValueType": "datetime",
-          "PropertyType": "primitive"
-        },
-        "Description": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "EditUrl": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "EnableViewState": {
-          "ValueType": "boolean",
-          "PropertyType": "primitive"
-        },
-        "HasChildren": {
-          "ValueType": "boolean",
-          "PropertyType": "primitive"
-        },
-        "HeadTagContent": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "HtmlTitle": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Id": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Image": {
-          "ValueType": "Telerik.Sitefinity.Libraries.Model.Image",
-          "PropertyType": "relation"
-        },
-        "IncludeInSearchIndex": {
-          "ValueType": "boolean",
-          "PropertyType": "primitive"
-        },
-        "IncludeScriptManager": {
-          "ValueType": "boolean",
-          "PropertyType": "primitive"
-        },
-        "IsHomePage": {
-          "ValueType": "boolean",
-          "PropertyType": "primitive"
-        },
-        "LastModified": {
-          "ValueType": "datetime",
-          "PropertyType": "primitive"
-        },
-        "LocalizationStrategy": {
-          "ValueType": "Telerik.Sitefinity.Localization.LocalizationStrategy",
-          "PropertyType": "enum"
-        },
-        "OutputCacheProfile": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "PageType": {
-          "ValueType": "Telerik.Sitefinity.Web.Api.Strategies.Pages.PageType",
-          "PropertyType": "enum"
-        },
-        "ParentId": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Priority": {
-          "ValueType": "float32",
-          "PropertyType": "primitive"
-        },
-        "Provider": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "PublicationDate": {
-          "ValueType": "datetime",
-          "PropertyType": "primitive"
-        },
-        "RedirectPage": {
-          "ValueType": "Telerik.Sitefinity.Web.Api.Strategies.Pages.RedirectPage",
-          "PropertyType": "structure"
-        },
-        "RelativeUrlPath": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Renderer": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "RequireSsl": {
-          "ValueType": "boolean",
-          "PropertyType": "primitive"
-        },
-        "RootId": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "ShowInNavigation": {
-          "ValueType": "boolean",
-          "PropertyType": "primitive"
-        },
-        "TemplateId": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "TemplateName": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Title": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "UrlName": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "ViewUrl": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        }
-      }
-    },
-    "Telerik.Sitefinity.Pages.Model.PageTemplate": {
-      "Key": [
-        "Id"
-      ],
-      "BaseType": null,
-      "Name": "PageTemplate",
-      "Properties": {
-        "DateCreated": {
-          "ValueType": "datetime",
-          "PropertyType": "primitive"
-        },
-        "Framework": {
-          "ValueType": "Telerik.Sitefinity.Pages.Model.PageTemplateFramework",
-          "PropertyType": "enum"
-        },
-        "Id": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "LastModified": {
-          "ValueType": "datetime",
-          "PropertyType": "primitive"
-        },
-        "Name": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "ParentTemplate": {
-          "ValueType": "Telerik.Sitefinity.Web.Services.Extensibility.Templates.Models.ParentTemplate",
-          "PropertyType": "structure"
-        },
-        "Provider": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Renderer": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "TemplateId": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "TemplateName": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Thumbnail": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "ThumbnailUrl": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Title": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        }
-      }
-    },
-    "Telerik.Sitefinity.ServiceHooks.Model.ServiceHook": {
-      "Key": [
-        "Id"
-      ],
-      "BaseType": null,
-      "Name": "ServiceHook",
-      "Properties": {
-        "Action": {
-          "ValueType": "Telerik.Sitefinity.ServiceHooks.Model.ParameterizedSetting",
-          "PropertyType": "structure"
-        },
-        "FailedRunsCount": {
-          "ValueType": "int32",
-          "PropertyType": "primitive"
-        },
-        "Id": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "SuccessfulRunsCount": {
-          "ValueType": "int32",
-          "PropertyType": "primitive"
-        },
-        "Title": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Trigger": {
-          "ValueType": "Telerik.Sitefinity.ServiceHooks.Model.ParameterizedSetting",
-          "PropertyType": "structure"
-        }
-      }
-    },
-    "Telerik.Sitefinity.Taxonomies.Model.FlatTaxon": {
-      "Key": [
-        "Id"
-      ],
-      "BaseType": null,
-      "Name": "FlatTaxon",
-      "Properties": {
-        "AppliedTo": {
-          "ValueType": "int64",
-          "PropertyType": "primitive"
-        },
-        "Description": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Id": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "LastModified": {
-          "ValueType": "datetime",
-          "PropertyType": "primitive"
-        },
-        "Name": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Ordinal": {
-          "ValueType": "float32",
-          "PropertyType": "primitive"
-        },
-        "Provider": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Synonyms": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "TaxonomyId": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Title": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "UrlName": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        }
-      }
-    },
-    "Telerik.Sitefinity.Taxonomies.Model.HierarchicalTaxon": {
-      "Key": [
-        "Id"
-      ],
-      "BaseType": null,
-      "Name": "HierarchicalTaxon",
-      "Properties": {
-        "AppliedTo": {
-          "ValueType": "int64",
-          "PropertyType": "primitive"
-        },
-        "Description": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "FullUrl": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Id": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "LastModified": {
-          "ValueType": "datetime",
-          "PropertyType": "primitive"
-        },
-        "Name": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Ordinal": {
-          "ValueType": "float32",
-          "PropertyType": "primitive"
-        },
-        "ParentId": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Provider": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Synonyms": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "TaxonomyId": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Title": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "UrlName": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        }
-      }
-    },
-    "Telerik.Sitefinity.Taxonomies.Model.Taxonomy": {
-      "Key": [
-        "Id"
-      ],
-      "BaseType": null,
-      "Name": "Taxonomy",
-      "Properties": {
-        "DefaultTaxonName": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "DefaultTitle": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Description": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Id": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "LastModified": {
-          "ValueType": "datetime",
-          "PropertyType": "primitive"
-        },
-        "Name": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "RootTaxonomyId": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "TaxaUrl": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "TaxonName": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "TaxonomySharedWith": {
-          "ValueType": "int32",
-          "PropertyType": "primitive"
-        },
-        "Title": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Type": {
-          "ValueType": "Telerik.Sitefinity.Taxonomies.Model.TaxonomyType",
-          "PropertyType": "enum"
-        }
-      }
-    }
-  },
-  "Structures": {
-    "System.Void": {
-      "Name": "Void",
-      "Properties": {}
-    },
-    "Telerik.Sitefinity.Analytics.Server.Infrastructure.Web.Services.AnalyticsDto": {
-      "Name": "AnalyticsDto",
-      "Properties": {
-        "AnalyticsUrl": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Id": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        }
-      }
-    },
-    "Telerik.Sitefinity.Analytics.Server.Infrastructure.Web.Services.AnalyticsSettingsDto": {
-      "Name": "AnalyticsSettingsDto",
-      "Properties": {
-        "Configured": {
-          "ValueType": "boolean",
-          "PropertyType": "primitive"
-        },
-        "Installed": {
-          "ValueType": "boolean",
-          "PropertyType": "primitive"
-        },
-        "ItemSupport": {
-          "ValueType": "boolean",
-          "PropertyType": "primitive"
-        }
-      }
-    },
-    "Telerik.Sitefinity.Authentication.Web.Services.Dto.AuthSettings": {
-      "Name": "AuthSettings",
-      "Properties": {
-        "Scope": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        }
-      }
-    },
-    "Telerik.Sitefinity.Configuration.Web.CultureViewModel": {
-      "Name": "CultureViewModel",
-      "Properties": {
-        "Culture": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "DisplayName": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "FieldSuffix": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "IsDefault": {
-          "ValueType": "boolean",
-          "PropertyType": "primitive"
-        },
-        "Key": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "ShortName": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "SitesNames": {
-          "ValueType": "string",
-          "PropertyType": "primitive",
-          "IsCollection": true
-        },
-        "SitesUsingCultureAsDefault": {
-          "ValueType": "string",
-          "PropertyType": "primitive",
-          "IsCollection": true
-        },
-        "UICulture": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        }
-      }
-    },
-    "Telerik.Sitefinity.Filters.FilterItem": {
-      "Name": "FilterItem",
-      "Properties": {
-        "Category": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Count": {
-          "ValueType": "int32",
-          "PropertyType": "primitive"
-        },
-        "IsDynamicFilter": {
-          "ValueType": "boolean",
-          "PropertyType": "primitive"
-        },
-        "Name": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Parameters": {
-          "ValueType": "Telerik.Sitefinity.Filters.FilterParameters",
-          "PropertyType": "structure"
-        },
-        "Title": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        }
-      }
-    },
-    "Telerik.Sitefinity.Filters.FilterParameters": {
-      "Name": "FilterParameters",
-      "Properties": {}
-    },
-    "Telerik.Sitefinity.Filters.Result": {
-      "Name": "Result",
-      "Properties": {
-        "Description": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "ImageUrl": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Key": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Title": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        }
-      }
-    },
-    "Telerik.Sitefinity.Folder": {
-      "Name": "Folder",
-      "Properties": {
-        "Breadcrumb": {
-          "ValueType": "string",
-          "PropertyType": "primitive",
-          "IsCollection": true
-        },
-        "ChildrenCount": {
-          "ValueType": "int32",
-          "PropertyType": "primitive"
-        },
-        "FoldersCount": {
-          "ValueType": "int32",
-          "PropertyType": "primitive"
-        },
-        "Id": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "ImagesUrl": {
-          "ValueType": "string",
-          "PropertyType": "primitive",
-          "IsCollection": true
-        },
-        "LastModified": {
-          "ValueType": "datetime",
-          "PropertyType": "primitive"
-        },
-        "ParentId": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "RootId": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Title": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        }
-      }
-    },
-    "Telerik.Sitefinity.GeoLocations.Model.Address": {
-      "Name": "Address",
-      "Properties": {
-        "City": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "CountryCode": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Id": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Latitude": {
-          "ValueType": "float64",
-          "PropertyType": "primitive"
-        },
-        "Longitude": {
-          "ValueType": "float64",
-          "PropertyType": "primitive"
-        },
-        "MapZoomLevel": {
-          "ValueType": "int32",
-          "PropertyType": "primitive"
-        },
-        "StateCode": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Street": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        },
-        "Zip": {
-          "ValueType": "string",
-          "PropertyType": "primitive"
-        }
-      }
-    },
     "Telerik.Sitefinity.Libraries.Model.MediaContent": {
+      "Kind": "Structure",
       "Name": "MediaContent",
       "Properties": {
         "AllowComments": {
@@ -2776,7 +1885,386 @@
         }
       }
     },
+    "Telerik.Sitefinity.Libraries.Model.Video": {
+      "Kind": "EntityType",
+      "Key": [
+        "Id"
+      ],
+      "HasStream": true,
+      "Name": "Video",
+      "Properties": {
+        "Author": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Category": {
+          "ValueType": "string",
+          "PropertyType": "primitive",
+          "IsCollection": true
+        },
+        "DateCreated": {
+          "ValueType": "datetime",
+          "PropertyType": "primitive"
+        },
+        "Description": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Extension": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "FolderId": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Height": {
+          "ValueType": "int32",
+          "PropertyType": "primitive"
+        },
+        "Id": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "IncludeInSitemap": {
+          "ValueType": "boolean",
+          "PropertyType": "primitive"
+        },
+        "ItemDefaultUrl": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "LastModified": {
+          "ValueType": "datetime",
+          "PropertyType": "primitive"
+        },
+        "MimeType": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Ordinal": {
+          "ValueType": "float32",
+          "PropertyType": "primitive"
+        },
+        "Parent": {
+          "ValueType": "Telerik.Sitefinity.Libraries.Model.VideoLibrary",
+          "PropertyType": "relation"
+        },
+        "ParentId": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Provider": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "PublicationDate": {
+          "ValueType": "datetime",
+          "PropertyType": "primitive"
+        },
+        "Tags": {
+          "ValueType": "string",
+          "PropertyType": "primitive",
+          "IsCollection": true
+        },
+        "ThumbnailUrl": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Title": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "TotalSize": {
+          "ValueType": "int64",
+          "PropertyType": "primitive"
+        },
+        "Url": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "UrlName": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Width": {
+          "ValueType": "int32",
+          "PropertyType": "primitive"
+        }
+      }
+    },
+    "Telerik.Sitefinity.Libraries.Model.VideoLibrary": {
+      "Kind": "EntityType",
+      "Key": [
+        "Id"
+      ],
+      "Name": "VideoLibrary",
+      "Properties": {
+        "BlobStorageProvider": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "ChildrenCount": {
+          "ValueType": "int32",
+          "PropertyType": "primitive"
+        },
+        "ClientCacheProfile": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "CoverId": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "DateCreated": {
+          "ValueType": "datetime",
+          "PropertyType": "primitive"
+        },
+        "Description": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Id": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "IncludeInSitemap": {
+          "ValueType": "boolean",
+          "PropertyType": "primitive"
+        },
+        "ItemDefaultUrl": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "LastModified": {
+          "ValueType": "datetime",
+          "PropertyType": "primitive"
+        },
+        "MaxItemSize": {
+          "ValueType": "int64",
+          "PropertyType": "primitive"
+        },
+        "MaxSize": {
+          "ValueType": "int64",
+          "PropertyType": "primitive"
+        },
+        "OutputCacheProfile": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "ParentId": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Provider": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "PublicationDate": {
+          "ValueType": "datetime",
+          "PropertyType": "primitive"
+        },
+        "ThumbnailProfiles": {
+          "ValueType": "string",
+          "PropertyType": "primitive",
+          "IsCollection": true
+        },
+        "Title": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "UrlName": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      }
+    },
+    "Telerik.Sitefinity.Lists.Model.List": {
+      "Kind": "EntityType",
+      "Key": [
+        "Id"
+      ],
+      "Name": "List",
+      "Properties": {
+        "DateCreated": {
+          "ValueType": "datetime",
+          "PropertyType": "primitive"
+        },
+        "Description": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Id": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "IncludeInSitemap": {
+          "ValueType": "boolean",
+          "PropertyType": "primitive"
+        },
+        "LastModified": {
+          "ValueType": "datetime",
+          "PropertyType": "primitive"
+        },
+        "Provider": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "PublicationDate": {
+          "ValueType": "datetime",
+          "PropertyType": "primitive"
+        },
+        "SortOrder": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Title": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "UrlName": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      }
+    },
+    "Telerik.Sitefinity.Lists.Model.ListItem": {
+      "Kind": "EntityType",
+      "Key": [
+        "Id"
+      ],
+      "Name": "ListItem",
+      "Properties": {
+        "Category": {
+          "ValueType": "string",
+          "PropertyType": "primitive",
+          "IsCollection": true
+        },
+        "Content": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "DateCreated": {
+          "ValueType": "datetime",
+          "PropertyType": "primitive"
+        },
+        "Description": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Id": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "IncludeInSitemap": {
+          "ValueType": "boolean",
+          "PropertyType": "primitive"
+        },
+        "LastModified": {
+          "ValueType": "datetime",
+          "PropertyType": "primitive"
+        },
+        "Ordinal": {
+          "ValueType": "float32",
+          "PropertyType": "primitive"
+        },
+        "Parent": {
+          "ValueType": "Telerik.Sitefinity.Lists.Model.List",
+          "PropertyType": "relation"
+        },
+        "ParentId": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Provider": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "PublicationDate": {
+          "ValueType": "datetime",
+          "PropertyType": "primitive"
+        },
+        "Tags": {
+          "ValueType": "string",
+          "PropertyType": "primitive",
+          "IsCollection": true
+        },
+        "Title": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "UrlName": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      }
+    },
+    "Telerik.Sitefinity.Localization.LocalizationStrategy": {
+      "Kind": "Enum",
+      "Name": "LocalizationStrategy",
+      "ValuesType": "int32",
+      "Members": {
+        "NotSelected": "0",
+        "Split": "1",
+        "Synced": "2"
+      }
+    },
+    "Telerik.Sitefinity.Model.Folder": {
+      "Kind": "EntityType",
+      "Key": [
+        "Id"
+      ],
+      "Name": "Folder",
+      "Properties": {
+        "Breadcrumb": {
+          "ValueType": "Telerik.Sitefinity.Web.Services.Extensibility.BreadcrumbItem",
+          "PropertyType": "structure",
+          "IsCollection": true
+        },
+        "ChildrenCount": {
+          "ValueType": "int32",
+          "PropertyType": "primitive"
+        },
+        "CoverId": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Description": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Id": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "LastModified": {
+          "ValueType": "datetime",
+          "PropertyType": "primitive"
+        },
+        "ParentId": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Provider": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "RootId": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Title": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "UrlName": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      }
+    },
     "Telerik.Sitefinity.Model.Lstring": {
+      "Kind": "Structure",
       "Name": "Lstring",
       "Properties": {
         "PersistedValue": {
@@ -2790,6 +2278,7 @@
       }
     },
     "Telerik.Sitefinity.Modules.Forms.Web.Services.Operations.FormRule": {
+      "Kind": "Structure",
       "Name": "FormRule",
       "Properties": {
         "Actions": {
@@ -2809,6 +2298,7 @@
       }
     },
     "Telerik.Sitefinity.Modules.Forms.Web.Services.Operations.RuleAction": {
+      "Kind": "Structure",
       "Name": "RuleAction",
       "Properties": {
         "Action": {
@@ -2822,6 +2312,7 @@
       }
     },
     "Telerik.Sitefinity.Modules.Forms.Web.Services.Operations.RuleCondition": {
+      "Kind": "Structure",
       "Name": "RuleCondition",
       "Properties": {
         "Id": {
@@ -2839,6 +2330,7 @@
       }
     },
     "Telerik.Sitefinity.Modules.ItemOperation": {
+      "Kind": "Structure",
       "Name": "ItemOperation",
       "Properties": {
         "Actions": {
@@ -2935,6 +2427,7 @@
       }
     },
     "Telerik.Sitefinity.Modules.Libraries.Web.Services.Extensibility.ThumbnailModel": {
+      "Kind": "Structure",
       "Name": "ThumbnailModel",
       "Properties": {
         "Height": {
@@ -2960,6 +2453,7 @@
       }
     },
     "Telerik.Sitefinity.Modules.Libraries.Web.Services.OperationProvider.ExtendedFolder": {
+      "Kind": "Structure",
       "Name": "ExtendedFolder",
       "Properties": {
         "Breadcrumb": {
@@ -3027,6 +2521,7 @@
       }
     },
     "Telerik.Sitefinity.Modules.Libraries.Web.Services.OperationProvider.ExtendedMediaLink": {
+      "Kind": "Structure",
       "Name": "ExtendedMediaLink",
       "Properties": {
         "ApplicationName": {
@@ -3108,7 +2603,19 @@
         }
       }
     },
+    "Telerik.Sitefinity.Modules.NotificationType": {
+      "Kind": "Enum",
+      "Name": "NotificationType",
+      "ValuesType": "int32",
+      "Members": {
+        "Error": "2",
+        "None": "0",
+        "Success": "1",
+        "Warning": "3"
+      }
+    },
     "Telerik.Sitefinity.Modules.OperationCategory": {
+      "Kind": "Structure",
       "Name": "OperationCategory",
       "Properties": {
         "Name": {
@@ -3122,6 +2629,7 @@
       }
     },
     "Telerik.Sitefinity.Modules.OperationContextParameter": {
+      "Kind": "Structure",
       "Name": "OperationContextParameter",
       "Properties": {
         "Name": {
@@ -3135,6 +2643,7 @@
       }
     },
     "Telerik.Sitefinity.Modules.OperationParameter": {
+      "Kind": "Structure",
       "Name": "OperationParameter",
       "Properties": {
         "Arguments": {
@@ -3181,6 +2690,7 @@
       }
     },
     "Telerik.Sitefinity.Modules.ParameterArgument": {
+      "Kind": "Structure",
       "Name": "ParameterArgument",
       "Properties": {
         "AdditionalValue": {
@@ -3206,6 +2716,7 @@
       }
     },
     "Telerik.Sitefinity.Modules.ParentOperationInfo": {
+      "Kind": "Structure",
       "Name": "ParentOperationInfo",
       "Properties": {
         "Name": {
@@ -3219,6 +2730,7 @@
       }
     },
     "Telerik.Sitefinity.Modules.Strategies.Operation.OperationAction": {
+      "Kind": "Structure",
       "Name": "OperationAction",
       "Properties": {
         "Name": {
@@ -3235,7 +2747,68 @@
         }
       }
     },
+    "Telerik.Sitefinity.Multisite.Model.Site": {
+      "Kind": "EntityType",
+      "Key": [
+        "Id"
+      ],
+      "Name": "Site",
+      "Properties": {
+        "CultureKeys": {
+          "ValueType": "string",
+          "PropertyType": "primitive",
+          "IsCollection": true
+        },
+        "CulturesMap": {
+          "ValueType": "Telerik.Sitefinity.Multisite.Web.Services.CultureModel",
+          "PropertyType": "structure",
+          "IsCollection": true
+        },
+        "DefaultCultureKey": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "DefaultFrontendTemplateId": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Id": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "IsOffline": {
+          "ValueType": "boolean",
+          "PropertyType": "primitive"
+        },
+        "LiveUrl": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Name": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Provider": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "SiteMapRootNodeId": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      }
+    },
+    "Telerik.Sitefinity.Multisite.Model.SiteConfigurationMode": {
+      "Kind": "Enum",
+      "Name": "SiteConfigurationMode",
+      "ValuesType": "int32",
+      "Members": {
+        "ConfigureByDeployment": "1",
+        "ConfigureManually": "0"
+      }
+    },
     "Telerik.Sitefinity.Multisite.Web.Services.CultureModel": {
+      "Kind": "Structure",
       "Name": "CultureModel",
       "Properties": {
         "DisplayName": {
@@ -3249,6 +2822,7 @@
       }
     },
     "Telerik.Sitefinity.Multisite.Web.Services.ViewModel.SiteConfigurationViewModel": {
+      "Kind": "Structure",
       "Name": "SiteConfigurationViewModel",
       "Properties": {
         "DataSources": {
@@ -3350,6 +2924,7 @@
       }
     },
     "Telerik.Sitefinity.Multisite.Web.Services.ViewModel.SiteDataSourceConfigViewModel": {
+      "Kind": "Structure",
       "Name": "SiteDataSourceConfigViewModel",
       "Properties": {
         "AllowMultipleProviders": {
@@ -3385,6 +2960,7 @@
       }
     },
     "Telerik.Sitefinity.Multisite.Web.Services.ViewModel.SiteDataSourceLinkViewModel": {
+      "Kind": "Structure",
       "Name": "SiteDataSourceLinkViewModel",
       "Properties": {
         "DataSourceName": {
@@ -3417,7 +2993,346 @@
         }
       }
     },
+    "Telerik.Sitefinity.News.Model.NewsItem": {
+      "Kind": "EntityType",
+      "Key": [
+        "Id"
+      ],
+      "Name": "NewsItem",
+      "Properties": {
+        "AllowComments": {
+          "ValueType": "boolean",
+          "PropertyType": "primitive"
+        },
+        "Author": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Category": {
+          "ValueType": "string",
+          "PropertyType": "primitive",
+          "IsCollection": true
+        },
+        "Comments": {
+          "ValueType": "Telerik.Sitefinity.Services.Comments.CommentContract",
+          "PropertyType": "structure",
+          "IsCollection": true
+        },
+        "Content": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "DateCreated": {
+          "ValueType": "datetime",
+          "PropertyType": "primitive"
+        },
+        "Description": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Featured": {
+          "ValueType": "boolean",
+          "PropertyType": "primitive"
+        },
+        "Id": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "IncludeInSitemap": {
+          "ValueType": "boolean",
+          "PropertyType": "primitive"
+        },
+        "ItemDefaultUrl": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "LastModified": {
+          "ValueType": "datetime",
+          "PropertyType": "primitive"
+        },
+        "OpenGraphDescription": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "OpenGraphImage": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "OpenGraphTitle": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Provider": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "PublicationDate": {
+          "ValueType": "datetime",
+          "PropertyType": "primitive"
+        },
+        "SourceName": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "SourceSite": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Summary": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Tags": {
+          "ValueType": "string",
+          "PropertyType": "primitive",
+          "IsCollection": true
+        },
+        "Thumbnail": {
+          "ValueType": "Telerik.Sitefinity.Libraries.Model.Image",
+          "PropertyType": "relation"
+        },
+        "Title": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "UrlName": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      }
+    },
+    "Telerik.Sitefinity.Pages.Model.PageNode": {
+      "Kind": "EntityType",
+      "Key": [
+        "Id"
+      ],
+      "Name": "PageNode",
+      "Properties": {
+        "AllowParametersValidation": {
+          "ValueType": "boolean",
+          "PropertyType": "primitive"
+        },
+        "AvailableLanguages": {
+          "ValueType": "string",
+          "PropertyType": "primitive",
+          "IsCollection": true
+        },
+        "Breadcrumb": {
+          "ValueType": "string",
+          "PropertyType": "primitive",
+          "IsCollection": true
+        },
+        "CanonicalUrlBehaviour": {
+          "ValueType": "Telerik.Sitefinity.Web.Api.Strategies.Pages.CanonicalUrlSettings",
+          "PropertyType": "enum"
+        },
+        "CodeBehindType": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Crawlable": {
+          "ValueType": "boolean",
+          "PropertyType": "primitive"
+        },
+        "DateCreated": {
+          "ValueType": "datetime",
+          "PropertyType": "primitive"
+        },
+        "Description": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "EditUrl": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "EnableViewState": {
+          "ValueType": "boolean",
+          "PropertyType": "primitive"
+        },
+        "HasChildren": {
+          "ValueType": "boolean",
+          "PropertyType": "primitive"
+        },
+        "HeadTagContent": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "HtmlTitle": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Id": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Image": {
+          "ValueType": "Telerik.Sitefinity.Libraries.Model.Image",
+          "PropertyType": "relation"
+        },
+        "IncludeInSearchIndex": {
+          "ValueType": "boolean",
+          "PropertyType": "primitive"
+        },
+        "IncludeScriptManager": {
+          "ValueType": "boolean",
+          "PropertyType": "primitive"
+        },
+        "IsHomePage": {
+          "ValueType": "boolean",
+          "PropertyType": "primitive"
+        },
+        "LastModified": {
+          "ValueType": "datetime",
+          "PropertyType": "primitive"
+        },
+        "LocalizationStrategy": {
+          "ValueType": "Telerik.Sitefinity.Localization.LocalizationStrategy",
+          "PropertyType": "enum"
+        },
+        "OutputCacheProfile": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "PageType": {
+          "ValueType": "Telerik.Sitefinity.Web.Api.Strategies.Pages.PageType",
+          "PropertyType": "enum"
+        },
+        "ParentId": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Priority": {
+          "ValueType": "float32",
+          "PropertyType": "primitive"
+        },
+        "Provider": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "PublicationDate": {
+          "ValueType": "datetime",
+          "PropertyType": "primitive"
+        },
+        "RedirectPage": {
+          "ValueType": "Telerik.Sitefinity.Web.Api.Strategies.Pages.RedirectPage",
+          "PropertyType": "structure"
+        },
+        "RelativeUrlPath": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Renderer": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "RequireSsl": {
+          "ValueType": "boolean",
+          "PropertyType": "primitive"
+        },
+        "RootId": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "ShowInNavigation": {
+          "ValueType": "boolean",
+          "PropertyType": "primitive"
+        },
+        "TemplateId": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "TemplateName": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Title": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "UrlName": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "ViewUrl": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      }
+    },
+    "Telerik.Sitefinity.Pages.Model.PageTemplate": {
+      "Kind": "EntityType",
+      "Key": [
+        "Id"
+      ],
+      "Name": "PageTemplate",
+      "Properties": {
+        "DateCreated": {
+          "ValueType": "datetime",
+          "PropertyType": "primitive"
+        },
+        "Framework": {
+          "ValueType": "Telerik.Sitefinity.Pages.Model.PageTemplateFramework",
+          "PropertyType": "enum"
+        },
+        "Id": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "LastModified": {
+          "ValueType": "datetime",
+          "PropertyType": "primitive"
+        },
+        "Name": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "ParentTemplate": {
+          "ValueType": "Telerik.Sitefinity.Web.Services.Extensibility.Templates.Models.ParentTemplate",
+          "PropertyType": "structure"
+        },
+        "Provider": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Renderer": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "TemplateId": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "TemplateName": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Thumbnail": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "ThumbnailUrl": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Title": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      }
+    },
+    "Telerik.Sitefinity.Pages.Model.PageTemplateFramework": {
+      "Kind": "Enum",
+      "Name": "PageTemplateFramework",
+      "ValuesType": "int32",
+      "Members": {
+        "Hybrid": "0",
+        "Mvc": "1",
+        "WebForms": "2"
+      }
+    },
     "Telerik.Sitefinity.Renderer.Diagnostics.DiagnosticResult": {
+      "Kind": "Structure",
       "Name": "DiagnosticResult",
       "Properties": {
         "Diagnostics": {
@@ -3428,6 +3343,7 @@
       }
     },
     "Telerik.Sitefinity.Renderer.Diagnostics.DiagnosticsDto": {
+      "Kind": "Structure",
       "Name": "DiagnosticsDto",
       "Properties": {
         "HelpLink": {
@@ -3449,6 +3365,7 @@
       }
     },
     "Telerik.Sitefinity.Renderer.Diagnostics.RendererData": {
+      "Kind": "Structure",
       "Name": "RendererData",
       "Properties": {
         "AuthRedirectUrl": {
@@ -3478,6 +3395,7 @@
       }
     },
     "Telerik.Sitefinity.Renderer.Editor.DefaultAddWidgetContext": {
+      "Kind": "Structure",
       "Name": "DefaultAddWidgetContext",
       "Properties": {
         "Id": {
@@ -3508,6 +3426,7 @@
       }
     },
     "Telerik.Sitefinity.Renderer.Editor.DefaultExecuteOperationContext": {
+      "Kind": "Structure",
       "Name": "DefaultExecuteOperationContext",
       "Properties": {
         "ActionName": {
@@ -3539,6 +3458,7 @@
       }
     },
     "Telerik.Sitefinity.Renderer.Editor.EditorState": {
+      "Kind": "Structure",
       "Name": "EditorState",
       "Properties": {
         "AddAllowed": {
@@ -3569,6 +3489,7 @@
       }
     },
     "Telerik.Sitefinity.Renderer.Editor.HierarchicalWidgetModelResponse": {
+      "Kind": "Structure",
       "Name": "HierarchicalWidgetModelResponse",
       "Properties": {
         "Caption": {
@@ -3616,6 +3537,7 @@
       }
     },
     "Telerik.Sitefinity.Renderer.Editor.LockContext": {
+      "Kind": "Structure",
       "Name": "LockContext",
       "Properties": {
         "Version": {
@@ -3625,6 +3547,7 @@
       }
     },
     "Telerik.Sitefinity.Renderer.Editor.WidgetOperationResult": {
+      "Kind": "Structure",
       "Name": "WidgetOperationResult",
       "Properties": {
         "AvailableActions": {
@@ -3682,6 +3605,7 @@
       }
     },
     "Telerik.Sitefinity.Renderer.Editor.WidgetState": {
+      "Kind": "Structure",
       "Name": "WidgetState",
       "Properties": {
         "DeleteAllowed": {
@@ -3719,6 +3643,7 @@
       }
     },
     "Telerik.Sitefinity.Renderer.Web.Services.Dto.ComponentContext": {
+      "Kind": "Structure",
       "Name": "ComponentContext",
       "Properties": {
         "Components": {
@@ -3738,6 +3663,7 @@
       }
     },
     "Telerik.Sitefinity.Renderer.Web.Services.Dto.ComponentDto": {
+      "Kind": "Structure",
       "Name": "ComponentDto",
       "Properties": {
         "Caption": {
@@ -3780,6 +3706,7 @@
       }
     },
     "Telerik.Sitefinity.Renderer.Web.Services.Dto.ComponentsResponse": {
+      "Kind": "Structure",
       "Name": "ComponentsResponse",
       "Properties": {
         "Components": {
@@ -3790,6 +3717,7 @@
       }
     },
     "Telerik.Sitefinity.Renderer.Web.Services.Dto.ComponentsResponseWithState": {
+      "Kind": "Structure",
       "Name": "ComponentsResponseWithState",
       "Properties": {
         "Components": {
@@ -3805,6 +3733,7 @@
       }
     },
     "Telerik.Sitefinity.Renderer.Web.Services.Dto.PageDtoWithContext": {
+      "Kind": "Structure",
       "Name": "PageDtoWithContext",
       "Properties": {
         "ComponentContext": {
@@ -3844,6 +3773,7 @@
       }
     },
     "Telerik.Sitefinity.Renderer.Web.Services.Dto.PageScript": {
+      "Kind": "Structure",
       "Name": "PageScript",
       "Properties": {
         "Attributes": {
@@ -3862,6 +3792,7 @@
       }
     },
     "Telerik.Sitefinity.Renderer.Web.Services.Dto.PageScriptAttribute": {
+      "Kind": "Structure",
       "Name": "PageScriptAttribute",
       "Properties": {
         "Key": {
@@ -3875,10 +3806,12 @@
       }
     },
     "Telerik.Sitefinity.Renderer.Web.Services.Dto.PropertiesModel": {
+      "Kind": "Structure",
       "Name": "PropertiesModel",
       "Properties": {}
     },
     "Telerik.Sitefinity.Renderer.Web.Services.Dto.ResolvedDetailItem": {
+      "Kind": "Structure",
       "Name": "ResolvedDetailItem",
       "Properties": {
         "ErrorMessage": {
@@ -3899,7 +3832,19 @@
         }
       }
     },
+    "Telerik.Sitefinity.Scheduling.Model.TaskStatus": {
+      "Kind": "Enum",
+      "Name": "TaskStatus",
+      "ValuesType": "int32",
+      "Members": {
+        "Failed": "2",
+        "Pending": "0",
+        "Started": "1",
+        "Stopped": "3"
+      }
+    },
     "Telerik.Sitefinity.Scheduling.Web.Services.WcfScheduledTask": {
+      "Kind": "Structure",
       "Name": "WcfScheduledTask",
       "Properties": {
         "ConcurrentTaskKey": {
@@ -3945,6 +3890,7 @@
       }
     },
     "Telerik.Sitefinity.ServiceHooks.Model.ParameterizedSetting": {
+      "Kind": "Structure",
       "Name": "ParameterizedSetting",
       "Properties": {
         "Name": {
@@ -3961,7 +3907,41 @@
         }
       }
     },
+    "Telerik.Sitefinity.ServiceHooks.Model.ServiceHook": {
+      "Kind": "EntityType",
+      "Key": [
+        "Id"
+      ],
+      "Name": "ServiceHook",
+      "Properties": {
+        "Action": {
+          "ValueType": "Telerik.Sitefinity.ServiceHooks.Model.ParameterizedSetting",
+          "PropertyType": "structure"
+        },
+        "FailedRunsCount": {
+          "ValueType": "int32",
+          "PropertyType": "primitive"
+        },
+        "Id": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "SuccessfulRunsCount": {
+          "ValueType": "int32",
+          "PropertyType": "primitive"
+        },
+        "Title": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Trigger": {
+          "ValueType": "Telerik.Sitefinity.ServiceHooks.Model.ParameterizedSetting",
+          "PropertyType": "structure"
+        }
+      }
+    },
     "Telerik.Sitefinity.ServiceHooks.Model.ServiceHookActivityDto": {
+      "Kind": "Structure",
       "Name": "ServiceHookActivityDto",
       "Properties": {
         "Duration": {
@@ -4002,7 +3982,19 @@
         }
       }
     },
+    "Telerik.Sitefinity.ServiceHooks.Model.ServiceHookActivityStatus": {
+      "Kind": "Enum",
+      "Name": "ServiceHookActivityStatus",
+      "ValuesType": "int32",
+      "Members": {
+        "Failed": "2",
+        "Pending": "0",
+        "Running": "1",
+        "Successful": "3"
+      }
+    },
     "Telerik.Sitefinity.ServiceHooks.Model.ServiceHookSettingChoice": {
+      "Kind": "Structure",
       "Name": "ServiceHookSettingChoice",
       "Properties": {
         "Module": {
@@ -4029,6 +4021,7 @@
       }
     },
     "Telerik.Sitefinity.Services.Comments.CommentContract": {
+      "Kind": "Structure",
       "Name": "CommentContract",
       "Properties": {
         "DateCreated": {
@@ -4053,7 +4046,188 @@
         }
       }
     },
+    "Telerik.Sitefinity.Taxonomies.Model.FlatTaxon": {
+      "Kind": "EntityType",
+      "Key": [
+        "Id"
+      ],
+      "Name": "FlatTaxon",
+      "Properties": {
+        "AppliedTo": {
+          "ValueType": "int64",
+          "PropertyType": "primitive"
+        },
+        "Description": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Id": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "LastModified": {
+          "ValueType": "datetime",
+          "PropertyType": "primitive"
+        },
+        "Name": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Ordinal": {
+          "ValueType": "float32",
+          "PropertyType": "primitive"
+        },
+        "Provider": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Synonyms": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "TaxonomyId": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Title": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "UrlName": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      }
+    },
+    "Telerik.Sitefinity.Taxonomies.Model.HierarchicalTaxon": {
+      "Kind": "EntityType",
+      "Key": [
+        "Id"
+      ],
+      "Name": "HierarchicalTaxon",
+      "Properties": {
+        "AppliedTo": {
+          "ValueType": "int64",
+          "PropertyType": "primitive"
+        },
+        "Description": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "FullUrl": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Id": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "LastModified": {
+          "ValueType": "datetime",
+          "PropertyType": "primitive"
+        },
+        "Name": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Ordinal": {
+          "ValueType": "float32",
+          "PropertyType": "primitive"
+        },
+        "ParentId": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Provider": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Synonyms": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "TaxonomyId": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Title": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "UrlName": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      }
+    },
+    "Telerik.Sitefinity.Taxonomies.Model.Taxonomy": {
+      "Kind": "EntityType",
+      "Key": [
+        "Id"
+      ],
+      "Name": "Taxonomy",
+      "Properties": {
+        "DefaultTaxonName": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "DefaultTitle": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Description": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Id": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "LastModified": {
+          "ValueType": "datetime",
+          "PropertyType": "primitive"
+        },
+        "Name": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "RootTaxonomyId": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "TaxaUrl": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "TaxonName": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "TaxonomySharedWith": {
+          "ValueType": "int32",
+          "PropertyType": "primitive"
+        },
+        "Title": {
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        "Type": {
+          "ValueType": "Telerik.Sitefinity.Taxonomies.Model.TaxonomyType",
+          "PropertyType": "enum"
+        }
+      }
+    },
+    "Telerik.Sitefinity.Taxonomies.Model.TaxonomyType": {
+      "Kind": "Enum",
+      "Name": "TaxonomyType",
+      "ValuesType": "int32",
+      "Members": {
+        "Flat": "0",
+        "Hierarchical": "1"
+      }
+    },
     "Telerik.Sitefinity.Web.Api.OData.Operations.Media.Models.ThumbnailModel": {
+      "Kind": "Structure",
       "Name": "ThumbnailModel",
       "Properties": {
         "Size": {
@@ -4071,6 +4245,7 @@
       }
     },
     "Telerik.Sitefinity.Web.Api.OData.Operations.Models.ReorderAction": {
+      "Kind": "Structure",
       "Name": "ReorderAction",
       "Properties": {
         "Id": {
@@ -4087,7 +4262,18 @@
         }
       }
     },
+    "Telerik.Sitefinity.Web.Api.OData.Operations.Models.ReorderPosition": {
+      "Kind": "Enum",
+      "Name": "ReorderPosition",
+      "ValuesType": "int32",
+      "Members": {
+        "After": "1",
+        "Before": "0",
+        "Under": "2"
+      }
+    },
     "Telerik.Sitefinity.Web.Api.OData.Operations.Models.SharedInLocation": {
+      "Kind": "Structure",
       "Name": "SharedInLocation",
       "Properties": {
         "Breadcrumb": {
@@ -4119,6 +4305,7 @@
       }
     },
     "Telerik.Sitefinity.Web.Api.OData.Operations.OperationResults.BulkOperationResult": {
+      "Kind": "Structure",
       "Name": "BulkOperationResult",
       "Properties": {
         "FailedItemsIds": {
@@ -4141,7 +4328,18 @@
         }
       }
     },
+    "Telerik.Sitefinity.Web.Api.OData.Operations.OperationResults.BulkOperationResultType": {
+      "Kind": "Enum",
+      "Name": "BulkOperationResultType",
+      "ValuesType": "int32",
+      "Members": {
+        "Error": "2",
+        "Success": "0",
+        "Warning": "1"
+      }
+    },
     "Telerik.Sitefinity.Web.Api.OData.Operations.Pages.FrontendPageNodeExtended": {
+      "Kind": "Structure",
       "Name": "FrontendPageNodeExtended",
       "Properties": {
         "ChildNodes": {
@@ -4180,6 +4378,7 @@
       }
     },
     "Telerik.Sitefinity.Web.Api.OData.Operations.Pages.FrontendSitemapPage": {
+      "Kind": "Structure",
       "Name": "FrontendSitemapPage",
       "Properties": {
         "AvailableLanguages": {
@@ -4228,6 +4427,7 @@
       }
     },
     "Telerik.Sitefinity.Web.Api.OData.Operations.Pages.Models.Owner": {
+      "Kind": "Structure",
       "Name": "Owner",
       "Properties": {
         "FullName": {
@@ -4249,6 +4449,7 @@
       }
     },
     "Telerik.Sitefinity.Web.Api.OData.Operations.Pages.Models.PageTemplateCategory": {
+      "Kind": "Structure",
       "Name": "PageTemplateCategory",
       "Properties": {
         "Subtitle": {
@@ -4270,7 +4471,17 @@
         }
       }
     },
+    "Telerik.Sitefinity.Web.Api.OData.Operations.Pages.Models.PageTemplateCategoryType": {
+      "Kind": "Enum",
+      "Name": "PageTemplateCategoryType",
+      "ValuesType": "int32",
+      "Members": {
+        "CurrentlyUsed": "1",
+        "None": "0"
+      }
+    },
     "Telerik.Sitefinity.Web.Api.OData.Operations.Pages.Models.SharePreviewLink": {
+      "Kind": "Structure",
       "Name": "SharePreviewLink",
       "Properties": {
         "ExpirationMessage": {
@@ -4284,6 +4495,7 @@
       }
     },
     "Telerik.Sitefinity.Web.Api.OData.Operations.Pages.Models.SharedInSiteModel": {
+      "Kind": "Structure",
       "Name": "SharedInSiteModel",
       "Properties": {
         "Id": {
@@ -4301,6 +4513,7 @@
       }
     },
     "Telerik.Sitefinity.Web.Api.OData.Operations.Pages.Models.Template": {
+      "Kind": "Structure",
       "Name": "Template",
       "Properties": {
         "Framework": {
@@ -4338,6 +4551,7 @@
       }
     },
     "Telerik.Sitefinity.Web.Api.OData.Operations.Pages.Models.TemplateStatistic": {
+      "Kind": "Structure",
       "Name": "TemplateStatistic",
       "Properties": {
         "Count": {
@@ -4351,6 +4565,7 @@
       }
     },
     "Telerik.Sitefinity.Web.Api.OData.Operations.Pages.SitemapPage": {
+      "Kind": "Structure",
       "Name": "SitemapPage",
       "Properties": {
         "AvailableLanguages": {
@@ -4436,6 +4651,7 @@
       }
     },
     "Telerik.Sitefinity.Web.Api.OData.Operations.Sites.Models.DataSourceConfiguration": {
+      "Kind": "Structure",
       "Name": "DataSourceConfiguration",
       "Properties": {
         "IsChecked": {
@@ -4454,6 +4670,7 @@
       }
     },
     "Telerik.Sitefinity.Web.Api.OData.Operations.Sites.Models.DataSourceLinkConfiguration": {
+      "Kind": "Structure",
       "Name": "DataSourceLinkConfiguration",
       "Properties": {
         "IsDefault": {
@@ -4467,6 +4684,7 @@
       }
     },
     "Telerik.Sitefinity.Web.Api.OData.Operations.Sites.Models.SiteConfiguration": {
+      "Kind": "Structure",
       "Name": "SiteConfiguration",
       "Properties": {
         "IsDefaultSite": {
@@ -4480,6 +4698,7 @@
       }
     },
     "Telerik.Sitefinity.Web.Api.OData.Operations.Sorters.SortItem": {
+      "Kind": "Structure",
       "Name": "SortItem",
       "Properties": {
         "Name": {
@@ -4493,6 +4712,7 @@
       }
     },
     "Telerik.Sitefinity.Web.Api.OData.Operations.Taxonomies.Models.MarkedItem": {
+      "Kind": "Structure",
       "Name": "MarkedItem",
       "Properties": {
         "AvailableLanguages": {
@@ -4536,6 +4756,7 @@
       }
     },
     "Telerik.Sitefinity.Web.Api.OData.Operations.Taxonomies.Models.PublicationInfo": {
+      "Kind": "Structure",
       "Name": "PublicationInfo",
       "Properties": {
         "Date": {
@@ -4549,6 +4770,7 @@
       }
     },
     "Telerik.Sitefinity.Web.Api.OData.Operations.Taxonomies.Models.RelatedSiteInfo": {
+      "Kind": "Structure",
       "Name": "RelatedSiteInfo",
       "Properties": {
         "Name": {
@@ -4562,6 +4784,7 @@
       }
     },
     "Telerik.Sitefinity.Web.Api.OData.Operations.Taxonomies.Models.TaxonDTO": {
+      "Kind": "Structure",
       "Name": "TaxonDTO",
       "Properties": {
         "AvailableLanguages": {
@@ -4600,6 +4823,7 @@
       }
     },
     "Telerik.Sitefinity.Web.Api.OData.Operations.Taxonomies.Models.TypeInfo": {
+      "Kind": "Structure",
       "Name": "TypeInfo",
       "Properties": {
         "DisplayName": {
@@ -4613,14 +4837,17 @@
       }
     },
     "Telerik.Sitefinity.Web.Api.OData.Operations.Validation.Models.ValidationErrors": {
+      "Kind": "Structure",
       "Name": "ValidationErrors",
       "Properties": {}
     },
     "Telerik.Sitefinity.Web.Api.OData.Operations.Validation.Models.ValidationRequest": {
+      "Kind": "Structure",
       "Name": "ValidationRequest",
       "Properties": {}
     },
     "Telerik.Sitefinity.Web.Api.OData.Operations.Validation.Models.ValidationResult": {
+      "Kind": "Structure",
       "Name": "ValidationResult",
       "Properties": {
         "Errors": {
@@ -4629,7 +4856,28 @@
         }
       }
     },
+    "Telerik.Sitefinity.Web.Api.Strategies.Pages.CanonicalUrlSettings": {
+      "Kind": "Enum",
+      "Name": "CanonicalUrlSettings",
+      "ValuesType": "int32",
+      "Members": {
+        "Default": "0",
+        "Disabled": "1",
+        "Enabled": "2"
+      }
+    },
+    "Telerik.Sitefinity.Web.Api.Strategies.Pages.PageType": {
+      "Kind": "Enum",
+      "Name": "PageType",
+      "ValuesType": "int32",
+      "Members": {
+        "Group": "1",
+        "Redirect": "2",
+        "Standard": "0"
+      }
+    },
     "Telerik.Sitefinity.Web.Api.Strategies.Pages.RedirectPage": {
+      "Kind": "Structure",
       "Name": "RedirectPage",
       "Properties": {
         "NodeId": {
@@ -4651,6 +4899,7 @@
       }
     },
     "Telerik.Sitefinity.Web.Services.Contracts.Operations.Address.CountryModel": {
+      "Kind": "Structure",
       "Name": "CountryModel",
       "Properties": {
         "hasStates": {
@@ -4673,6 +4922,7 @@
       }
     },
     "Telerik.Sitefinity.Web.Services.Contracts.Operations.Address.StateModel": {
+      "Kind": "Structure",
       "Name": "StateModel",
       "Properties": {
         "abbreviation": {
@@ -4690,6 +4940,7 @@
       }
     },
     "Telerik.Sitefinity.Web.Services.Contracts.Operations.Pages.PropertyEditor.Adaptors.Model.ChoiceValue": {
+      "Kind": "Structure",
       "Name": "ChoiceValue",
       "Properties": {
         "Name": {
@@ -4707,6 +4958,7 @@
       }
     },
     "Telerik.Sitefinity.Web.Services.Contracts.Operations.Pages.PropertyEditor.Adaptors.Model.ControlMetadata": {
+      "Kind": "Structure",
       "Name": "ControlMetadata",
       "Properties": {
         "Caption": {
@@ -4734,6 +4986,7 @@
       }
     },
     "Telerik.Sitefinity.Web.Services.Contracts.Operations.Pages.PropertyEditor.Adaptors.Model.PropertyContainer": {
+      "Kind": "Structure",
       "Name": "PropertyContainer",
       "Properties": {
         "DefaultValue": {
@@ -4764,6 +5017,7 @@
       }
     },
     "Telerik.Sitefinity.Web.Services.Contracts.Operations.Pages.PropertyEditor.Adaptors.Model.PropertyValueContainer": {
+      "Kind": "Structure",
       "Name": "PropertyValueContainer",
       "Properties": {
         "Name": {
@@ -4777,6 +5031,7 @@
       }
     },
     "Telerik.Sitefinity.Web.Services.Contracts.Operations.Pages.PropertyEditor.Adaptors.Model.PropertyValueGroupContainer": {
+      "Kind": "Structure",
       "Name": "PropertyValueGroupContainer",
       "Properties": {
         "Caption": {
@@ -4804,6 +5059,7 @@
       }
     },
     "Telerik.Sitefinity.Web.Services.Contracts.Operations.Pages.PropertyEditor.Adaptors.Model.Section": {
+      "Kind": "Structure",
       "Name": "Section",
       "Properties": {
         "Name": {
@@ -4822,6 +5078,7 @@
       }
     },
     "Telerik.Sitefinity.Web.Services.Contracts.Operations.Pages.PropertyEditor.Adaptors.Model.SectionGroup": {
+      "Kind": "Structure",
       "Name": "SectionGroup",
       "Properties": {
         "Name": {
@@ -4836,10 +5093,12 @@
       }
     },
     "Telerik.Sitefinity.Web.Services.Contracts.Operations.Pages.PropertyEditor.Adaptors.Model.ValidationContainer": {
+      "Kind": "Structure",
       "Name": "ValidationContainer",
       "Properties": {}
     },
     "Telerik.Sitefinity.Web.Services.Contracts.Operations.Pages.PropertyEditor.Permissions.FieldSettings": {
+      "Kind": "Structure",
       "Name": "FieldSettings",
       "Properties": {
         "AllowCreate": {
@@ -4857,6 +5116,7 @@
       }
     },
     "Telerik.Sitefinity.Web.Services.Contracts.Operations.Pages.PropertyEditor.Permissions.FieldSettingsContext": {
+      "Kind": "Structure",
       "Name": "FieldSettingsContext",
       "Properties": {
         "FieldSettings": {
@@ -4867,6 +5127,7 @@
       }
     },
     "Telerik.Sitefinity.Web.Services.Contracts.Operations.System.DataProviderModel": {
+      "Kind": "Structure",
       "Name": "DataProviderModel",
       "Properties": {
         "isDefault": {
@@ -4884,6 +5145,7 @@
       }
     },
     "Telerik.Sitefinity.Web.Services.Contracts.Operations.TimeZone.TimeZoneModel": {
+      "Kind": "Structure",
       "Name": "TimeZoneModel",
       "Properties": {
         "id": {
@@ -4897,6 +5159,7 @@
       }
     },
     "Telerik.Sitefinity.Web.Services.Extensibility.AvailableAction": {
+      "Kind": "Structure",
       "Name": "AvailableAction",
       "Properties": {
         "Key": {
@@ -4910,6 +5173,7 @@
       }
     },
     "Telerik.Sitefinity.Web.Services.Extensibility.BreadcrumbItem": {
+      "Kind": "Structure",
       "Name": "BreadcrumbItem",
       "Properties": {
         "FolderId": {
@@ -4923,6 +5187,7 @@
       }
     },
     "Telerik.Sitefinity.Web.Services.Extensibility.DisplayStatus": {
+      "Kind": "Structure",
       "Name": "DisplayStatus",
       "Properties": {
         "Date": {
@@ -4968,6 +5233,7 @@
       }
     },
     "Telerik.Sitefinity.Web.Services.Extensibility.FormField": {
+      "Kind": "Structure",
       "Name": "FormField",
       "Properties": {
         "Hideable": {
@@ -5003,6 +5269,7 @@
       }
     },
     "Telerik.Sitefinity.Web.Services.Extensibility.ItemEventInfo": {
+      "Kind": "Structure",
       "Name": "ItemEventInfo",
       "Properties": {
         "Date": {
@@ -5020,6 +5287,7 @@
       }
     },
     "Telerik.Sitefinity.Web.Services.Extensibility.MarketingPropertyValue": {
+      "Kind": "Structure",
       "Name": "MarketingPropertyValue",
       "Properties": {
         "Description": {
@@ -5037,6 +5305,7 @@
       }
     },
     "Telerik.Sitefinity.Web.Services.Extensibility.Message": {
+      "Kind": "Structure",
       "Name": "Message",
       "Properties": {
         "Description": {
@@ -5055,6 +5324,7 @@
       }
     },
     "Telerik.Sitefinity.Web.Services.Extensibility.Operator": {
+      "Kind": "Structure",
       "Name": "Operator",
       "Properties": {
         "Key": {
@@ -5068,6 +5338,7 @@
       }
     },
     "Telerik.Sitefinity.Web.Services.Extensibility.Step": {
+      "Kind": "Structure",
       "Name": "Step",
       "Properties": {
         "Key": {
@@ -5081,6 +5352,7 @@
       }
     },
     "Telerik.Sitefinity.Web.Services.Extensibility.Templates.Models.ParentTemplate": {
+      "Kind": "Structure",
       "Name": "ParentTemplate",
       "Properties": {
         "Id": {
@@ -5095,200 +5367,6 @@
           "ValueType": "string",
           "PropertyType": "primitive"
         }
-      }
-    }
-  },
-  "Enums": {
-    "Org.OData.Core.V1.AddressFieldMode": {
-      "Name": "AddressFieldMode",
-      "ValuesType": "int32",
-      "Members": {
-        "FormOnly": "0",
-        "Hybrid": "2",
-        "MapOnly": "1"
-      }
-    },
-    "Telerik.Sitefinity.DynamicTypes.Model.Slides.Slide.TextPosition.TextPosition": {
-      "Name": "TextPosition",
-      "ValuesType": "int32",
-      "Members": {
-        "Left": "1",
-        "Right": "2"
-      }
-    },
-    "Telerik.Sitefinity.Forms.Model.ConditionOperator": {
-      "Name": "ConditionOperator",
-      "ValuesType": "int32",
-      "Members": {
-        "Contains": "2",
-        "Equal": "0",
-        "FileNotSelected": "9",
-        "FileSelected": "8",
-        "IsFilled": "4",
-        "IsGreaterThan": "7",
-        "IsLessThan": "6",
-        "IsNotFilled": "5",
-        "NotContains": "3",
-        "NotEqual": "1"
-      }
-    },
-    "Telerik.Sitefinity.Forms.Model.FormRuleAction": {
-      "Name": "FormRuleAction",
-      "ValuesType": "int32",
-      "Members": {
-        "GoTo": "3",
-        "Hide": "1",
-        "SendNotification": "5",
-        "Show": "0",
-        "ShowMessage": "4",
-        "Skip": "2"
-      }
-    },
-    "Telerik.Sitefinity.Forms.Model.LogicalOperator": {
-      "Name": "LogicalOperator",
-      "ValuesType": "int32",
-      "Members": {
-        "And": "0",
-        "Or": "1"
-      }
-    },
-    "Telerik.Sitefinity.GenericContent.Model.ContentLifecycleStatus": {
-      "Name": "ContentLifecycleStatus",
-      "ValuesType": "int32",
-      "Members": {
-        "Deleted": "4",
-        "Live": "2",
-        "Master": "0",
-        "PartialTemp": "8",
-        "Temp": "1"
-      }
-    },
-    "Telerik.Sitefinity.GenericContent.Model.ContentUIStatus": {
-      "Name": "ContentUIStatus",
-      "ValuesType": "int32",
-      "Members": {
-        "Draft": "0",
-        "NotSupported": "666",
-        "PrivateCopy": "1",
-        "Published": "2",
-        "Scheduled": "3"
-      }
-    },
-    "Telerik.Sitefinity.GenericContent.Model.PostRights": {
-      "Name": "PostRights",
-      "ValuesType": "int32",
-      "Members": {
-        "Everyone": "1",
-        "None": "0",
-        "RegisteredUsers": "2"
-      }
-    },
-    "Telerik.Sitefinity.Localization.LocalizationStrategy": {
-      "Name": "LocalizationStrategy",
-      "ValuesType": "int32",
-      "Members": {
-        "NotSelected": "0",
-        "Split": "1",
-        "Synced": "2"
-      }
-    },
-    "Telerik.Sitefinity.Modules.NotificationType": {
-      "Name": "NotificationType",
-      "ValuesType": "int32",
-      "Members": {
-        "Error": "2",
-        "None": "0",
-        "Success": "1",
-        "Warning": "3"
-      }
-    },
-    "Telerik.Sitefinity.Multisite.Model.SiteConfigurationMode": {
-      "Name": "SiteConfigurationMode",
-      "ValuesType": "int32",
-      "Members": {
-        "ConfigureByDeployment": "1",
-        "ConfigureManually": "0"
-      }
-    },
-    "Telerik.Sitefinity.Pages.Model.PageTemplateFramework": {
-      "Name": "PageTemplateFramework",
-      "ValuesType": "int32",
-      "Members": {
-        "Hybrid": "0",
-        "Mvc": "1",
-        "WebForms": "2"
-      }
-    },
-    "Telerik.Sitefinity.Scheduling.Model.TaskStatus": {
-      "Name": "TaskStatus",
-      "ValuesType": "int32",
-      "Members": {
-        "Failed": "2",
-        "Pending": "0",
-        "Started": "1",
-        "Stopped": "3"
-      }
-    },
-    "Telerik.Sitefinity.ServiceHooks.Model.ServiceHookActivityStatus": {
-      "Name": "ServiceHookActivityStatus",
-      "ValuesType": "int32",
-      "Members": {
-        "Failed": "2",
-        "Pending": "0",
-        "Running": "1",
-        "Successful": "3"
-      }
-    },
-    "Telerik.Sitefinity.Taxonomies.Model.TaxonomyType": {
-      "Name": "TaxonomyType",
-      "ValuesType": "int32",
-      "Members": {
-        "Flat": "0",
-        "Hierarchical": "1"
-      }
-    },
-    "Telerik.Sitefinity.Web.Api.OData.Operations.Models.ReorderPosition": {
-      "Name": "ReorderPosition",
-      "ValuesType": "int32",
-      "Members": {
-        "After": "1",
-        "Before": "0",
-        "Under": "2"
-      }
-    },
-    "Telerik.Sitefinity.Web.Api.OData.Operations.OperationResults.BulkOperationResultType": {
-      "Name": "BulkOperationResultType",
-      "ValuesType": "int32",
-      "Members": {
-        "Error": "2",
-        "Success": "0",
-        "Warning": "1"
-      }
-    },
-    "Telerik.Sitefinity.Web.Api.OData.Operations.Pages.Models.PageTemplateCategoryType": {
-      "Name": "PageTemplateCategoryType",
-      "ValuesType": "int32",
-      "Members": {
-        "CurrentlyUsed": "1",
-        "None": "0"
-      }
-    },
-    "Telerik.Sitefinity.Web.Api.Strategies.Pages.CanonicalUrlSettings": {
-      "Name": "CanonicalUrlSettings",
-      "ValuesType": "int32",
-      "Members": {
-        "Default": "0",
-        "Disabled": "1",
-        "Enabled": "2"
-      }
-    },
-    "Telerik.Sitefinity.Web.Api.Strategies.Pages.PageType": {
-      "Name": "PageType",
-      "ValuesType": "int32",
-      "Members": {
-        "Group": "1",
-        "Redirect": "2",
-        "Standard": "0"
       }
     }
   },

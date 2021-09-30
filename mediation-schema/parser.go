@@ -71,36 +71,6 @@ func addToActions(objects edmObjects, schema *ods.Schema, action ods.Action) {
 	}
 }
 
-// func getEntitySetBindingTarget(entitySet *ods.EntitySet, navPropertyName string) (string, bool) {
-// 	for _, navBindings := range entitySet.NavigationPropertyBindings {
-// 		if navBindings.Path == navPropertyName {
-// 			return navBindings.Target, true
-// 		}
-// 	}
-// 	return "", false
-// }
-
-// func getEntitySetsByTypeName(typeName string, entitySets []ods.EntitySet, stopAt int) []ods.EntitySet {
-// 	sets := []ods.EntitySet{}
-// 	for _, entitySet := range entitySets {
-// 		if entitySet.EntityType == typeName {
-// 			sets = append(sets, entitySet)
-// 			if stopAt > 0 && len(sets) >= stopAt {
-// 				return sets
-// 			}
-// 		}
-// 	}
-// 	return sets
-// }
-
-// func getComplexTypeBindingTarget(targetType string, entitySets []ods.EntitySet) (string, bool) {
-// 	sets := getEntitySetsByTypeName(targetType, entitySets, 1)
-// 	if len(sets) > 0 {
-// 		return sets[0].Name, true
-// 	}
-// 	return "", false
-// }
-
 func mapEdmType(edmType string) (string, error) {
 	switch edmType {
 	case "Edm.String", "Edm.Guid":
@@ -271,19 +241,15 @@ func mapEntityType(qualifiedName string, objects *edmObjects) EntityType {
 
 func mapCollection(entitySet ods.EntitySet, objects *edmObjects) Collection {
 	res := Collection{
-		Name:          entitySet.Name,
-		EntityType:    entitySet.EntityType,
-		Relationships: make(map[string]string),
-	}
-
-	for _, binding := range entitySet.NavigationPropertyBindings {
-		res.Relationships[binding.Path] = binding.Target
+		Name:       entitySet.Name,
+		EntityType: entitySet.EntityType,
 	}
 
 	return res
 }
 
-func mapComplexType(complexTypeName string, complexType *ods.ComplexType, objects *edmObjects) Structure {
+func mapComplexType(complexTypeName string, objects *edmObjects) Structure {
+	complexType := objects.complexTypes[complexTypeName]
 	cType := Structure{
 		Name:       complexType.Name,
 		Properties: make(map[string]Property),
@@ -295,7 +261,8 @@ func mapComplexType(complexTypeName string, complexType *ods.ComplexType, object
 	return cType
 }
 
-func mapEnumType(enumName string, enum *ods.EnumType, objects *edmObjects) Enum {
+func mapEnumType(enumName string, objects *edmObjects) Enum {
+	enum := objects.enumTypes[enumName]
 	eType := Enum{
 		Name:        enum.Name,
 		Members:     make(map[string]string),
@@ -433,10 +400,8 @@ func extractObjects(edm *ods.EdmxDocument) *edmObjects {
 func Parse(edm *ods.EdmxDocument) (Service, error) {
 	service := Service{
 		Collections: make(map[string]Collection),
-		EntityTypes: make(map[string]EntityType),
-		Structures:  make(map[string]Structure),
-		Enums:       make(map[string]Enum),
 		Invocations: make(map[string]Invocation),
+		Types:       make(map[string]Type),
 	}
 
 	objects := extractObjects(edm)
@@ -447,15 +412,27 @@ func Parse(edm *ods.EdmxDocument) (Service, error) {
 	}
 
 	for name := range objects.entityTypes {
-		service.EntityTypes[name] = mapEntityType(name, objects)
+		et := mapEntityType(name, objects)
+		service.Types[name] = Type{
+			Kind:       "EntityType",
+			EntityType: &et,
+		}
 	}
 
-	for typeName, complexType := range objects.complexTypes {
-		service.Structures[typeName] = mapComplexType(typeName, complexType, objects)
+	for name := range objects.complexTypes {
+		ct := mapComplexType(name, objects)
+		service.Types[name] = Type{
+			Kind:      "Structure",
+			Structure: &ct,
+		}
 	}
 
-	for enumName, enum := range objects.enumTypes {
-		service.Enums[enumName] = mapEnumType(enumName, enum, objects)
+	for name := range objects.enumTypes {
+		enum := mapEnumType(name, objects)
+		service.Types[name] = Type{
+			Kind: "Enum",
+			Enum: &enum,
+		}
 	}
 
 	for funcName, function := range objects.functions {

@@ -25,6 +25,19 @@ func addKey(entityType *mschema.EntityType, fieldsRef *[]Field) {
 	}
 }
 
+func getTypeName(typeName string, types map[string]mschema.Type) string {
+	switch types[typeName].Kind {
+	default:
+		panic("should not happen")
+	case "EntityType":
+		return types[typeName].EntityType.Name
+	case "Structure":
+		return types[typeName].Structure.Name
+	case "Enum":
+		return types[typeName].Enum.Name
+	}
+}
+
 func propsToFields(properties map[string]mschema.Property, service *mschema.Service) *[]Field {
 	fields := make([]Field, len(properties))
 	i := 0
@@ -40,14 +53,8 @@ func propsToFields(properties map[string]mschema.Property, service *mschema.Serv
 			if strings.HasPrefix(field.Type, "Int") || strings.HasPrefix(field.Type, "Float") {
 				field.Type = replaceLastDigitsRegexp.ReplaceAllString(field.Type, "")
 			}
-		} else if prop.PropertyType == "structure" {
-			field.Type = service.Structures[prop.ValueType].Name
-		} else if prop.PropertyType == "relation" {
-			field.Type = service.EntityTypes[prop.ValueType].Name
-		} else if prop.PropertyType == "enum" {
-			field.Type = service.Enums[prop.ValueType].Name
 		} else {
-			panic("unknown type")
+			field.Type = getTypeName(prop.ValueType, service.Types)
 		}
 
 		if prop.IsCollection {
@@ -153,6 +160,32 @@ func enumToDefinition(enum *mschema.Enum) Definition {
 	}
 }
 
+func typeDefToDefinition(service *mschema.Service) []Definition {
+	gqlTypes := []Definition{}
+
+	for _, ttype := range service.Types {
+		switch ttype.Kind {
+		case "EntityType":
+			{
+				typeDef, inputDef := entityTypeToDefinition(ttype.EntityType, service)
+				gqlTypes = append(gqlTypes, typeDef, inputDef)
+			}
+		case "Structure":
+			{
+				typeDef := createDefinition(ttype.Structure.Name, ttype.Structure.Properties, service)
+				gqlTypes = append(gqlTypes, typeDef)
+			}
+		case "Enum":
+			{
+				enumDef := enumToDefinition(ttype.Enum)
+				gqlTypes = append(gqlTypes, enumDef)
+			}
+		}
+	}
+
+	return gqlTypes
+}
+
 func Parse(backend *mschema.Backend) string {
 	schema := Schema{
 		Query: Definition{
@@ -169,18 +202,7 @@ func Parse(backend *mschema.Backend) string {
 	}
 
 	for _, service := range backend.Services {
-		for _, entityType := range service.EntityTypes {
-			typeDef, inputDef := entityTypeToDefinition(&entityType, &service)
-			schema.Types = append(schema.Types, typeDef, inputDef)
-		}
-		for _, structure := range service.Structures {
-			typeDef := createDefinition(structure.Name, structure.Properties, &service)
-			schema.Types = append(schema.Types, typeDef)
-		}
-		for _, enum := range service.Enums {
-			enumDef := enumToDefinition(&enum)
-			schema.Types = append(schema.Types, enumDef)
-		}
+		schema.Types = typeDefToDefinition(&service)
 	}
 
 	// for _, collection := range service.Collections {
