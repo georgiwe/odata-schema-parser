@@ -1,87 +1,54 @@
+type Airline {
+  AirlineCode: ID
+  Name: String
+}
+
+input AirlineInput {
+  AirlineCode: String
+  Name: String
+}
+
+type Event {
+  ConfirmationCode: String
+  Description: String
+  Duration: Duration
+  EndsAt: Datetime
+  OccursAt: EventLocation
+  PlanItemId: ID
+  StartsAt: Datetime
+}
+
+input EventInput {
+  PlanItemId: Int
+  StartsAt: Datetime
+  ConfirmationCode: String
+  Description: String
+  Duration: Duration
+  EndsAt: Datetime
+  OccursAt: EventLocation
+}
+
 type Person {
   Concurrency: Int
-  Gender: PersonGender
-  LastName: String
-  UserName: ID
-  Photo: Photo
-  Trips: [Trip]
-  AddressInfo: [Location]
   Emails: [String]
   FirstName: String
   Friends: [Person]
+  LastName: String
+  Photo: Photo
+  UserName: ID
+  AddressInfo: [Location]
+  Trips: [Trip]
+  Gender: PersonGender
 }
 
 input PersonInput {
-  Concurrency: Int
-  Gender: PersonGender
+  FirstName: String
   LastName: String
   UserName: String
   AddressInfo: [Location]
+  Concurrency: Int
   Emails: [String]
-  FirstName: String
-}
-
-type PlanItem {
-  PlanItemId: ID
-  StartsAt: Datetime
-  ConfirmationCode: String
-  Duration: Duration
-  EndsAt: Datetime
-}
-
-input PlanItemInput {
-  ConfirmationCode: String
-  Duration: Duration
-  EndsAt: Datetime
-  PlanItemId: Int
-  StartsAt: Datetime
-}
-
-type Trip {
-  Budget: Float
-  EndsAt: Datetime
-  Name: String
-  PlanItems: [PlanItem]
-  ShareId: String
-  Description: String
-  Photos: [Photo]
-  StartsAt: Datetime
-  Tags: [String]
-  TripId: ID
-}
-
-input TripInput {
-  Description: String
-  StartsAt: Datetime
-  Tags: [String]
-  TripId: Int
-  Budget: Float
-  EndsAt: Datetime
-  Name: String
-  ShareId: String
-}
-
-type Flight {
-  EndsAt: Datetime
-  StartsAt: Datetime
-  To: Airport
-  Airline: Airline
-  ConfirmationCode: String
-  Duration: Duration
-  FlightNumber: String
-  From: Airport
-  PlanItemId: ID
-  SeatNumber: String
-}
-
-input FlightInput {
-  Duration: Duration
-  FlightNumber: String
-  PlanItemId: Int
-  SeatNumber: String
-  ConfirmationCode: String
-  EndsAt: Datetime
-  StartsAt: Datetime
+  Gender: PersonGender
 }
 
 type Photo {
@@ -94,6 +61,83 @@ input PhotoInput {
   Name: String
 }
 
+type PlanItem {
+  EndsAt: Datetime
+  PlanItemId: ID
+  StartsAt: Datetime
+  ConfirmationCode: String
+  Duration: Duration
+}
+
+input PlanItemInput {
+  ConfirmationCode: String
+  Duration: Duration
+  EndsAt: Datetime
+  PlanItemId: Int
+  StartsAt: Datetime
+}
+
+type Trip {
+  Budget: Float
+  Description: String
+  PlanItems: [PlanItem]
+  ShareId: String
+  Tags: [String]
+  EndsAt: Datetime
+  Name: String
+  Photos: [Photo]
+  StartsAt: Datetime
+  TripId: ID
+}
+
+input TripInput {
+  Budget: Float
+  Description: String
+  ShareId: String
+  Tags: [String]
+  EndsAt: Datetime
+  Name: String
+  StartsAt: Datetime
+  TripId: Int
+}
+
+type Airport {
+  Location: AirportLocation
+  Name: String
+  IataCode: String
+  IcaoCode: ID
+}
+
+input AirportInput {
+  IataCode: String
+  IcaoCode: String
+  Location: AirportLocation
+  Name: String
+}
+
+type Flight {
+  Duration: Duration
+  EndsAt: Datetime
+  FlightNumber: String
+  From: Airport
+  SeatNumber: String
+  StartsAt: Datetime
+  Airline: Airline
+  PlanItemId: ID
+  To: Airport
+  ConfirmationCode: String
+}
+
+input FlightInput {
+  ConfirmationCode: String
+  PlanItemId: Int
+  Duration: Duration
+  EndsAt: Datetime
+  FlightNumber: String
+  SeatNumber: String
+  StartsAt: Datetime
+}
+
 type PublicTransportation {
   ConfirmationCode: String
   Duration: Duration
@@ -104,54 +148,10 @@ type PublicTransportation {
 }
 
 input PublicTransportationInput {
-  StartsAt: Datetime
-  ConfirmationCode: String
   Duration: Duration
   EndsAt: Datetime
   PlanItemId: Int
   SeatNumber: String
-}
-
-type Airline {
-  AirlineCode: ID
-  Name: String
-}
-
-input AirlineInput {
-  AirlineCode: String
-  Name: String
-}
-
-type Airport {
-  IataCode: String
-  IcaoCode: ID
-  Location: AirportLocation
-  Name: String
-}
-
-input AirportInput {
-  Location: AirportLocation
-  Name: String
-  IataCode: String
-  IcaoCode: String
-}
-
-type Event {
-  PlanItemId: ID
-  StartsAt: Datetime
-  ConfirmationCode: String
-  Description: String
-  Duration: Duration
-  EndsAt: Datetime
-  OccursAt: EventLocation
-}
-
-input EventInput {
-  Description: String
-  Duration: Duration
-  EndsAt: Datetime
-  OccursAt: EventLocation
-  PlanItemId: Int
   StartsAt: Datetime
   ConfirmationCode: String
 }
@@ -161,9 +161,9 @@ type AirportLocation {
 }
 
 type City {
-  Region: String
   CountryRegion: String
   Name: String
+  Region: String
 }
 
 type EventLocation {
@@ -171,7 +171,13 @@ type EventLocation {
 }
 
 type Location {
-  City: City
   Address: String
+  City: City
+}
+
+enum PersonGender {
+  Female @meta(value: 1, valueType: int32)
+  Male @meta(value: 0, valueType: int32)
+  Unknown @meta(value: 2, valueType: int32)
 }
 
