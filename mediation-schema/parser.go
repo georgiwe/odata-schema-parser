@@ -224,9 +224,9 @@ func mapEntityType(qualifiedName string, objects *edmObjects) EntityType {
 	entityType := objects.entityTypes[qualifiedName]
 
 	mappedEntityType := EntityType{
-		Key:       getTypeKeys(qualifiedName, objects),
-		HasStream: entityType.HasStream,
-		BaseType:  entityType.BaseType,
+		Key:        getTypeKeys(qualifiedName, objects),
+		Streamable: entityType.HasStream,
+		BaseType:   entityType.BaseType,
 		Structure: Structure{
 			Name:       entityType.Name,
 			Properties: make(map[string]Property),
@@ -242,9 +242,9 @@ func mapEntityType(qualifiedName string, objects *edmObjects) EntityType {
 
 func mapCollection(entitySet ods.EntitySet, objects *edmObjects) Collection {
 	res := Collection{
-		Name:         entitySet.Name,
-		EntityType:   entitySet.EntityType,
-		Downloadable: objects.entityTypes[entitySet.EntityType].HasStream,
+		Name:       entitySet.Name,
+		EntityType: entitySet.EntityType,
+		Streamable: objects.entityTypes[entitySet.EntityType].HasStream,
 	}
 
 	return res

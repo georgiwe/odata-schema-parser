@@ -29,16 +29,16 @@ type Invocation struct {
 }
 
 type EntityType struct {
-	Key       []string
-	HasStream bool    `json:",omitempty"`
-	BaseType  *string `json:",omitempty"`
+	Key        []string
+	Streamable bool    `json:",omitempty"`
+	BaseType   *string `json:",omitempty"`
 	Structure
 }
 
 type Collection struct {
-	Name         string
-	EntityType   string
-	Downloadable bool `json:",omitempty"`
+	Name       string
+	EntityType string
+	Streamable bool `json:",omitempty"`
 }
 
 type Structure struct {

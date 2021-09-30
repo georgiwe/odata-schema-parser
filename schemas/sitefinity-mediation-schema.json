@@ -33,7 +33,7 @@
     "documents": {
       "Name": "documents",
       "EntityType": "Telerik.Sitefinity.Libraries.Model.Document",
-      "Downloadable": true
+      "Streamable": true
     },
     "events": {
       "Name": "events",
@@ -62,7 +62,7 @@
     "images": {
       "Name": "images",
       "EntityType": "Telerik.Sitefinity.Libraries.Model.Image",
-      "Downloadable": true
+      "Streamable": true
     },
     "listitems": {
       "Name": "listitems",
@@ -119,7 +119,7 @@
     "videos": {
       "Name": "videos",
       "EntityType": "Telerik.Sitefinity.Libraries.Model.Video",
-      "Downloadable": true
+      "Streamable": true
     }
   },
   "Types": {
@@ -1423,7 +1423,7 @@
       "Key": [
         "Id"
       ],
-      "HasStream": true,
+      "Streamable": true,
       "Name": "Document",
       "Properties": {
         "Author": {
@@ -1617,7 +1617,7 @@
       "Key": [
         "Id"
       ],
-      "HasStream": true,
+      "Streamable": true,
       "Name": "Image",
       "Properties": {
         "AlternativeText": {
@@ -1894,7 +1894,7 @@
       "Key": [
         "Id"
       ],
-      "HasStream": true,
+      "Streamable": true,
       "Name": "Video",
       "OpenType": true,
       "Properties": {
