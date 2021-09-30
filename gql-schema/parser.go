@@ -291,6 +291,48 @@ func Parse(service *mschema.Service) string {
 			Element:   Element{Name: "Mutation"},
 		},
 		Types: []Definition{},
+		DirectiveDeclarations: []DirectiveDeclaration{
+			{
+				Applications: []string{"OBJECT", "FIELD_DEFINITION"},
+				Directive: Directive{
+					Name: "backend",
+					Fields: []Field{
+						{
+							Type:    "String",
+							Element: Element{Name: "product"},
+						},
+						{
+							Type:    "String",
+							Element: Element{Name: "collection"},
+						},
+						{
+							Type:    "String",
+							Element: Element{Name: "method"},
+						},
+						{
+							Type:    "String",
+							Element: Element{Name: "endpoint"},
+						},
+					},
+				},
+			},
+			{
+				Applications: []string{"FIELD_DEFINITION"},
+				Directive: Directive{
+					Name: "connection",
+					Fields: []Field{
+						{
+							Type:    "String",
+							Element: Element{Name: "primaryKey"},
+						},
+						{
+							Type:    "String",
+							Element: Element{Name: "foreignKey"},
+						},
+					},
+				},
+			},
+		},
 	}
 
 	schema.Types = typeDefToDefinition(service)

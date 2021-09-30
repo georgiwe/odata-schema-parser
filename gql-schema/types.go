@@ -5,10 +5,16 @@ import (
 	"strings"
 )
 
+type DirectiveDeclaration struct {
+	Applications []string
+	Directive
+}
+
 type Schema struct {
-	Query    Definition
-	Mutation Definition
-	Types    []Definition
+	Query                 Definition
+	Mutation              Definition
+	Types                 []Definition
+	DirectiveDeclarations []DirectiveDeclaration
 }
 
 type Directive struct {
@@ -140,8 +146,26 @@ func (element *Element) String() string {
 	return sb.String()
 }
 
+func (dec *DirectiveDeclaration) String() string {
+	sb := &strings.Builder{}
+
+	applications := strings.Join(dec.Applications, " | ")
+	fmt.Fprintf(sb, "directive %s on %s", dec.Directive.String(), applications)
+
+	return sb.String()
+}
+
 func (schema *Schema) String() string {
 	sb := &strings.Builder{}
+
+	for _, declalration := range schema.DirectiveDeclarations {
+		sb.WriteString(declalration.String())
+		sb.WriteString("\n")
+	}
+
+	if len(schema.DirectiveDeclarations) > 0 {
+		sb.WriteString("\n")
+	}
 
 	sb.WriteString(schema.Query.String())
 	sb.WriteString("\n\n")
@@ -149,13 +173,13 @@ func (schema *Schema) String() string {
 	sb.WriteString(schema.Mutation.String())
 	sb.WriteString("\n\n")
 
-	typesCount := len(schema.Types)
-	for i, def := range schema.Types {
+	for _, def := range schema.Types {
 		sb.WriteString(def.String())
 		sb.WriteString("\n")
-		if i < typesCount-1 {
-			sb.WriteString("\n")
-		}
+	}
+
+	if len(schema.Types) > 0 {
+		sb.WriteString("\n")
 	}
 
 	return sb.String()
