@@ -22,44 +22,38 @@ type Directive struct {
 	Fields []Field
 }
 
+// TODO: Merge with Field somehow
 type Element struct {
 	Name       string
 	Directives *[]Directive
 }
 
 type Field struct {
-	Type     string
-	Required bool
-	Element
-}
-
-// TODO: name this
-type Function struct {
-	Arguments  []Field
-	ReturnType string
+	Type      string
+	Required  bool
+	Arguments *[]Field
 	Element
 }
 
 type Definition struct {
-	Type      string
-	Fields    *[]Field
-	Functions *[]Function
-	Elements  *[]Element
+	Type     string
+	Fields   *[]Field
+	Elements *[]Element
 	Element
 }
 
-func (def *Function) String() string {
+func stringifyFields(fields []Field, joiner string, indentation int) string {
 	sb := &strings.Builder{}
-	argCount := len(def.Arguments)
+	count := len(fields)
 
-	for i, arg := range def.Arguments {
-		sb.WriteString(arg.String())
-		if i < argCount-1 {
-			sb.WriteString(", ")
+	for i, field := range fields {
+		fmt.Fprintf(sb, "%s%s", strings.Repeat(" ", indentation), field.String())
+		if i < count-1 {
+			sb.WriteString(joiner)
 		}
 	}
 
-	return fmt.Sprintf("%s(%s): %s", def.Name, sb.String(), def.ReturnType)
+	return sb.String()
 }
 
 // TODO: Indentation
@@ -78,15 +72,7 @@ func (def *Definition) String() string {
 	sb.WriteString("{\n")
 
 	if def.Fields != nil {
-		for _, field := range *def.Fields {
-			fmt.Fprintf(sb, "  %s\n", field.String())
-		}
-	}
-
-	if def.Functions != nil {
-		for _, function := range *def.Functions {
-			fmt.Fprintf(sb, "  %s\n", function.String())
-		}
+		sb.WriteString(stringifyFields(*def.Fields, "\n", 2))
 	}
 
 	if def.Elements != nil {
@@ -119,14 +105,27 @@ func (directive *Directive) String() string {
 
 func (field *Field) String() string {
 	sb := &strings.Builder{}
+
 	requiredFlag := ""
 	if field.Required {
 		requiredFlag = "!"
 	}
 
-	fieldStr := fmt.Sprintf("%s: %s%s", field.Name, field.Type, requiredFlag)
+	fieldType := field.Type
+	if strings.Contains(fieldType, " ") {
+		fieldType = fmt.Sprintf(`"%s"`, fieldType)
+	}
+
+	argumentsStr := ""
+
+	if field.Arguments != nil {
+		argumentsStr = fmt.Sprintf("(%s)", stringifyFields(*field.Arguments, ", ", 0))
+	}
+
+	fieldStr := fmt.Sprintf("%s%s: %s%s", field.Name, argumentsStr, fieldType, requiredFlag)
 	elStr := field.Element.String()
 	result := strings.Replace(elStr, field.Name, fieldStr, 1)
+
 	sb.WriteString(result)
 
 	return sb.String()
@@ -173,13 +172,14 @@ func (schema *Schema) String() string {
 	sb.WriteString(schema.Mutation.String())
 	sb.WriteString("\n\n")
 
-	for _, def := range schema.Types {
+	typesCount := len(schema.Types)
+	for i, def := range schema.Types {
 		sb.WriteString(def.String())
 		sb.WriteString("\n")
-	}
 
-	if len(schema.Types) > 0 {
-		sb.WriteString("\n")
+		if i < typesCount-1 {
+			sb.WriteString("\n")
+		}
 	}
 
 	return sb.String()
