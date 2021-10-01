@@ -22,7 +22,6 @@ type Directive struct {
 	Fields []Field
 }
 
-// TODO: Merge with Field somehow
 type Element struct {
 	Name       string
 	Directives *[]Directive
@@ -36,9 +35,8 @@ type Field struct {
 }
 
 type Definition struct {
-	Type     string
-	Fields   *[]Field
-	Elements *[]Element
+	Type   string
+	Fields *[]Field
 	Element
 }
 
@@ -73,12 +71,7 @@ func (def *Definition) String() string {
 
 	if def.Fields != nil {
 		sb.WriteString(stringifyFields(*def.Fields, "\n", 2))
-	}
-
-	if def.Elements != nil {
-		for _, element := range *def.Elements {
-			fmt.Fprintf(sb, "  %s\n", element.String())
-		}
+		sb.WriteString("\n")
 	}
 
 	sb.WriteString("}")
@@ -112,8 +105,11 @@ func (field *Field) String() string {
 	}
 
 	fieldType := field.Type
-	if strings.Contains(fieldType, " ") {
-		fieldType = fmt.Sprintf(`"%s"`, fieldType)
+	if fieldType != "" {
+		if strings.Contains(fieldType, " ") {
+			fieldType = fmt.Sprintf(`"%s"`, fieldType)
+		}
+		fieldType = fmt.Sprintf(": %s", fieldType)
 	}
 
 	argumentsStr := ""
@@ -122,7 +118,7 @@ func (field *Field) String() string {
 		argumentsStr = fmt.Sprintf("(%s)", stringifyFields(*field.Arguments, ", ", 0))
 	}
 
-	fieldStr := fmt.Sprintf("%s%s: %s%s", field.Name, argumentsStr, fieldType, requiredFlag)
+	fieldStr := fmt.Sprintf("%s%s%s%s", field.Name, argumentsStr, fieldType, requiredFlag)
 	elStr := field.Element.String()
 	result := strings.Replace(elStr, field.Name, fieldStr, 1)
 

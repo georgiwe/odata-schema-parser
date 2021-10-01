@@ -203,20 +203,20 @@ func createMutationFields(collection *mschema.Collection, service *mschema.Servi
 	return fields
 }
 
-func enumMembersToFields(members map[string]string, membersType string) *[]Element {
-	elements := []Element{}
+func enumMembersToFields(members map[string]string, membersType string) *[]Field {
+	elements := []Field{}
 	for memberName := range members {
-		elements = append(elements, Element{Name: memberName})
+		elements = append(elements, Field{Element: Element{Name: memberName}})
 	}
 	return &elements
 }
 
 func enumToDefinition(enum *mschema.Enum) Definition {
-	elements := enumMembersToFields(enum.Members, enum.ValuesType)
+	fields := enumMembersToFields(enum.Members, enum.ValuesType)
 	return Definition{
-		Type:     "enum",
-		Element:  Element{Name: enum.Name},
-		Elements: elements,
+		Type:    "enum",
+		Element: Element{Name: enum.Name},
+		Fields:  fields,
 	}
 }
 
@@ -249,10 +249,9 @@ func typeDefToDefinition(service *mschema.Service) []Definition {
 func Parse(service *mschema.Service) string {
 	schema := Schema{
 		Query: Definition{
-			Type:     "type",
-			Fields:   &[]Field{},
-			Elements: &[]Element{},
-			Element:  Element{Name: "Query"},
+			Type:    "type",
+			Fields:  &[]Field{},
+			Element: Element{Name: "Query"},
 		},
 		Mutation: Definition{
 			Type:    "type",
