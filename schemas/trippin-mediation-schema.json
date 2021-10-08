@@ -103,19 +103,23 @@
       "Properties": {
         "ConfirmationCode": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Description": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Duration": {
           "ValueType": "duration",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "EndsAt": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "OccursAt": {
           "ValueType": "Microsoft.OData.SampleService.Models.TripPin.EventLocation",
@@ -127,7 +131,8 @@
         },
         "StartsAt": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         }
       }
     },
@@ -138,7 +143,8 @@
       "Properties": {
         "BuildingInfo": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         }
       }
     },
@@ -156,15 +162,18 @@
         },
         "ConfirmationCode": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Duration": {
           "ValueType": "duration",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "EndsAt": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "FlightNumber": {
           "ValueType": "string",
@@ -180,11 +189,13 @@
         },
         "SeatNumber": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "StartsAt": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "To": {
           "ValueType": "Microsoft.OData.SampleService.Models.TripPin.Airport",
@@ -218,7 +229,8 @@
         "AddressInfo": {
           "ValueType": "Microsoft.OData.SampleService.Models.TripPin.Location",
           "PropertyType": "structure",
-          "IsCollection": true
+          "IsCollection": true,
+          "Required": true
         },
         "Concurrency": {
           "ValueType": "int64",
@@ -227,7 +239,8 @@
         "Emails": {
           "ValueType": "string",
           "PropertyType": "primitive",
-          "IsCollection": true
+          "IsCollection": true,
+          "Required": true
         },
         "FirstName": {
           "ValueType": "string",
@@ -240,7 +253,8 @@
         },
         "Gender": {
           "ValueType": "Microsoft.OData.SampleService.Models.TripPin.PersonGender",
-          "PropertyType": "enum"
+          "PropertyType": "enum",
+          "Required": true
         },
         "LastName": {
           "ValueType": "string",
@@ -285,7 +299,8 @@
         },
         "Name": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         }
       }
     },
@@ -298,15 +313,18 @@
       "Properties": {
         "ConfirmationCode": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Duration": {
           "ValueType": "duration",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "EndsAt": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "PlanItemId": {
           "ValueType": "int32",
@@ -314,7 +332,8 @@
         },
         "StartsAt": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         }
       }
     },
@@ -328,15 +347,18 @@
       "Properties": {
         "ConfirmationCode": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Duration": {
           "ValueType": "duration",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "EndsAt": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "PlanItemId": {
           "ValueType": "int32",
@@ -344,11 +366,13 @@
         },
         "SeatNumber": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "StartsAt": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         }
       }
     },
@@ -365,7 +389,8 @@
         },
         "Description": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "EndsAt": {
           "ValueType": "datetime",
@@ -387,7 +412,8 @@
         },
         "ShareId": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "StartsAt": {
           "ValueType": "datetime",
@@ -413,6 +439,7 @@
       "BoundDataPointer": "person/Trips/PlanItems/Microsoft.OData.SampleService.Models.TripPin.Flight/Airline",
       "Arguments": [
         {
+          "Name": "person",
           "ValueType": "Microsoft.OData.SampleService.Models.TripPin.Person",
           "PropertyType": "relation"
         }
@@ -429,10 +456,12 @@
       "BoundDataPointer": "person/Friends/Trips",
       "Arguments": [
         {
+          "Name": "person",
           "ValueType": "Microsoft.OData.SampleService.Models.TripPin.Person",
           "PropertyType": "relation"
         },
         {
+          "Name": "userName",
           "ValueType": "string",
           "PropertyType": "primitive"
         }
@@ -449,6 +478,7 @@
       "BoundTo": "Microsoft.OData.SampleService.Models.TripPin.Trip",
       "Arguments": [
         {
+          "Name": "trip",
           "ValueType": "Microsoft.OData.SampleService.Models.TripPin.Trip",
           "PropertyType": "relation"
         }
@@ -464,10 +494,12 @@
       "BindingType": "unbound",
       "Arguments": [
         {
+          "Name": "lat",
           "ValueType": "float64",
           "PropertyType": "primitive"
         },
         {
+          "Name": "lon",
           "ValueType": "float64",
           "PropertyType": "primitive"
         }
@@ -489,14 +521,17 @@
       "BoundTo": "Microsoft.OData.SampleService.Models.TripPin.Person",
       "Arguments": [
         {
+          "Name": "person",
           "ValueType": "Microsoft.OData.SampleService.Models.TripPin.Person",
           "PropertyType": "relation"
         },
         {
+          "Name": "userName",
           "ValueType": "string",
           "PropertyType": "primitive"
         },
         {
+          "Name": "tripId",
           "ValueType": "int32",
           "PropertyType": "primitive"
         }

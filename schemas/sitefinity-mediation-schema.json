@@ -148,7 +148,8 @@
         },
         "Id": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         }
       }
     },
@@ -158,15 +159,18 @@
       "Properties": {
         "Configured": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Installed": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "ItemSupport": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         }
       }
     },
@@ -189,7 +193,8 @@
       "Properties": {
         "DateCreated": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Description": {
           "ValueType": "string",
@@ -197,11 +202,13 @@
         },
         "Id": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "IncludeInSitemap": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "ItemDefaultUrl": {
           "ValueType": "string",
@@ -209,7 +216,8 @@
         },
         "LastModified": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Provider": {
           "ValueType": "string",
@@ -217,7 +225,8 @@
         },
         "PublicationDate": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Title": {
           "ValueType": "string",
@@ -243,7 +252,8 @@
         "Category": {
           "ValueType": "string",
           "PropertyType": "primitive",
-          "IsCollection": true
+          "IsCollection": true,
+          "Required": true
         },
         "Comments": {
           "ValueType": "Telerik.Sitefinity.Services.Comments.CommentContract",
@@ -256,7 +266,8 @@
         },
         "DateCreated": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Description": {
           "ValueType": "string",
@@ -264,11 +275,13 @@
         },
         "Id": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "IncludeInSitemap": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "ItemDefaultUrl": {
           "ValueType": "string",
@@ -276,7 +289,8 @@
         },
         "LastModified": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Parent": {
           "ValueType": "Telerik.Sitefinity.Blogs.Model.Blog",
@@ -284,7 +298,8 @@
         },
         "ParentId": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Provider": {
           "ValueType": "string",
@@ -292,7 +307,8 @@
         },
         "PublicationDate": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Summary": {
           "ValueType": "string",
@@ -301,7 +317,8 @@
         "Tags": {
           "ValueType": "string",
           "PropertyType": "primitive",
-          "IsCollection": true
+          "IsCollection": true,
+          "Required": true
         },
         "Title": {
           "ValueType": "string",
@@ -331,7 +348,8 @@
         },
         "IsDefault": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Key": {
           "ValueType": "string",
@@ -374,15 +392,18 @@
         },
         "DateCreated": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Id": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "IncludeInSitemap": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "ItemDefaultUrl": {
           "ValueType": "string",
@@ -394,7 +415,8 @@
         },
         "LastModified": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Name": {
           "ValueType": "string",
@@ -406,7 +428,8 @@
         },
         "PublicationDate": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "UrlName": {
           "ValueType": "string",
@@ -427,7 +450,8 @@
         },
         "DateCreated": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Email": {
           "ValueType": "string",
@@ -439,7 +463,8 @@
         },
         "Id": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Image": {
           "ValueType": "Telerik.Sitefinity.Libraries.Model.Image",
@@ -447,7 +472,8 @@
         },
         "IncludeInSitemap": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "ItemDefaultUrl": {
           "ValueType": "string",
@@ -455,7 +481,8 @@
         },
         "LastModified": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Phone": {
           "ValueType": "string",
@@ -467,7 +494,8 @@
         },
         "PublicationDate": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Title": {
           "ValueType": "string",
@@ -493,7 +521,8 @@
         "Category": {
           "ValueType": "string",
           "PropertyType": "primitive",
-          "IsCollection": true
+          "IsCollection": true,
+          "Required": true
         },
         "Challenge": {
           "ValueType": "string",
@@ -505,7 +534,8 @@
         },
         "DateCreated": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Download": {
           "ValueType": "Telerik.Sitefinity.Libraries.Model.Document",
@@ -513,11 +543,13 @@
         },
         "Id": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "IncludeInSitemap": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "ItemDefaultUrl": {
           "ValueType": "string",
@@ -525,7 +557,8 @@
         },
         "LastModified": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Provider": {
           "ValueType": "string",
@@ -533,7 +566,8 @@
         },
         "PublicationDate": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Results": {
           "ValueType": "string",
@@ -546,7 +580,8 @@
         "Tags": {
           "ValueType": "string",
           "PropertyType": "primitive",
-          "IsCollection": true
+          "IsCollection": true,
+          "Required": true
         },
         "Thumbnail": {
           "ValueType": "Telerik.Sitefinity.Libraries.Model.Image",
@@ -575,11 +610,13 @@
       "Properties": {
         "DateCreated": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Id": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Image": {
           "ValueType": "Telerik.Sitefinity.Libraries.Model.Image",
@@ -587,11 +624,13 @@
         },
         "IncludeInSitemap": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "InvertText": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "ItemDefaultUrl": {
           "ValueType": "string",
@@ -599,7 +638,8 @@
         },
         "LastModified": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Provider": {
           "ValueType": "string",
@@ -607,7 +647,8 @@
         },
         "PublicationDate": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Subtitle": {
           "ValueType": "string",
@@ -615,7 +656,8 @@
         },
         "TextPosition": {
           "ValueType": "Telerik.Sitefinity.DynamicTypes.Model.Slides.Slide.TextPosition.TextPosition",
-          "PropertyType": "enum"
+          "PropertyType": "enum",
+          "Required": true
         },
         "Title": {
           "ValueType": "string",
@@ -628,7 +670,8 @@
         "industries": {
           "ValueType": "string",
           "PropertyType": "primitive",
-          "IsCollection": true
+          "IsCollection": true,
+          "Required": true
         }
       }
     },
@@ -654,15 +697,18 @@
         },
         "DateCreated": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Id": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "IncludeInSitemap": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "ItemDefaultUrl": {
           "ValueType": "string",
@@ -674,7 +720,8 @@
         },
         "LastModified": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Photo": {
           "ValueType": "Telerik.Sitefinity.Libraries.Model.Image",
@@ -686,7 +733,8 @@
         },
         "PublicationDate": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Quote": {
           "ValueType": "string",
@@ -719,7 +767,8 @@
         },
         "DateCreated": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Description": {
           "ValueType": "string",
@@ -731,11 +780,13 @@
         },
         "Id": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "LastModified": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Provider": {
           "ValueType": "string",
@@ -743,7 +794,8 @@
         },
         "PublicationDate": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Title": {
           "ValueType": "string",
@@ -764,7 +816,8 @@
       "Properties": {
         "AllDayEvent": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "AllowComments": {
           "ValueType": "boolean",
@@ -773,7 +826,8 @@
         "Category": {
           "ValueType": "string",
           "PropertyType": "primitive",
-          "IsCollection": true
+          "IsCollection": true,
+          "Required": true
         },
         "City": {
           "ValueType": "string",
@@ -814,7 +868,8 @@
         },
         "DateCreated": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Description": {
           "ValueType": "string",
@@ -826,7 +881,8 @@
         },
         "EventEndUtcOffset": {
           "ValueType": "float64",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "EventEndWithOffset": {
           "ValueType": "datetime",
@@ -834,27 +890,33 @@
         },
         "EventStart": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "EventStartUtcOffset": {
           "ValueType": "float64",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "EventStartWithOffset": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Id": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "IncludeInSitemap": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "IsRecurrent": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "ItemDefaultUrl": {
           "ValueType": "string",
@@ -862,7 +924,8 @@
         },
         "LastModified": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Location": {
           "ValueType": "string",
@@ -874,7 +937,8 @@
         },
         "ParentId": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Provider": {
           "ValueType": "string",
@@ -882,7 +946,8 @@
         },
         "PublicationDate": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "RecurrenceExpression": {
           "ValueType": "string",
@@ -903,7 +968,8 @@
         "Tags": {
           "ValueType": "string",
           "PropertyType": "primitive",
-          "IsCollection": true
+          "IsCollection": true,
+          "Required": true
         },
         "TimeZoneId": {
           "ValueType": "string",
@@ -929,11 +995,13 @@
         },
         "Count": {
           "ValueType": "int32",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "IsDynamicFilter": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Name": {
           "ValueType": "string",
@@ -984,7 +1052,8 @@
         "Breadcrumb": {
           "ValueType": "string",
           "PropertyType": "primitive",
-          "IsCollection": true
+          "IsCollection": true,
+          "Required": true
         },
         "ChildrenCount": {
           "ValueType": "int32",
@@ -1001,7 +1070,8 @@
         "ImagesUrl": {
           "ValueType": "string",
           "PropertyType": "primitive",
-          "IsCollection": true
+          "IsCollection": true,
+          "Required": true
         },
         "LastModified": {
           "ValueType": "datetime",
@@ -1048,11 +1118,13 @@
         "Category": {
           "ValueType": "string",
           "PropertyType": "primitive",
-          "IsCollection": true
+          "IsCollection": true,
+          "Required": true
         },
         "DateCreated": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Description": {
           "ValueType": "string",
@@ -1065,15 +1137,18 @@
         },
         "Id": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "IncludeInSitemap": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "LastModified": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Name": {
           "ValueType": "string",
@@ -1085,7 +1160,8 @@
         },
         "PublicationDate": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Rules": {
           "ValueType": "string",
@@ -1098,7 +1174,8 @@
         "Tags": {
           "ValueType": "string",
           "PropertyType": "primitive",
-          "IsCollection": true
+          "IsCollection": true,
+          "Required": true
         },
         "Title": {
           "ValueType": "string",
@@ -1125,11 +1202,13 @@
         },
         "Id": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "LastModified": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Name": {
           "ValueType": "string",
@@ -1195,7 +1274,8 @@
         "Category": {
           "ValueType": "string",
           "PropertyType": "primitive",
-          "IsCollection": true
+          "IsCollection": true,
+          "Required": true
         },
         "Content": {
           "ValueType": "string",
@@ -1203,7 +1283,8 @@
         },
         "DateCreated": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Description": {
           "ValueType": "string",
@@ -1211,15 +1292,18 @@
         },
         "Id": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "IncludeInSitemap": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "LastModified": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Name": {
           "ValueType": "string",
@@ -1231,12 +1315,14 @@
         },
         "PublicationDate": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Tags": {
           "ValueType": "string",
           "PropertyType": "primitive",
-          "IsCollection": true
+          "IsCollection": true,
+          "Required": true
         },
         "Title": {
           "ValueType": "string",
@@ -1296,7 +1382,8 @@
         },
         "Id": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Latitude": {
           "ValueType": "float64",
@@ -1337,7 +1424,8 @@
         },
         "ChildrenCount": {
           "ValueType": "int32",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "ClientCacheProfile": {
           "ValueType": "string",
@@ -1349,7 +1437,8 @@
         },
         "DateCreated": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Description": {
           "ValueType": "string",
@@ -1357,11 +1446,13 @@
         },
         "Id": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "IncludeInSitemap": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "ItemDefaultUrl": {
           "ValueType": "string",
@@ -1369,15 +1460,18 @@
         },
         "LastModified": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "MaxItemSize": {
           "ValueType": "int64",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "MaxSize": {
           "ValueType": "int64",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "NewSize": {
           "ValueType": "string",
@@ -1397,11 +1491,13 @@
         },
         "PublicationDate": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "ResizeOnUpload": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "ThumbnailProfiles": {
           "ValueType": "string",
@@ -1433,11 +1529,13 @@
         "Category": {
           "ValueType": "string",
           "PropertyType": "primitive",
-          "IsCollection": true
+          "IsCollection": true,
+          "Required": true
         },
         "DateCreated": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Description": {
           "ValueType": "string",
@@ -1453,7 +1551,8 @@
         },
         "Id": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Image": {
           "ValueType": "Telerik.Sitefinity.Libraries.Model.Image",
@@ -1461,7 +1560,8 @@
         },
         "IncludeInSitemap": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "ItemDefaultUrl": {
           "ValueType": "string",
@@ -1469,7 +1569,8 @@
         },
         "LastModified": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "MimeType": {
           "ValueType": "string",
@@ -1477,7 +1578,8 @@
         },
         "Ordinal": {
           "ValueType": "float32",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Parent": {
           "ValueType": "Telerik.Sitefinity.Libraries.Model.DocumentLibrary",
@@ -1485,7 +1587,8 @@
         },
         "ParentId": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Parts": {
           "ValueType": "string",
@@ -1497,12 +1600,14 @@
         },
         "PublicationDate": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Tags": {
           "ValueType": "string",
           "PropertyType": "primitive",
-          "IsCollection": true
+          "IsCollection": true,
+          "Required": true
         },
         "ThumbnailUrl": {
           "ValueType": "string",
@@ -1514,7 +1619,8 @@
         },
         "TotalSize": {
           "ValueType": "int64",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Url": {
           "ValueType": "string",
@@ -1539,7 +1645,8 @@
         },
         "ChildrenCount": {
           "ValueType": "int32",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "ClientCacheProfile": {
           "ValueType": "string",
@@ -1551,7 +1658,8 @@
         },
         "DateCreated": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Description": {
           "ValueType": "string",
@@ -1559,11 +1667,13 @@
         },
         "Id": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "IncludeInSitemap": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "ItemDefaultUrl": {
           "ValueType": "string",
@@ -1571,15 +1681,18 @@
         },
         "LastModified": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "MaxItemSize": {
           "ValueType": "int64",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "MaxSize": {
           "ValueType": "int64",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "OutputCacheProfile": {
           "ValueType": "string",
@@ -1595,7 +1708,8 @@
         },
         "PublicationDate": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "ThumbnailProfiles": {
           "ValueType": "string",
@@ -1631,11 +1745,13 @@
         "Category": {
           "ValueType": "string",
           "PropertyType": "primitive",
-          "IsCollection": true
+          "IsCollection": true,
+          "Required": true
         },
         "DateCreated": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Description": {
           "ValueType": "string",
@@ -1651,15 +1767,18 @@
         },
         "Height": {
           "ValueType": "int32",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Id": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "IncludeInSitemap": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "ItemDefaultUrl": {
           "ValueType": "string",
@@ -1667,7 +1786,8 @@
         },
         "LastModified": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "MimeType": {
           "ValueType": "string",
@@ -1675,7 +1795,8 @@
         },
         "Ordinal": {
           "ValueType": "float32",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Parent": {
           "ValueType": "Telerik.Sitefinity.Libraries.Model.Album",
@@ -1683,7 +1804,8 @@
         },
         "ParentId": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Provider": {
           "ValueType": "string",
@@ -1691,12 +1813,14 @@
         },
         "PublicationDate": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Tags": {
           "ValueType": "string",
           "PropertyType": "primitive",
-          "IsCollection": true
+          "IsCollection": true,
+          "Required": true
         },
         "ThumbnailUrl": {
           "ValueType": "string",
@@ -1713,7 +1837,8 @@
         },
         "TotalSize": {
           "ValueType": "int64",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Url": {
           "ValueType": "string",
@@ -1725,7 +1850,8 @@
         },
         "Width": {
           "ValueType": "int32",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         }
       }
     },
@@ -1764,7 +1890,8 @@
         },
         "DateCreated": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "DefaultPageId": {
           "ValueType": "string",
@@ -1796,11 +1923,13 @@
         },
         "Id": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "IncludeInSitemap": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "ItemDefaultUrl": {
           "ValueType": "Telerik.Sitefinity.Model.Lstring",
@@ -1808,7 +1937,8 @@
         },
         "LastModifiedBy": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "MediaFileUrlName": {
           "ValueType": "Telerik.Sitefinity.Model.Lstring",
@@ -1820,27 +1950,33 @@
         },
         "OriginalContentId": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Owner": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "ParentId": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "PostRights": {
           "ValueType": "Telerik.Sitefinity.GenericContent.Model.PostRights",
-          "PropertyType": "enum"
+          "PropertyType": "enum",
+          "Required": true
         },
         "PublicationDate": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Status": {
           "ValueType": "Telerik.Sitefinity.GenericContent.Model.ContentLifecycleStatus",
-          "PropertyType": "enum"
+          "PropertyType": "enum",
+          "Required": true
         },
         "ThumbnailNames": {
           "ValueType": "string",
@@ -1857,11 +1993,13 @@
         },
         "TotalSize": {
           "ValueType": "int64",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "UIStatus": {
           "ValueType": "Telerik.Sitefinity.GenericContent.Model.ContentUIStatus",
-          "PropertyType": "enum"
+          "PropertyType": "enum",
+          "Required": true
         },
         "UrlName": {
           "ValueType": "Telerik.Sitefinity.Model.Lstring",
@@ -1869,23 +2007,28 @@
         },
         "Version": {
           "ValueType": "int32",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "ViewsCount": {
           "ValueType": "int32",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Visible": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "VotesCount": {
           "ValueType": "int64",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "VotesSum": {
           "ValueType": "decimal",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         }
       }
     },
@@ -1905,11 +2048,13 @@
         "Category": {
           "ValueType": "string",
           "PropertyType": "primitive",
-          "IsCollection": true
+          "IsCollection": true,
+          "Required": true
         },
         "DateCreated": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Description": {
           "ValueType": "string",
@@ -1925,15 +2070,18 @@
         },
         "Height": {
           "ValueType": "int32",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Id": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "IncludeInSitemap": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "ItemDefaultUrl": {
           "ValueType": "string",
@@ -1941,7 +2089,8 @@
         },
         "LastModified": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "MimeType": {
           "ValueType": "string",
@@ -1949,7 +2098,8 @@
         },
         "Ordinal": {
           "ValueType": "float32",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Parent": {
           "ValueType": "Telerik.Sitefinity.Libraries.Model.VideoLibrary",
@@ -1957,7 +2107,8 @@
         },
         "ParentId": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Provider": {
           "ValueType": "string",
@@ -1965,12 +2116,14 @@
         },
         "PublicationDate": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Tags": {
           "ValueType": "string",
           "PropertyType": "primitive",
-          "IsCollection": true
+          "IsCollection": true,
+          "Required": true
         },
         "ThumbnailUrl": {
           "ValueType": "string",
@@ -1982,7 +2135,8 @@
         },
         "TotalSize": {
           "ValueType": "int64",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Url": {
           "ValueType": "string",
@@ -1994,7 +2148,8 @@
         },
         "Width": {
           "ValueType": "int32",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         }
       }
     },
@@ -2011,7 +2166,8 @@
         },
         "ChildrenCount": {
           "ValueType": "int32",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "ClientCacheProfile": {
           "ValueType": "string",
@@ -2023,7 +2179,8 @@
         },
         "DateCreated": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Description": {
           "ValueType": "string",
@@ -2031,11 +2188,13 @@
         },
         "Id": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "IncludeInSitemap": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "ItemDefaultUrl": {
           "ValueType": "string",
@@ -2043,15 +2202,18 @@
         },
         "LastModified": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "MaxItemSize": {
           "ValueType": "int64",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "MaxSize": {
           "ValueType": "int64",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "OutputCacheProfile": {
           "ValueType": "string",
@@ -2067,7 +2229,8 @@
         },
         "PublicationDate": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "ThumbnailProfiles": {
           "ValueType": "string",
@@ -2093,7 +2256,8 @@
       "Properties": {
         "DateCreated": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Description": {
           "ValueType": "string",
@@ -2101,15 +2265,18 @@
         },
         "Id": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "IncludeInSitemap": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "LastModified": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Provider": {
           "ValueType": "string",
@@ -2117,7 +2284,8 @@
         },
         "PublicationDate": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "SortOrder": {
           "ValueType": "string",
@@ -2143,7 +2311,8 @@
         "Category": {
           "ValueType": "string",
           "PropertyType": "primitive",
-          "IsCollection": true
+          "IsCollection": true,
+          "Required": true
         },
         "Content": {
           "ValueType": "string",
@@ -2151,7 +2320,8 @@
         },
         "DateCreated": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Description": {
           "ValueType": "string",
@@ -2159,19 +2329,23 @@
         },
         "Id": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "IncludeInSitemap": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "LastModified": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Ordinal": {
           "ValueType": "float32",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Parent": {
           "ValueType": "Telerik.Sitefinity.Lists.Model.List",
@@ -2179,7 +2353,8 @@
         },
         "ParentId": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Provider": {
           "ValueType": "string",
@@ -2187,12 +2362,14 @@
         },
         "PublicationDate": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Tags": {
           "ValueType": "string",
           "PropertyType": "primitive",
-          "IsCollection": true
+          "IsCollection": true,
+          "Required": true
         },
         "Title": {
           "ValueType": "string",
@@ -2228,7 +2405,8 @@
         },
         "ChildrenCount": {
           "ValueType": "int32",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "CoverId": {
           "ValueType": "string",
@@ -2240,11 +2418,13 @@
         },
         "Id": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "LastModified": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "ParentId": {
           "ValueType": "string",
@@ -2256,7 +2436,8 @@
         },
         "RootId": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Title": {
           "ValueType": "string",
@@ -2298,7 +2479,8 @@
         },
         "Operator": {
           "ValueType": "Telerik.Sitefinity.Forms.Model.LogicalOperator",
-          "PropertyType": "enum"
+          "PropertyType": "enum",
+          "Required": true
         }
       }
     },
@@ -2308,7 +2490,8 @@
       "Properties": {
         "Action": {
           "ValueType": "Telerik.Sitefinity.Forms.Model.FormRuleAction",
-          "PropertyType": "enum"
+          "PropertyType": "enum",
+          "Required": true
         },
         "Target": {
           "ValueType": "string",
@@ -2326,7 +2509,8 @@
         },
         "Operator": {
           "ValueType": "Telerik.Sitefinity.Forms.Model.ConditionOperator",
-          "PropertyType": "enum"
+          "PropertyType": "enum",
+          "Required": true
         },
         "Value": {
           "ValueType": "string",
@@ -2362,7 +2546,8 @@
         },
         "ExecuteOnServer": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "GroupName": {
           "ValueType": "string",
@@ -2370,15 +2555,18 @@
         },
         "HasLinkResult": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "IsGroup": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "KeepFocus": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Link": {
           "ValueType": "string",
@@ -2390,7 +2578,8 @@
         },
         "Ordinal": {
           "ValueType": "int32",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Parameters": {
           "ValueType": "Telerik.Sitefinity.Modules.OperationParameter",
@@ -2403,15 +2592,18 @@
         },
         "PerformsDelete": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "RequiresConfirmation": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "RequiresItemUpdate": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "SubOperation": {
           "ValueType": "Telerik.Sitefinity.Modules.ItemOperation",
@@ -2437,7 +2629,8 @@
       "Properties": {
         "Height": {
           "ValueType": "int32",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "MimeType": {
           "ValueType": "string",
@@ -2453,7 +2646,8 @@
         },
         "Width": {
           "ValueType": "int32",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         }
       }
     },
@@ -2468,7 +2662,8 @@
         },
         "ChildrenCount": {
           "ValueType": "int32",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Description": {
           "ValueType": "string",
@@ -2476,11 +2671,13 @@
         },
         "FoldersCount": {
           "ValueType": "int32",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Id": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "LastUploaded": {
           "ValueType": "datetime",
@@ -2492,11 +2689,13 @@
         },
         "MaxLibrarySizeInKb": {
           "ValueType": "int64",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "ParentId": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "PreviewItems": {
           "ValueType": "Telerik.Sitefinity.Libraries.Model.MediaContent",
@@ -2521,7 +2720,8 @@
         },
         "TotalLibrarySizeInKb": {
           "ValueType": "int64",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         }
       }
     },
@@ -2535,11 +2735,13 @@
         },
         "ChunkSize": {
           "ValueType": "int32",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Culture": {
           "ValueType": "int32",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Cultures": {
           "ValueType": "string",
@@ -2556,7 +2758,8 @@
         },
         "FileId": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "FilePath": {
           "ValueType": "string",
@@ -2564,15 +2767,18 @@
         },
         "Height": {
           "ValueType": "int32",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Id": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "MediaContentId": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "MediaFileUrlName": {
           "ValueType": "string",
@@ -2584,7 +2790,8 @@
         },
         "NumberOfChunks": {
           "ValueType": "int32",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "ThumbnailUrl": {
           "ValueType": "string",
@@ -2596,7 +2803,8 @@
         },
         "TotalSize": {
           "ValueType": "int64",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Url": {
           "ValueType": "string",
@@ -2604,7 +2812,8 @@
         },
         "Width": {
           "ValueType": "int32",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         }
       }
     },
@@ -2674,7 +2883,8 @@
         },
         "Required": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Title": {
           "ValueType": "string",
@@ -2730,7 +2940,8 @@
         },
         "Required": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         }
       }
     },
@@ -2748,7 +2959,8 @@
         },
         "Type": {
           "ValueType": "int32",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         }
       }
     },
@@ -2775,15 +2987,18 @@
         },
         "DefaultFrontendTemplateId": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Id": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "IsOffline": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "LiveUrl": {
           "ValueType": "string",
@@ -2799,7 +3014,8 @@
         },
         "SiteMapRootNodeId": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         }
       }
     },
@@ -2842,7 +3058,8 @@
         },
         "FrontEndLoginPageId": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "FrontEndLoginPageUrl": {
           "ValueType": "string",
@@ -2850,27 +3067,33 @@
         },
         "HomePageId": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Id": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "IsAllowedStartStop": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "IsCurrentSite": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "IsDefault": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "IsOffline": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "LiveUrl": {
           "ValueType": "string",
@@ -2882,7 +3105,8 @@
         },
         "OfflinePageToRedirect": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "OfflineSiteMessage": {
           "ValueType": "string",
@@ -2895,23 +3119,28 @@
         },
         "RedirectIfOffline": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "RequiresSsl": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "SiteConfigurationMode": {
           "ValueType": "Telerik.Sitefinity.Multisite.Model.SiteConfigurationMode",
-          "PropertyType": "enum"
+          "PropertyType": "enum",
+          "Required": true
         },
         "SiteMapRootNodeId": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "SourcePagesSiteId": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "StagingUrl": {
           "ValueType": "string",
@@ -2924,7 +3153,8 @@
         },
         "UseSystemCultures": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         }
       }
     },
@@ -2934,7 +3164,8 @@
       "Properties": {
         "AllowMultipleProviders": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "DependantDataSources": {
           "ValueType": "string",
@@ -2943,7 +3174,8 @@
         },
         "IsChecked": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Links": {
           "ValueType": "Telerik.Sitefinity.Multisite.Web.Services.ViewModel.SiteDataSourceLinkViewModel",
@@ -2974,15 +3206,18 @@
         },
         "Id": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "IsDefault": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "IsGlobalProvider": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "ProviderName": {
           "ValueType": "string",
@@ -2994,7 +3229,8 @@
         },
         "SiteId": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         }
       }
     },
@@ -3016,7 +3252,8 @@
         "Category": {
           "ValueType": "string",
           "PropertyType": "primitive",
-          "IsCollection": true
+          "IsCollection": true,
+          "Required": true
         },
         "Comments": {
           "ValueType": "Telerik.Sitefinity.Services.Comments.CommentContract",
@@ -3029,7 +3266,8 @@
         },
         "DateCreated": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Description": {
           "ValueType": "string",
@@ -3037,15 +3275,18 @@
         },
         "Featured": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Id": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "IncludeInSitemap": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "ItemDefaultUrl": {
           "ValueType": "string",
@@ -3053,7 +3294,8 @@
         },
         "LastModified": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "OpenGraphDescription": {
           "ValueType": "string",
@@ -3073,7 +3315,8 @@
         },
         "PublicationDate": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "SourceName": {
           "ValueType": "string",
@@ -3090,7 +3333,8 @@
         "Tags": {
           "ValueType": "string",
           "PropertyType": "primitive",
-          "IsCollection": true
+          "IsCollection": true,
+          "Required": true
         },
         "Thumbnail": {
           "ValueType": "Telerik.Sitefinity.Libraries.Model.Image",
@@ -3116,7 +3360,8 @@
       "Properties": {
         "AllowParametersValidation": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "AvailableLanguages": {
           "ValueType": "string",
@@ -3130,7 +3375,8 @@
         },
         "CanonicalUrlBehaviour": {
           "ValueType": "Telerik.Sitefinity.Web.Api.Strategies.Pages.CanonicalUrlSettings",
-          "PropertyType": "enum"
+          "PropertyType": "enum",
+          "Required": true
         },
         "CodeBehindType": {
           "ValueType": "string",
@@ -3138,11 +3384,13 @@
         },
         "Crawlable": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "DateCreated": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Description": {
           "ValueType": "string",
@@ -3154,11 +3402,13 @@
         },
         "EnableViewState": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "HasChildren": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "HeadTagContent": {
           "ValueType": "string",
@@ -3170,7 +3420,8 @@
         },
         "Id": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Image": {
           "ValueType": "Telerik.Sitefinity.Libraries.Model.Image",
@@ -3178,23 +3429,28 @@
         },
         "IncludeInSearchIndex": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "IncludeScriptManager": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "IsHomePage": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "LastModified": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "LocalizationStrategy": {
           "ValueType": "Telerik.Sitefinity.Localization.LocalizationStrategy",
-          "PropertyType": "enum"
+          "PropertyType": "enum",
+          "Required": true
         },
         "OutputCacheProfile": {
           "ValueType": "string",
@@ -3202,15 +3458,18 @@
         },
         "PageType": {
           "ValueType": "Telerik.Sitefinity.Web.Api.Strategies.Pages.PageType",
-          "PropertyType": "enum"
+          "PropertyType": "enum",
+          "Required": true
         },
         "ParentId": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Priority": {
           "ValueType": "float32",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Provider": {
           "ValueType": "string",
@@ -3218,7 +3477,8 @@
         },
         "PublicationDate": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "RedirectPage": {
           "ValueType": "Telerik.Sitefinity.Web.Api.Strategies.Pages.RedirectPage",
@@ -3234,19 +3494,23 @@
         },
         "RequireSsl": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "RootId": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "ShowInNavigation": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "TemplateId": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "TemplateName": {
           "ValueType": "string",
@@ -3276,19 +3540,23 @@
       "Properties": {
         "DateCreated": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Framework": {
           "ValueType": "Telerik.Sitefinity.Pages.Model.PageTemplateFramework",
-          "PropertyType": "enum"
+          "PropertyType": "enum",
+          "Required": true
         },
         "Id": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "LastModified": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Name": {
           "ValueType": "string",
@@ -3308,7 +3576,8 @@
         },
         "TemplateId": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "TemplateName": {
           "ValueType": "string",
@@ -3316,7 +3585,8 @@
         },
         "Thumbnail": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "ThumbnailUrl": {
           "ValueType": "string",
@@ -3367,7 +3637,8 @@
         },
         "Success": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         }
       }
     },
@@ -3470,15 +3741,18 @@
       "Properties": {
         "AddAllowed": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "EditAllowed": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "HasChanged": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "SegmentId": {
           "ValueType": "string",
@@ -3486,7 +3760,8 @@
         },
         "Version": {
           "ValueType": "int32",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "WidgetState": {
           "ValueType": "Telerik.Sitefinity.Renderer.Editor.WidgetState",
@@ -3510,11 +3785,13 @@
         },
         "Id": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Lazy": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Name": {
           "ValueType": "string",
@@ -3530,7 +3807,8 @@
         },
         "SiblingId": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "ViewName": {
           "ValueType": "string",
@@ -3549,7 +3827,8 @@
       "Properties": {
         "Version": {
           "ValueType": "int32",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         }
       }
     },
@@ -3565,7 +3844,8 @@
         "FailedItemsIds": {
           "ValueType": "string",
           "PropertyType": "primitive",
-          "IsCollection": true
+          "IsCollection": true,
+          "Required": true
         },
         "Link": {
           "ValueType": "string",
@@ -3591,11 +3871,13 @@
         "SucceededItemsIds": {
           "ValueType": "string",
           "PropertyType": "primitive",
-          "IsCollection": true
+          "IsCollection": true,
+          "Required": true
         },
         "Success": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Title": {
           "ValueType": "string",
@@ -3603,7 +3885,8 @@
         },
         "Type": {
           "ValueType": "Telerik.Sitefinity.Modules.NotificationType",
-          "PropertyType": "enum"
+          "PropertyType": "enum",
+          "Required": true
         },
         "UndoOperation": {
           "ValueType": "Telerik.Sitefinity.Modules.ItemOperation",
@@ -3617,15 +3900,18 @@
       "Properties": {
         "DeleteAllowed": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "EditAllowed": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "IsPersonalized": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Key": {
           "ValueType": "string",
@@ -3637,7 +3923,8 @@
         },
         "MoveAllowed": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Name": {
           "ValueType": "string",
@@ -3660,7 +3947,8 @@
         },
         "HasLazyComponents": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "OrphanedControls": {
           "ValueType": "Telerik.Sitefinity.Renderer.Web.Services.Dto.ComponentDto",
@@ -3684,11 +3972,13 @@
         },
         "Id": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Lazy": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Name": {
           "ValueType": "string",
@@ -3704,7 +3994,8 @@
         },
         "SiblingId": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "ViewName": {
           "ValueType": "string",
@@ -3757,7 +4048,8 @@
         },
         "Id": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Scripts": {
           "ValueType": "Telerik.Sitefinity.Renderer.Web.Services.Dto.PageScript",
@@ -3766,7 +4058,8 @@
         },
         "SiteId": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "TemplateName": {
           "ValueType": "string",
@@ -3865,19 +4158,23 @@
         },
         "Id": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "IsManageable": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "ProgressStatus": {
           "ValueType": "int32",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Status": {
           "ValueType": "Telerik.Sitefinity.Scheduling.Model.TaskStatus",
-          "PropertyType": "enum"
+          "PropertyType": "enum",
+          "Required": true
         },
         "StatusMessage": {
           "ValueType": "string",
@@ -3928,15 +4225,18 @@
         },
         "FailedRunsCount": {
           "ValueType": "int32",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Id": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "SuccessfulRunsCount": {
           "ValueType": "int32",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Title": {
           "ValueType": "string",
@@ -3958,7 +4258,8 @@
         },
         "Id": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Result": {
           "ValueType": "string",
@@ -3966,7 +4267,8 @@
         },
         "ServiceHookId": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "ServiceHookTitle": {
           "ValueType": "string",
@@ -3978,7 +4280,8 @@
         },
         "Status": {
           "ValueType": "Telerik.Sitefinity.ServiceHooks.Model.ServiceHookActivityStatus",
-          "PropertyType": "enum"
+          "PropertyType": "enum",
+          "Required": true
         },
         "Title": {
           "ValueType": "string",
@@ -3986,7 +4289,8 @@
         },
         "TriggeredByContentItem": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         }
       }
     },
@@ -4020,7 +4324,8 @@
         },
         "Priority": {
           "ValueType": "float64",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Value": {
           "ValueType": "string",
@@ -4034,7 +4339,8 @@
       "Properties": {
         "DateCreated": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Message": {
           "ValueType": "string",
@@ -4063,7 +4369,8 @@
       "Properties": {
         "AppliedTo": {
           "ValueType": "int64",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Description": {
           "ValueType": "string",
@@ -4071,11 +4378,13 @@
         },
         "Id": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "LastModified": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Name": {
           "ValueType": "string",
@@ -4083,7 +4392,8 @@
         },
         "Ordinal": {
           "ValueType": "float32",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Provider": {
           "ValueType": "string",
@@ -4095,7 +4405,8 @@
         },
         "TaxonomyId": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Title": {
           "ValueType": "string",
@@ -4116,7 +4427,8 @@
       "Properties": {
         "AppliedTo": {
           "ValueType": "int64",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Description": {
           "ValueType": "string",
@@ -4128,11 +4440,13 @@
         },
         "Id": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "LastModified": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Name": {
           "ValueType": "string",
@@ -4140,11 +4454,13 @@
         },
         "Ordinal": {
           "ValueType": "float32",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "ParentId": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Provider": {
           "ValueType": "string",
@@ -4156,7 +4472,8 @@
         },
         "TaxonomyId": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Title": {
           "ValueType": "string",
@@ -4189,11 +4506,13 @@
         },
         "Id": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "LastModified": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Name": {
           "ValueType": "string",
@@ -4213,7 +4532,8 @@
         },
         "TaxonomySharedWith": {
           "ValueType": "int32",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Title": {
           "ValueType": "string",
@@ -4221,7 +4541,8 @@
         },
         "Type": {
           "ValueType": "Telerik.Sitefinity.Taxonomies.Model.TaxonomyType",
-          "PropertyType": "enum"
+          "PropertyType": "enum",
+          "Required": true
         }
       }
     },
@@ -4258,15 +4579,18 @@
       "Properties": {
         "Id": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Position": {
           "ValueType": "Telerik.Sitefinity.Web.Api.OData.Operations.Models.ReorderPosition",
-          "PropertyType": "enum"
+          "PropertyType": "enum",
+          "Required": true
         },
         "TargetId": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         }
       }
     },
@@ -4296,11 +4620,13 @@
         },
         "IsPage": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "SiteId": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Title": {
           "ValueType": "string",
@@ -4319,7 +4645,8 @@
         "FailedItemsIds": {
           "ValueType": "string",
           "PropertyType": "primitive",
-          "IsCollection": true
+          "IsCollection": true,
+          "Required": true
         },
         "Message": {
           "ValueType": "string",
@@ -4328,11 +4655,13 @@
         "SucceededItemsIds": {
           "ValueType": "string",
           "PropertyType": "primitive",
-          "IsCollection": true
+          "IsCollection": true,
+          "Required": true
         },
         "Type": {
           "ValueType": "Telerik.Sitefinity.Web.Api.OData.Operations.OperationResults.BulkOperationResultType",
-          "PropertyType": "enum"
+          "PropertyType": "enum",
+          "Required": true
         }
       }
     },
@@ -4357,11 +4686,13 @@
         },
         "HasChildOpen": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "IsCurrentlyOpened": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Key": {
           "ValueType": "string",
@@ -4406,7 +4737,8 @@
         },
         "HasChildren": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Id": {
           "ValueType": "string",
@@ -4414,11 +4746,13 @@
         },
         "IsHomePage": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "PageType": {
           "ValueType": "Telerik.Sitefinity.Web.Api.Strategies.Pages.PageType",
-          "PropertyType": "enum"
+          "PropertyType": "enum",
+          "Required": true
         },
         "ParentId": {
           "ValueType": "string",
@@ -4444,7 +4778,8 @@
         },
         "Id": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "ImageUrl": {
           "ValueType": "string",
@@ -4475,7 +4810,8 @@
         },
         "Type": {
           "ValueType": "Telerik.Sitefinity.Web.Api.OData.Operations.Pages.Models.PageTemplateCategoryType",
-          "PropertyType": "enum"
+          "PropertyType": "enum",
+          "Required": true
         }
       }
     },
@@ -4508,11 +4844,13 @@
       "Properties": {
         "Id": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "IsShared": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Name": {
           "ValueType": "string",
@@ -4526,11 +4864,13 @@
       "Properties": {
         "Framework": {
           "ValueType": "Telerik.Sitefinity.Pages.Model.PageTemplateFramework",
-          "PropertyType": "enum"
+          "PropertyType": "enum",
+          "Required": true
         },
         "Id": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "LayoutPath": {
           "ValueType": "string",
@@ -4554,7 +4894,8 @@
         },
         "UsedByNumberOfPages": {
           "ValueType": "int32",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         }
       }
     },
@@ -4564,7 +4905,8 @@
       "Properties": {
         "Count": {
           "ValueType": "int32",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Name": {
           "ValueType": "string",
@@ -4597,7 +4939,8 @@
         },
         "DateCreated": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "DisplayStatus": {
           "ValueType": "Telerik.Sitefinity.Web.Services.Extensibility.DisplayStatus",
@@ -4610,7 +4953,8 @@
         },
         "HasChildren": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Id": {
           "ValueType": "string",
@@ -4618,11 +4962,13 @@
         },
         "IsHomePage": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "LastModified": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "LastModifiedBy": {
           "ValueType": "string",
@@ -4638,7 +4984,8 @@
         },
         "PageType": {
           "ValueType": "Telerik.Sitefinity.Web.Api.Strategies.Pages.PageType",
-          "PropertyType": "enum"
+          "PropertyType": "enum",
+          "Required": true
         },
         "ParentId": {
           "ValueType": "string",
@@ -4664,7 +5011,8 @@
       "Properties": {
         "IsChecked": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Links": {
           "ValueType": "Telerik.Sitefinity.Web.Api.OData.Operations.Sites.Models.DataSourceLinkConfiguration",
@@ -4683,7 +5031,8 @@
       "Properties": {
         "IsDefault": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "ProviderName": {
           "ValueType": "string",
@@ -4697,7 +5046,8 @@
       "Properties": {
         "IsDefaultSite": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "LiveUrl": {
           "ValueType": "string",
@@ -4743,7 +5093,8 @@
         },
         "Id": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "LastPublished": {
           "ValueType": "Telerik.Sitefinity.Web.Api.OData.Operations.Taxonomies.Models.PublicationInfo",
@@ -4806,11 +5157,13 @@
         },
         "Id": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "LastModified": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Name": {
           "ValueType": "string",
@@ -4818,7 +5171,8 @@
         },
         "TaxonomyId": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Title": {
           "ValueType": "string",
@@ -4892,11 +5246,13 @@
       "Properties": {
         "NodeId": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "OpenInNewWindow": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "ProviderName": {
           "ValueType": "string",
@@ -4914,7 +5270,8 @@
       "Properties": {
         "hasStates": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "isoCode": {
           "ValueType": "string",
@@ -5114,11 +5471,13 @@
       "Properties": {
         "AllowCreate": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "AllowView": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Key": {
           "ValueType": "string",
@@ -5143,7 +5502,8 @@
       "Properties": {
         "isDefault": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "name": {
           "ValueType": "string",
@@ -5175,7 +5535,8 @@
       "Properties": {
         "Key": {
           "ValueType": "Telerik.Sitefinity.Forms.Model.FormRuleAction",
-          "PropertyType": "enum"
+          "PropertyType": "enum",
+          "Required": true
         },
         "Value": {
           "ValueType": "string",
@@ -5189,7 +5550,8 @@
       "Properties": {
         "FolderId": {
           "ValueType": "string",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Title": {
           "ValueType": "string",
@@ -5203,7 +5565,8 @@
       "Properties": {
         "Date": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "DetailedLabel": {
           "ValueType": "string",
@@ -5249,7 +5612,8 @@
       "Properties": {
         "Hideable": {
           "ValueType": "boolean",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Id": {
           "ValueType": "string",
@@ -5285,7 +5649,8 @@
       "Properties": {
         "Date": {
           "ValueType": "datetime",
-          "PropertyType": "primitive"
+          "PropertyType": "primitive",
+          "Required": true
         },
         "Id": {
           "ValueType": "string",
@@ -5340,7 +5705,8 @@
       "Properties": {
         "Key": {
           "ValueType": "Telerik.Sitefinity.Forms.Model.ConditionOperator",
-          "PropertyType": "enum"
+          "PropertyType": "enum",
+          "Required": true
         },
         "Value": {
           "ValueType": "string",

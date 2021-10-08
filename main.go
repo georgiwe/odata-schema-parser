@@ -23,7 +23,7 @@ func generateMediationGqlSchema(backendName string) string {
 
 	json.Unmarshal(bytes, service)
 
-	schema := gqlschema.Parse(service)
+	schema := gqlschema.Generate(service)
 
 	os.WriteFile(fmt.Sprintf("./schemas/%s.gql", backendName), []byte(schema), 0644)
 
@@ -34,5 +34,5 @@ func main() {
 	schemaName := "sitefinity"
 	createMediationSchema(schemaName)
 	gqlSchema := generateMediationGqlSchema(schemaName)
-	fmt.Println(gqlSchema)
+	fmt.Println(len(gqlSchema))
 }

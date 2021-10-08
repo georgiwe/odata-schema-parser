@@ -19,12 +19,17 @@ type Type struct {
 	Enum       *Enum       `json:",omitempty"`
 }
 
+type InvocationArgument struct {
+	Name string
+	Property
+}
+
 type Invocation struct {
 	Name             string
 	BindingType      string
 	BoundTo          *string `json:",omitempty"`
 	BoundDataPointer *string `json:",omitempty"`
-	Arguments        []Property
+	Arguments        []InvocationArgument
 	Result           *Property
 }
 

@@ -179,6 +179,11 @@ func addStructuralProperties(typeName string, objects *edmObjects, result map[st
 	properties := getTypeProperties(typeName, objects)
 	for _, property := range properties {
 		prop := typeToProperty(property.Type, objects)
+		if property.Nullable != nil {
+			prop.Required = !*property.Nullable
+		} else {
+			prop.Required = false
+		}
 		result[property.Name] = prop
 	}
 }
@@ -293,12 +298,15 @@ func mapFunction(funcName string, function *ods.Function, objects *edmObjects) I
 		Name:             function.Name,
 		BindingType:      "unknown",
 		BoundDataPointer: function.EntitySetPath,
-		Arguments:        make([]Property, len(function.Parameters)),
+		Arguments:        make([]InvocationArgument, len(function.Parameters)),
 		Result:           &funcResult,
 	}
 
 	for i, param := range function.Parameters {
-		inv.Arguments[i] = typeToProperty(param.Type, objects)
+		inv.Arguments[i] = InvocationArgument{
+			Name:     param.Name,
+			Property: typeToProperty(param.Type, objects),
+		}
 	}
 
 	if _, found := objects.functionImports[funcName]; found && !function.IsBound {
@@ -331,12 +339,15 @@ func mapAction(actionName string, action *ods.Action, objects *edmObjects) Invoc
 		Name:             action.Name,
 		BindingType:      "unknown",
 		BoundDataPointer: action.EntitySetPath,
-		Arguments:        make([]Property, len(action.Parameters)),
+		Arguments:        make([]InvocationArgument, len(action.Parameters)),
 		Result:           result,
 	}
 
 	for i, param := range action.Parameters {
-		inv.Arguments[i] = typeToProperty(param.Type, objects)
+		inv.Arguments[i] = InvocationArgument{
+			Name:     param.Name,
+			Property: typeToProperty(param.Type, objects),
+		}
 	}
 
 	if _, found := objects.actionImports[actionName]; found && !action.IsBound {

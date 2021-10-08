@@ -17,7 +17,7 @@ type Property struct {
 	Name     string   `xml:"Name,attr"`
 	Type     string   `xml:"Type,attr"`
 	TypeRef  *TypeRef `xml:"TypeRef"`
-	Nullable bool     `xml:"Nullable,attr"`
+	Nullable *bool    `xml:"Nullable,attr"`
 	// DefaultValue string   `xml:"DefaultValue,attr"`
 	// MaxLength    string   `xml:"MaxLength,attr"`
 	// FixedLength  string   `xml:"FixedLength,attr"`

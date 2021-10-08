@@ -1,208 +1,220 @@
+directive @backend(product: String, collection: String, method: String, endpoint: String) on OBJECT | FIELD_DEFINITION
+directive @connection(primaryKey: String, foreignKey: String) on FIELD_DEFINITION
+
 type Query {
-  airline(id: ID!): Airline
-  airlines(filter: String, sort: String): [Airline]
-  airport(id: ID!): Airport
-  airports(filter: String, sort: String): [Airport]
-  person(id: ID!): Person
-  persons(filter: String, sort: String): [Person]
-  photo(id: ID!): Photo
-  photos(filter: String, sort: String): [Photo]
+    airline(id: ID!): Airline
+    airlines(filter: String, sort: String): [Airline]
+    airport(id: ID!): Airport
+    airports(filter: String, sort: String): [Airport]
+    person(id: ID!): Person
+    persons(filter: String, sort: String): [Person]
+    photo(id: ID!): Photo
+    photos(filter: String, sort: String): [Photo]
 }
 
 type Mutation {
-  addAirline(data: AirlineInput!): Airline
-  updateAirline(id: ID!, data: AirlineInput!): Boolean
-  removeAirline(id: ID!): Boolean
-  addAirport(data: AirportInput!): Airport
-  updateAirport(id: ID!, data: AirportInput!): Boolean
-  removeAirport(id: ID!): Boolean
-  addPerson(data: PersonInput!): Person
-  updatePerson(id: ID!, data: PersonInput!): Boolean
-  removePerson(id: ID!): Boolean
-  addPhoto(data: PhotoInput!): Photo
-  updatePhoto(id: ID!, data: PhotoInput!): Boolean
-  removePhoto(id: ID!): Boolean
+    addAirline(data: AirlineInput!): Airline @backend(product: sitefinity, collection: Airlines, method: POST)
+    updateAirline(id: ID!, data: AirlineInput!): Boolean @backend(product: sitefinity, collection: Airlines, method: PATCH)
+    removeAirline(id: ID!): Boolean @backend(product: sitefinity, collection: Airlines, method: DELETE)
+    addAirport(data: AirportInput!): Airport @backend(product: sitefinity, collection: Airports, method: POST)
+    updateAirport(id: ID!, data: AirportInput!): Boolean @backend(product: sitefinity, collection: Airports, method: PATCH)
+    removeAirport(id: ID!): Boolean @backend(product: sitefinity, collection: Airports, method: DELETE)
+    addPerson(data: PersonInput!): Person @backend(product: sitefinity, collection: People, method: POST)
+    updatePerson(id: ID!, data: PersonInput!): Boolean @backend(product: sitefinity, collection: People, method: PATCH)
+    removePerson(id: ID!): Boolean @backend(product: sitefinity, collection: People, method: DELETE)
+    addPhoto(data: PhotoInput!): Photo @backend(product: sitefinity, collection: Photos, method: POST)
+    updatePhoto(id: ID!, data: PhotoInput!): Boolean @backend(product: sitefinity, collection: Photos, method: PATCH)
+    removePhoto(id: ID!): Boolean @backend(product: sitefinity, collection: Photos, method: DELETE)
+    getFriendsTrips(person: Person, userName: String): [Trip]
+    getInvolvedPeople(trip: Trip): [Person]
+    getNearestAirport(lat: Float, lon: Float): Airport
+    resetDataSource(): System__Void
+    shareTrip(person: Person, userName: String, tripId: Int): System__Void
+    getFavoriteAirline(person: Person): Airline
 }
 
-type Airport {
-  Location: AirportLocation
-  Name: String
-  IataCode: String
-  IcaoCode: ID
+type System__Void {
 }
 
-input AirportInput {
-  IataCode: String
-  IcaoCode: String
-  Location: AirportLocation
-  Name: String
-}
-
-type City {
-  Region: String
-  CountryRegion: String
-  Name: String
-}
-
-type Flight {
-  To: Airport
-  Airline: Airline
-  ConfirmationCode: String
-  EndsAt: Datetime
-  From: Airport
-  StartsAt: Datetime
-  Duration: Duration
-  FlightNumber: String
-  PlanItemId: ID
-  SeatNumber: String
-}
-
-input FlightInput {
-  FlightNumber: String
-  PlanItemId: Int
-  SeatNumber: String
-  StartsAt: Datetime
-  Duration: Duration
-  ConfirmationCode: String
-  EndsAt: Datetime
-}
-
-type Event {
-  PlanItemId: ID
-  StartsAt: Datetime
-  ConfirmationCode: String
-  Description: String
-  Duration: Duration
-  EndsAt: Datetime
-  OccursAt: EventLocation
-}
-
-input EventInput {
-  Description: String
-  Duration: Duration
-  EndsAt: Datetime
-  OccursAt: EventLocation
-  PlanItemId: Int
-  StartsAt: Datetime
-  ConfirmationCode: String
-}
-
-type EventLocation {
-  BuildingInfo: String
-}
-
-type PublicTransportation {
-  Duration: Duration
-  EndsAt: Datetime
-  PlanItemId: ID
-  SeatNumber: String
-  StartsAt: Datetime
-  ConfirmationCode: String
-}
-
-input PublicTransportationInput {
-  StartsAt: Datetime
-  ConfirmationCode: String
-  Duration: Duration
-  EndsAt: Datetime
-  PlanItemId: Int
-  SeatNumber: String
-}
-
-type Airline {
-  AirlineCode: ID
-  Name: String
-}
-
-input AirlineInput {
-  AirlineCode: String
-  Name: String
-}
-
-type AirportLocation {
-  Loc: Geopoint
-}
-
-type Location {
-  City: City
-  Address: String
-}
-
-type PlanItem {
-  ConfirmationCode: String
-  Duration: Duration
-  EndsAt: Datetime
-  PlanItemId: ID
-  StartsAt: Datetime
-}
-
-input PlanItemInput {
-  ConfirmationCode: String
-  Duration: Duration
-  EndsAt: Datetime
-  PlanItemId: Int
-  StartsAt: Datetime
-}
-
-type Trip {
-  ShareId: String
-  TripId: ID
-  EndsAt: Datetime
-  Name: String
-  Photos: [Photo]
-  PlanItems: [PlanItem]
-  StartsAt: Datetime
-  Tags: [String]
-  Budget: Float
-  Description: String
-}
-
-input TripInput {
-  EndsAt: Datetime
-  Name: String
-  ShareId: String
-  TripId: Int
-  StartsAt: Datetime
-  Tags: [String]
-  Budget: Float
-  Description: String
-}
-
-type Person {
-  AddressInfo: [Location]
-  Concurrency: Int
-  Gender: PersonGender
-  Photo: Photo
-  Trips: [Trip]
-  Emails: [String]
-  FirstName: String
-  Friends: [Person]
-  LastName: String
-  UserName: ID
-}
-
-input PersonInput {
-  Concurrency: Int
-  Gender: PersonGender
-  AddressInfo: [Location]
-  FirstName: String
-  LastName: String
-  UserName: String
-  Emails: [String]
-}
-
-enum PersonGender {
-  Female @meta(value: 1, valueType: int32)
-  Male @meta(value: 0, valueType: int32)
-  Unknown @meta(value: 2, valueType: int32)
-}
-
-type Photo {
-  Id: ID
-  Name: String
+type Photo @backend(product: sitefinity, collection: Photos) {
+    Id: ID
+    Name: String!
 }
 
 input PhotoInput {
-  Id: Int
-  Name: String
+    Id: Int
+    Name: String!
+}
+
+type PlanItem {
+    EndsAt: String!
+    PlanItemId: ID
+    StartsAt: String!
+    ConfirmationCode: String!
+    Duration: Duration!
+}
+
+input PlanItemInput {
+    ConfirmationCode: String!
+    Duration: Duration!
+    EndsAt: String!
+    PlanItemId: Int
+    StartsAt: String!
+}
+
+type PublicTransportation {
+    ConfirmationCode: String!
+    Duration: Duration!
+    EndsAt: String!
+    PlanItemId: ID
+    SeatNumber: String!
+    StartsAt: String!
+}
+
+input PublicTransportationInput {
+    ConfirmationCode: String!
+    Duration: Duration!
+    EndsAt: String!
+    PlanItemId: Int
+    SeatNumber: String!
+    StartsAt: String!
+}
+
+type Airline @backend(product: sitefinity, collection: Airlines) {
+    AirlineCode: ID
+    Name: String
+}
+
+input AirlineInput {
+    AirlineCode: String
+    Name: String
+}
+
+type Event {
+    ConfirmationCode: String!
+    Description: String!
+    Duration: Duration!
+    EndsAt: String!
+    OccursAt: EventLocation
+    PlanItemId: ID
+    StartsAt: String!
+}
+
+input EventInput {
+    StartsAt: String!
+    ConfirmationCode: String!
+    Description: String!
+    Duration: Duration!
+    EndsAt: String!
+    OccursAt: EventLocation
+    PlanItemId: Int
+}
+
+type EventLocation {
+    BuildingInfo: String!
+}
+
+type Person @backend(product: sitefinity, collection: People) {
+    UserName: ID
+    AddressInfo: [Location]!
+    Emails: [String]!
+    Friends: [Person]
+    LastName: String
+    Trips: [Trip]
+    Concurrency: Int
+    FirstName: String
+    Gender: PersonGender!
+    Photo: Photo
+}
+
+input PersonInput {
+    LastName: String
+    UserName: String
+    AddressInfo: [Location]!
+    Emails: [String]!
+    Gender: PersonGender!
+    Concurrency: Int
+    FirstName: String
+}
+
+enum PersonGender {
+    Male
+    Unknown
+    Female
+}
+
+type Airport @backend(product: sitefinity, collection: Airports) {
+    IcaoCode: ID
+    Location: AirportLocation
+    Name: String
+    IataCode: String
+}
+
+input AirportInput {
+    IataCode: String
+    IcaoCode: String
+    Location: AirportLocation
+    Name: String
+}
+
+type Location {
+    Address: String
+    City: City
+}
+
+type AirportLocation {
+    Loc: Geopoint
+}
+
+type City {
+    CountryRegion: String
+    Name: String
+    Region: String
+}
+
+type Flight {
+    Airline: Airline
+    ConfirmationCode: String!
+    Duration: Duration!
+    FlightNumber: String
+    From: Airport
+    PlanItemId: ID
+    SeatNumber: String!
+    StartsAt: String!
+    EndsAt: String!
+    To: Airport
+}
+
+input FlightInput {
+    PlanItemId: Int
+    SeatNumber: String!
+    StartsAt: String!
+    ConfirmationCode: String!
+    Duration: Duration!
+    FlightNumber: String
+    EndsAt: String!
+}
+
+type Trip {
+    Description: String!
+    EndsAt: String
+    Name: String
+    Photos: [Photo]
+    ShareId: String!
+    StartsAt: String
+    Tags: [String]
+    Budget: Float
+    PlanItems: [PlanItem]
+    TripId: ID
+}
+
+input TripInput {
+    EndsAt: String
+    Name: String
+    ShareId: String!
+    StartsAt: String
+    Tags: [String]
+    Description: String!
+    TripId: Int
+    Budget: Float
 }
