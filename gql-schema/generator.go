@@ -105,10 +105,14 @@ func createDefinition(name string, properties map[string]mschema.Property, types
 	return def
 }
 
+func getInputTypeName(entityTypeName string) string {
+	return fmt.Sprintf("%sInput", entityTypeName)
+}
+
 func createInputType(entityType *mschema.EntityType, types map[string]mschema.Type) Definition {
 	typeDef := createDefinition(entityType.Name, entityType.Properties, types)
 	typeDef.Type = "input"
-	typeDef.Name = fmt.Sprintf("%sInput", typeDef.Name)
+	typeDef.Name = getInputTypeName(typeDef.Name)
 	fields := []Field{}
 	for _, field := range *typeDef.Fields {
 		isStructuralProp := entityType.Properties[field.Name].PropertyType != "relation"
@@ -186,7 +190,7 @@ func createMutationFields(collection *mschema.Collection, service *mschema.Servi
 			Type: entityTypeName,
 			Arguments: &[]Field{
 				{
-					Type:     fmt.Sprintf("%sInput", entityTypeName),
+					Type:     getInputTypeName(entityTypeName),
 					Required: true,
 					Element:  Element{Name: "data"},
 				},
@@ -256,6 +260,21 @@ func typeDefToDefinition(service *mschema.Service) []Definition {
 	addedTypes := make(map[string]usedTypeDesc)
 	var gqlTypeDef Definition
 	var inputDef Definition
+
+	// typesToIterate := make(map[string]mschema.Type)
+	// i := 0
+	// for name, ttype := range service.Types {
+	// 	if i >= 2 {
+	// 		break
+	// 	}
+	// 	if getName(ttype) != "Site" && getName(ttype) != "CultureModel" {
+	// 		continue
+	// 	}
+	// 	typesToIterate[name] = ttype
+	// 	i += 1
+	// }
+
+	// fmt.Println(len(typesToIterate))
 
 	for name, typeDef := range service.Types {
 		switch typeDef.Kind {
@@ -365,6 +384,19 @@ func Generate(service *mschema.Service) string {
 
 	// TODO: better way to append or not use pointer?
 	for _, collection := range service.Collections {
+		// skip := false
+		// for _, ttype := range schema.Types {
+		// 	idx := strings.LastIndex(collection.EntityType, ".")
+		// 	skip = ttype.Name != collection.EntityType[idx+1:]
+		// 	if !skip {
+		// 		break
+		// 	}
+		// }
+
+		// if skip {
+		// 	continue
+		// }
+
 		queryFields := createQueryFields(&collection, service)
 		queryFuncs := append(*schema.Query.Fields, queryFields...)
 		schema.Query.Fields = &queryFuncs
