@@ -60,10 +60,11 @@ type Enum struct {
 }
 
 type Property struct {
-	ValueType    string
-	PropertyType string
-	IsCollection bool `json:",omitempty"`
-	Required     bool `json:",omitempty"`
+	ValueType          string
+	PropertyType       string
+	RelationCollection *string
+	IsCollection       bool `json:",omitempty"`
+	Required           bool `json:",omitempty"`
 }
 
 type Backend struct {

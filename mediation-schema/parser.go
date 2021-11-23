@@ -31,44 +31,96 @@ func formQualifiedName(schema *ods.Schema, objectName string) (string, string) {
 	return namespacedName, aliasedName
 }
 
-func addToEntityTypes(objects edmObjects, schema *ods.Schema, entityType ods.EntityType) {
+func addToEntityTypes(objects edmObjects, schema *ods.Schema, entityType ods.EntityType) error {
 	namespacedName, aliasedName := formQualifiedName(schema, entityType.Name)
+	if _, ok := objects.entityTypes[namespacedName]; ok {
+		return fmt.Errorf("duplicate entity type definition for entity type '%s'", namespacedName)
+	}
+
 	objects.entityTypes[namespacedName] = &entityType
 	if aliasedName != "" {
+		if _, ok := objects.entityTypes[aliasedName]; ok {
+			return fmt.Errorf("duplicate entity type definition for entity type alias '%s'", aliasedName)
+		}
+
 		objects.entityTypes[aliasedName] = &entityType
 	}
+
+	return nil
 }
 
-func addToComplexTypes(objects edmObjects, schema *ods.Schema, complexType ods.ComplexType) {
+func addToComplexTypes(objects edmObjects, schema *ods.Schema, complexType ods.ComplexType) error {
 	namespacedName, aliasedName := formQualifiedName(schema, complexType.Name)
+	if _, ok := objects.complexTypes[namespacedName]; ok {
+		return fmt.Errorf("duplicate complex type definition for complex type '%s'", namespacedName)
+	}
+
 	objects.complexTypes[namespacedName] = &complexType
 	if aliasedName != "" {
+		if _, ok := objects.complexTypes[aliasedName]; ok {
+			return fmt.Errorf("duplicate complex type definition for complex type alias '%s'", aliasedName)
+		}
+
 		objects.complexTypes[aliasedName] = &complexType
 	}
+
+	return nil
 }
 
-func addToEnumTypes(objects edmObjects, schema *ods.Schema, enumtype ods.EnumType) {
+func addToEnumTypes(objects edmObjects, schema *ods.Schema, enumtype ods.EnumType) error {
 	namespacedName, aliasedName := formQualifiedName(schema, enumtype.Name)
+	if _, ok := objects.enumTypes[namespacedName]; ok {
+		return fmt.Errorf("duplicate enum type definition for enum type '%s'", namespacedName)
+	}
+
 	objects.enumTypes[namespacedName] = &enumtype
 	if aliasedName != "" {
+		if _, ok := objects.enumTypes[aliasedName]; ok {
+			return fmt.Errorf("duplicate enum type definition for enum type alias '%s'", aliasedName)
+		}
+
 		objects.enumTypes[aliasedName] = &enumtype
 	}
+
+	return nil
 }
 
-func addToFunctions(objects edmObjects, schema *ods.Schema, function ods.Function) {
+func addToFunctions(objects edmObjects, schema *ods.Schema, function ods.Function) error {
 	namespacedName, aliasedName := formQualifiedName(schema, function.Name)
+	if _, ok := objects.functions[namespacedName]; ok {
+		return fmt.Errorf("duplicate function definition for function '%s'", namespacedName)
+
+	}
+
 	objects.functions[namespacedName] = &function
 	if aliasedName != "" {
+		if _, ok := objects.functions[aliasedName]; ok {
+			return fmt.Errorf("duplicate function definition for function alias '%s'", aliasedName)
+
+		}
+
 		objects.functions[aliasedName] = &function
 	}
+
+	return nil
 }
 
-func addToActions(objects edmObjects, schema *ods.Schema, action ods.Action) {
+func addToActions(objects edmObjects, schema *ods.Schema, action ods.Action) error {
 	namespacedName, aliasedName := formQualifiedName(schema, action.Name)
+	if _, ok := objects.actions[namespacedName]; ok {
+		return fmt.Errorf("duplicate action definition for action '%s'", namespacedName)
+	}
+
 	objects.actions[namespacedName] = &action
 	if aliasedName != "" {
+		if _, ok := objects.actions[aliasedName]; ok {
+			return fmt.Errorf("duplicate action definition for action alias '%s'", aliasedName)
+		}
+
 		objects.actions[aliasedName] = &action
 	}
+
+	return nil
 }
 
 func mapEdmType(edmType string) (string, error) {
@@ -113,10 +165,20 @@ func mapEdmType(edmType string) (string, error) {
 	}
 }
 
-func typeToProperty(typeName string, objects *edmObjects) Property {
+func findCollectionsByEntityType(qualifiedName string, objects *edmObjects) []string {
+	result := []string{}
+	for _, es := range objects.entityContainer.EntitySets {
+		if es.EntityType == qualifiedName {
+			result = append(result, es.Name)
+		}
+	}
+	return result
+}
+
+func typeToProperty(typeName string, objects *edmObjects) (Property, error) {
 	result := Property{
 		PropertyType: "unknown",
-		ValueType:    fmt.Sprintf("unknown %s", typeName),
+		ValueType:    fmt.Sprintf("unknown (%s)", typeName),
 		IsCollection: false,
 	}
 	if mappedType, err := mapEdmType(typeName); err == nil {
@@ -124,12 +186,24 @@ func typeToProperty(typeName string, objects *edmObjects) Property {
 		result.ValueType = mappedType
 	} else if strings.HasPrefix(typeName, collectionPrefix) {
 		actualType := typeName[len(collectionPrefix) : len(typeName)-1]
-		mapped := typeToProperty(actualType, objects)
-		mapped.IsCollection = true
-		result = mapped
+		if mapped, err := typeToProperty(actualType, objects); err != nil {
+			return Property{}, err
+		} else {
+			mapped.IsCollection = true
+			result = mapped
+		}
 	} else if _, ok := objects.entityTypes[typeName]; ok {
 		result.ValueType = typeName
 		result.PropertyType = "relation"
+		collections := findCollectionsByEntityType(typeName, objects)
+		if len(collections) == 0 {
+			return Property{}, fmt.Errorf("unable to find collection for entity type '%s'", typeName)
+		}
+		// TODO: return some sort of ambiguity descriptor when len(collections) > 1
+		// else if len(collections) > 1 {
+		// 	return Property{}, fmt.Errorf("unable to find collection for entity type '%s'", typeName)
+		// }
+		result.RelationCollection = &collections[0]
 	} else if _, ok := objects.complexTypes[typeName]; ok {
 		result.PropertyType = "structure"
 		result.ValueType = typeName
@@ -137,34 +211,33 @@ func typeToProperty(typeName string, objects *edmObjects) Property {
 		result.PropertyType = "enum"
 		result.ValueType = typeName
 	}
-	// There is also a type of "entity", not listed here
-	return result
+	return result, nil
 }
 
-func getTypeProperties(typeName string, objects *edmObjects) []ods.Property {
+func getTypeStructuralProperties(qualifiedName string, objects *edmObjects) []ods.Property {
 	var properties []ods.Property
 	var baseType *string
-	if foundType, ok := objects.entityTypes[typeName]; ok {
+	if foundType, ok := objects.entityTypes[qualifiedName]; ok {
 		properties = foundType.Properties
 		baseType = foundType.BaseType
-	} else if foundType, ok := objects.complexTypes[typeName]; ok {
+	} else if foundType, ok := objects.complexTypes[qualifiedName]; ok {
 		properties = foundType.Properties
 		baseType = foundType.BaseType
 	}
 	if baseType != nil {
-		baseProps := getTypeProperties(*baseType, objects)
+		baseProps := getTypeStructuralProperties(*baseType, objects)
 		properties = append(properties, baseProps...)
 	}
 	return properties
 }
 
-func getTypeNavProperties(typeName string, objects *edmObjects) []ods.NavigationProperty {
+func getTypeNavProperties(qualifiedName string, objects *edmObjects) []ods.NavigationProperty {
 	var properties []ods.NavigationProperty
 	var baseType *string
-	if foundType, ok := objects.entityTypes[typeName]; ok {
+	if foundType, ok := objects.entityTypes[qualifiedName]; ok {
 		properties = foundType.NavigationProperties
 		baseType = foundType.BaseType
-	} else if foundType, ok := objects.complexTypes[typeName]; ok {
+	} else if foundType, ok := objects.complexTypes[qualifiedName]; ok {
 		properties = foundType.NavigationProperties
 		baseType = foundType.BaseType
 	}
@@ -175,10 +248,13 @@ func getTypeNavProperties(typeName string, objects *edmObjects) []ods.Navigation
 	return properties
 }
 
-func addStructuralProperties(typeName string, objects *edmObjects, result map[string]Property) {
-	properties := getTypeProperties(typeName, objects)
+func addStructuralProperties(typeName string, objects *edmObjects, result map[string]Property) error {
+	properties := getTypeStructuralProperties(typeName, objects)
 	for _, property := range properties {
-		prop := typeToProperty(property.Type, objects)
+		prop, err := typeToProperty(property.Type, objects)
+		if err != nil {
+			return err
+		}
 		if property.Nullable != nil {
 			prop.Required = !*property.Nullable
 		} else {
@@ -186,30 +262,22 @@ func addStructuralProperties(typeName string, objects *edmObjects, result map[st
 		}
 		result[property.Name] = prop
 	}
+	return nil
 }
 
-func addNavProperties(entityTypeQualifiedName string, objects *edmObjects, result map[string]Property) {
-	properties := getTypeNavProperties(entityTypeQualifiedName, objects)
-
-	for _, property := range properties {
-		prop := typeToProperty(property.Type, objects)
-
-		result[property.Name] = prop
+func addNavProperties(qualifiedName string, objects *edmObjects, result map[string]Property) error {
+	for _, property := range getTypeNavProperties(qualifiedName, objects) {
+		if prop, err := typeToProperty(property.Type, objects); err != nil {
+			return err
+		} else {
+			result[property.Name] = prop
+		}
 	}
+	return nil
 }
 
-func addComplexTypeNavProperties(cTypeName string, objects *edmObjects, result map[string]Property) {
-	properties := getTypeNavProperties(cTypeName, objects)
-
-	for _, property := range properties {
-		prop := typeToProperty(property.Type, objects)
-
-		result[property.Name] = prop
-	}
-}
-
-func getTypeKeys(srcQualifiedName string, objects *edmObjects) []string {
-	src := objects.entityTypes[srcQualifiedName]
+func getTypeKeys(qualifiedName string, objects *edmObjects) ([]string, error) {
+	src := objects.entityTypes[qualifiedName]
 	if src.Key != nil {
 		keys := make([]string, len(*src.Key))
 
@@ -217,19 +285,28 @@ func getTypeKeys(srcQualifiedName string, objects *edmObjects) []string {
 			keys[i] = keyRef.Name
 		}
 
-		return keys
+		return keys, nil
 	} else if src.BaseType != nil {
 		return getTypeKeys(*src.BaseType, objects)
 	} else {
-		panic("could not find key")
+		return []string{}, fmt.Errorf("unable to find keys for type '%s'", qualifiedName)
 	}
 }
 
-func mapEntityType(qualifiedName string, objects *edmObjects) EntityType {
-	entityType := objects.entityTypes[qualifiedName]
+func mapEntityType(qualifiedName string, objects *edmObjects) (EntityType, error) {
+	if _, ok := objects.entityTypes[qualifiedName]; !ok {
+		return EntityType{}, fmt.Errorf("unable to map entity type. entity type '%s' was not defined", qualifiedName)
+	}
 
-	mappedEntityType := EntityType{
-		Key:        getTypeKeys(qualifiedName, objects),
+	entityType := objects.entityTypes[qualifiedName]
+	typeKeys, err := getTypeKeys(qualifiedName, objects)
+
+	if err != nil {
+		return EntityType{}, err
+	}
+
+	mappedType := EntityType{
+		Key:        typeKeys,
 		Streamable: entityType.HasStream,
 		BaseType:   entityType.BaseType,
 		Structure: Structure{
@@ -239,38 +316,51 @@ func mapEntityType(qualifiedName string, objects *edmObjects) EntityType {
 		},
 	}
 
-	addStructuralProperties(qualifiedName, objects, mappedEntityType.Properties)
-	addNavProperties(qualifiedName, objects, mappedEntityType.Properties)
+	addStructuralProperties(qualifiedName, objects, mappedType.Properties)
+	addNavProperties(qualifiedName, objects, mappedType.Properties)
 
-	return mappedEntityType
+	return mappedType, nil
 }
 
-func mapCollection(entitySet ods.EntitySet, objects *edmObjects) Collection {
+func mapCollection(entitySet ods.EntitySet, objects *edmObjects) (Collection, error) {
+	if _, ok := objects.entityTypes[entitySet.EntityType]; !ok {
+		return Collection{}, fmt.Errorf("unable to map collection. entity type '%s' was not defined", entitySet.EntityType)
+	}
+
 	res := Collection{
 		Name:       entitySet.Name,
 		EntityType: entitySet.EntityType,
 		Streamable: objects.entityTypes[entitySet.EntityType].HasStream,
 	}
 
-	return res
+	return res, nil
 }
 
-func mapComplexType(complexTypeName string, objects *edmObjects) Structure {
-	complexType := objects.complexTypes[complexTypeName]
-	cType := Structure{
+func mapComplexType(qualifiedName string, objects *edmObjects) (Structure, error) {
+	if _, ok := objects.complexTypes[qualifiedName]; !ok {
+		return Structure{}, fmt.Errorf("unable to map complex type. complex type '%s' was not defined", qualifiedName)
+	}
+
+	complexType := objects.complexTypes[qualifiedName]
+	mappedType := Structure{
 		Name:       complexType.Name,
 		Properties: make(map[string]Property),
 		OpenType:   complexType.OpenType,
 	}
 
-	addStructuralProperties(complexTypeName, objects, cType.Properties)
-	addComplexTypeNavProperties(complexTypeName, objects, cType.Properties)
+	addStructuralProperties(qualifiedName, objects, mappedType.Properties)
+	addNavProperties(qualifiedName, objects, mappedType.Properties)
 
-	return cType
+	return mappedType, nil
 }
 
-func mapEnumType(enumName string, objects *edmObjects) Enum {
-	enum := objects.enumTypes[enumName]
+func mapEnumType(qualifiedName string, objects *edmObjects) (Enum, error) {
+	if _, ok := objects.enumTypes[qualifiedName]; ok {
+		return Enum{}, fmt.Errorf("unable to map enum type. enum type '%s' was not defined", qualifiedName)
+	}
+
+	enum := objects.enumTypes[qualifiedName]
+
 	eType := Enum{
 		Name:        enum.Name,
 		Members:     make(map[string]string),
@@ -287,12 +377,16 @@ func mapEnumType(enumName string, objects *edmObjects) Enum {
 		eType.Members[member.Name] = member.Value
 	}
 
-	return eType
+	return eType, nil
 }
 
-func mapFunction(funcName string, function *ods.Function, objects *edmObjects) Invocation {
+func mapFunction(funcName string, function *ods.Function, objects *edmObjects) (Invocation, error) {
 	// TODO: use a different type for the result, not Property
-	funcResult := typeToProperty(function.ReturnType.Type, objects)
+	funcResult, err := typeToProperty(function.ReturnType.Type, objects)
+
+	if err != nil {
+		return Invocation{}, err
+	}
 
 	inv := Invocation{
 		Name:             function.Name,
@@ -303,36 +397,46 @@ func mapFunction(funcName string, function *ods.Function, objects *edmObjects) I
 	}
 
 	for i, param := range function.Parameters {
-		inv.Arguments[i] = InvocationArgument{
-			Name:     param.Name,
-			Property: typeToProperty(param.Type, objects),
+		if prop, err := typeToProperty(param.Type, objects); err != nil {
+			return Invocation{}, err
+		} else {
+			inv.Arguments[i] = InvocationArgument{
+				Name:     param.Name,
+				Property: prop,
+			}
 		}
 	}
 
 	if _, found := objects.functionImports[funcName]; found && !function.IsBound {
 		inv.BindingType = "unbound"
 	} else if function.IsBound {
-		entityType := typeToProperty(function.Parameters[0].Type, objects)
-		if entityType.IsCollection {
-			inv.BindingType = "collection"
+		if entityType, err := typeToProperty(function.Parameters[0].Type, objects); err != nil {
+			return Invocation{}, err
 		} else {
-			inv.BindingType = "entity"
+			if entityType.IsCollection {
+				inv.BindingType = "collection"
+			} else {
+				inv.BindingType = "entity"
+			}
 		}
 
 		inv.BoundTo = &inv.Arguments[0].ValueType
 	}
 
-	return inv
+	return inv, nil
 }
 
 // TODO: consolidate with mapFunction?
-func mapAction(actionName string, action *ods.Action, objects *edmObjects) Invocation {
+func mapAction(actionName string, action *ods.Action, objects *edmObjects) (Invocation, error) {
 	var result *Property = nil
 
 	if action.ReturnType != nil {
 		// TODO: use a different type for the result, not Property
-		prop := typeToProperty(action.ReturnType.Type, objects)
-		result = &prop
+		if prop, err := typeToProperty(action.ReturnType.Type, objects); err != nil {
+			return Invocation{}, err
+		} else {
+			result = &prop
+		}
 	}
 
 	inv := Invocation{
@@ -344,30 +448,37 @@ func mapAction(actionName string, action *ods.Action, objects *edmObjects) Invoc
 	}
 
 	for i, param := range action.Parameters {
-		inv.Arguments[i] = InvocationArgument{
-			Name:     param.Name,
-			Property: typeToProperty(param.Type, objects),
+		if prop, err := typeToProperty(param.Type, objects); err != nil {
+			return Invocation{}, err
+		} else {
+			inv.Arguments[i] = InvocationArgument{
+				Name:     param.Name,
+				Property: prop,
+			}
 		}
 	}
 
 	if _, found := objects.actionImports[actionName]; found && !action.IsBound {
 		inv.BindingType = "unbound"
 	} else if action.IsBound {
-		entityType := typeToProperty(action.Parameters[0].Type, objects)
-		if entityType.IsCollection {
-			inv.BindingType = "collection"
+		if entityType, err := typeToProperty(action.Parameters[0].Type, objects); err != nil {
+			return Invocation{}, err
 		} else {
-			inv.BindingType = "entity"
+			if entityType.IsCollection {
+				inv.BindingType = "collection"
+			} else {
+				inv.BindingType = "entity"
+			}
 		}
 
 		// inv.BoundTo = &action.Parameters[0].Type
 		inv.BoundTo = &inv.Arguments[0].ValueType
 	}
 
-	return inv
+	return inv, nil
 }
 
-func extractObjects(edm *ods.EdmxDocument) *edmObjects {
+func extractObjects(edm *ods.EdmxDocument) (*edmObjects, error) {
 	objects := edmObjects{
 		entityTypes:     make(map[string]*ods.EntityType),
 		complexTypes:    make(map[string]*ods.ComplexType),
@@ -384,19 +495,29 @@ func extractObjects(edm *ods.EdmxDocument) *edmObjects {
 			objects.entityContainer = schema.EntityContainer
 		}
 		for _, entityType := range schema.EntityTypes {
-			addToEntityTypes(objects, &schema, entityType)
+			if err := addToEntityTypes(objects, &schema, entityType); err != nil {
+				return nil, err
+			}
 		}
 		for _, complexType := range schema.ComplexTypes {
-			addToComplexTypes(objects, &schema, complexType)
+			if err := addToComplexTypes(objects, &schema, complexType); err != nil {
+				return nil, err
+			}
 		}
 		for _, enumType := range schema.EnumTypes {
-			addToEnumTypes(objects, &schema, enumType)
+			if err := addToEnumTypes(objects, &schema, enumType); err != nil {
+				return nil, err
+			}
 		}
 		for _, function := range schema.Functions {
-			addToFunctions(objects, &schema, function)
+			if err := addToFunctions(objects, &schema, function); err != nil {
+				return nil, err
+			}
 		}
 		for _, action := range schema.Actions {
-			addToActions(objects, &schema, action)
+			if err := addToActions(objects, &schema, action); err != nil {
+				return nil, err
+			}
 		}
 	}
 
@@ -408,53 +529,77 @@ func extractObjects(edm *ods.EdmxDocument) *edmObjects {
 		objects.actionImports[actionImport.Action] = &actionImport
 	}
 
-	return &objects
+	return &objects, nil
 }
 
-func Parse(edm *ods.EdmxDocument) (Service, error) {
+func Parse(edm *ods.EdmxDocument) (*Service, error) {
 	service := Service{
 		Collections: make(map[string]Collection),
 		Invocations: make(map[string]Invocation),
 		Types:       make(map[string]Type),
 	}
 
-	objects := extractObjects(edm)
+	objects, err := extractObjects(edm)
+
+	if err != nil {
+		return nil, err
+	}
 
 	for _, entitySet := range objects.entityContainer.EntitySets {
-		collection := mapCollection(entitySet, objects)
-		service.Collections[entitySet.Name] = collection
+		if collection, err := mapCollection(entitySet, objects); err != nil {
+			return nil, err
+		} else {
+			service.Collections[entitySet.Name] = collection
+		}
 	}
 
 	for name := range objects.entityTypes {
-		et := mapEntityType(name, objects)
-		service.Types[name] = Type{
-			Kind:       "EntityType",
-			EntityType: &et,
+		if et, err := mapEntityType(name, objects); err != nil {
+			return nil, err
+		} else {
+			service.Types[name] = Type{
+				Kind:       "EntityType",
+				EntityType: &et,
+			}
 		}
 	}
 
 	for name := range objects.complexTypes {
-		ct := mapComplexType(name, objects)
-		service.Types[name] = Type{
-			Kind:      "Structure",
-			Structure: &ct,
+		if ct, err := mapComplexType(name, objects); err != nil {
+			return nil, err
+		} else {
+			service.Types[name] = Type{
+				Kind:      "Structure",
+				Structure: &ct,
+			}
 		}
 	}
 
 	for name := range objects.enumTypes {
-		enum := mapEnumType(name, objects)
-		service.Types[name] = Type{
-			Kind: "Enum",
-			Enum: &enum,
+		if enum, err := mapEnumType(name, objects); err != nil {
+			return nil, err
+		} else {
+			service.Types[name] = Type{
+				Kind: "Enum",
+				Enum: &enum,
+			}
 		}
 	}
 
 	for funcName, function := range objects.functions {
-		service.Invocations[funcName] = mapFunction(funcName, function, objects)
+		if mapped, err := mapFunction(funcName, function, objects); err != nil {
+			return nil, err
+		} else {
+			service.Invocations[funcName] = mapped
+		}
 	}
 
 	for actionName, action := range objects.actions {
-		service.Invocations[actionName] = mapAction(actionName, action, objects)
+		if mapped, err := mapAction(actionName, action, objects); err != nil {
+			return nil, err
+		} else {
+			service.Invocations[actionName] = mapped
+		}
 	}
 
 	// TODO: singleton for /me
@@ -462,5 +607,6 @@ func Parse(edm *ods.EdmxDocument) (Service, error) {
 
 	service.Name = objects.entityContainer.Name
 	service.Type = "OData4"
-	return service, nil
+
+	return &service, nil
 }
