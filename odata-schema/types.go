@@ -138,8 +138,8 @@ type Function struct {
 type Action struct {
 	XMLName       xml.Name    `xml:"Action"`
 	Name          string      `xml:",attr"`
-	EntitySetPath *string     `xml:",attr"`
 	IsBound       bool        `xml:",attr"`
+	EntitySetPath *string     `xml:",attr"`
 	Parameters    []Parameter `xml:"Parameter"`
 	ReturnType    *ReturnType `xml:"ReturnType"`
 }

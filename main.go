@@ -11,10 +11,16 @@ import (
 )
 
 func createMediationSchema(backendName string) error {
-	edm, _ := odataschema.Parse(fmt.Sprintf("./schemas/%s.xml", backendName))
-	odataService, _ := mediationschema.Parse(edm)
-	bytes, _ := json.MarshalIndent(odataService, "", "  ")
-	return os.WriteFile(fmt.Sprintf("./schemas/%s-mediation-schema.json", backendName), bytes, 0644)
+	if edm, err := odataschema.Parse(fmt.Sprintf("./schemas/%s.xml", backendName)); err != nil {
+		return err
+	} else {
+		if odataService, err := mediationschema.Parse(backendName, edm); err != nil {
+			return err
+		} else {
+			bytes, _ := json.MarshalIndent(odataService, "", "  ")
+			return os.WriteFile(fmt.Sprintf("./schemas/%s-mediation-schema.json", backendName), bytes, 0644)
+		}
+	}
 }
 
 func generateMediationGqlSchema(backendName string) string {
@@ -32,7 +38,10 @@ func generateMediationGqlSchema(backendName string) string {
 
 func main() {
 	schemaName := "sitefinity"
-	createMediationSchema(schemaName)
-	gqlSchema := generateMediationGqlSchema(schemaName)
-	fmt.Println(len(gqlSchema))
+	if err := createMediationSchema(schemaName); err != nil {
+		fmt.Print(err)
+	} else {
+		gqlSchema := generateMediationGqlSchema(schemaName)
+		fmt.Println(len(gqlSchema))
+	}
 }
