@@ -13,7 +13,6 @@ var duplicateSitefinityEnums = []string{
 	"Telerik.Sitefinity.Forms.Model.FormRuleAction",
 	"Telerik.Sitefinity.Web.Api.Strategies.Pages.PageType",
 	"Telerik.Sitefinity.Pages.Model.PageTemplateFramework",
-	"Telerik.Sitefinity.Forms.Model.ConditionOperator",
 }
 
 type edmObjects struct {
@@ -30,13 +29,13 @@ type edmObjects struct {
 func addToEntityTypes(objects edmObjects, schema *ods.Schema, entityType ods.EntityType) error {
 	namespacedName, aliasedName := formQualifiedName(schema, entityType.Name)
 	if _, ok := objects.entityTypes[namespacedName]; ok {
-		return ErrDuplicateDefinition.WithDescriptionf("duplicate entity type definition for entity type '%s'", namespacedName)
+		return ErrDuplicateDefinition.WithMessagef("duplicate entity type definition for entity type '%s'", namespacedName)
 	}
 
 	objects.entityTypes[namespacedName] = &entityType
 	if aliasedName != "" {
 		if _, ok := objects.entityTypes[aliasedName]; ok {
-			return ErrDuplicateDefinition.WithDescriptionf("duplicate entity type definition for entity type alias '%s'", aliasedName)
+			return ErrDuplicateDefinition.WithMessagef("duplicate entity type definition for entity type alias '%s'", aliasedName)
 		}
 
 		objects.entityTypes[aliasedName] = &entityType
@@ -48,13 +47,13 @@ func addToEntityTypes(objects edmObjects, schema *ods.Schema, entityType ods.Ent
 func addToComplexTypes(objects edmObjects, schema *ods.Schema, complexType ods.ComplexType) error {
 	namespacedName, aliasedName := formQualifiedName(schema, complexType.Name)
 	if _, ok := objects.complexTypes[namespacedName]; ok {
-		return ErrDuplicateDefinition.WithDescriptionf("duplicate complex type definition for complex type '%s'", namespacedName)
+		return ErrDuplicateDefinition.WithMessagef("duplicate complex type definition for complex type '%s'", namespacedName)
 	}
 
 	objects.complexTypes[namespacedName] = &complexType
 	if aliasedName != "" {
 		if _, ok := objects.complexTypes[aliasedName]; ok {
-			return ErrDuplicateDefinition.WithDescriptionf("duplicate complex type definition for complex type alias '%s'", aliasedName)
+			return ErrDuplicateDefinition.WithMessagef("duplicate complex type definition for complex type alias '%s'", aliasedName)
 		}
 
 		objects.complexTypes[aliasedName] = &complexType
@@ -66,13 +65,13 @@ func addToComplexTypes(objects edmObjects, schema *ods.Schema, complexType ods.C
 func addToEnumTypes(objects edmObjects, schema *ods.Schema, enumtype ods.EnumType) error {
 	namespacedName, aliasedName := formQualifiedName(schema, enumtype.Name)
 	if _, ok := objects.enumTypes[namespacedName]; ok {
-		return ErrDuplicateDefinition.WithDescriptionf("duplicate enum type definition for enum type '%s'", namespacedName)
+		return ErrDuplicateDefinition.WithMessagef("duplicate enum type definition for enum type '%s'", namespacedName)
 	}
 
 	objects.enumTypes[namespacedName] = &enumtype
 	if aliasedName != "" {
 		if _, ok := objects.enumTypes[aliasedName]; ok {
-			return ErrDuplicateDefinition.WithDescriptionf("duplicate enum type definition for enum type alias '%s'", aliasedName)
+			return ErrDuplicateDefinition.WithMessagef("duplicate enum type definition for enum type alias '%s'", aliasedName)
 		}
 
 		objects.enumTypes[aliasedName] = &enumtype
@@ -83,19 +82,14 @@ func addToEnumTypes(objects edmObjects, schema *ods.Schema, enumtype ods.EnumTyp
 
 func addToFunctions(objects edmObjects, schema *ods.Schema, function ods.Function) error {
 	namespacedName, aliasedName := formQualifiedName(schema, function.Name)
-	if _, ok := objects.functions[namespacedName]; ok {
-		return ErrDuplicateDefinition.WithDescriptionf("duplicate function definition for function '%s'", namespacedName)
-
+	if _, ok := objects.functions[namespacedName]; !ok {
+		objects.functions[namespacedName] = &function
 	}
 
-	objects.functions[namespacedName] = &function
 	if aliasedName != "" {
-		if _, ok := objects.functions[aliasedName]; ok {
-			return ErrDuplicateDefinition.WithDescriptionf("duplicate function definition for function alias '%s'", aliasedName)
-
+		if _, ok := objects.functions[aliasedName]; !ok {
+			objects.functions[aliasedName] = &function
 		}
-
-		objects.functions[aliasedName] = &function
 	}
 
 	return nil
@@ -103,17 +97,14 @@ func addToFunctions(objects edmObjects, schema *ods.Schema, function ods.Functio
 
 func addToActions(objects edmObjects, schema *ods.Schema, action ods.Action) error {
 	namespacedName, aliasedName := formQualifiedName(schema, action.Name)
-	if _, ok := objects.actions[namespacedName]; ok {
-		return ErrDuplicateDefinition.WithDescriptionf("duplicate action definition for action '%s'", namespacedName)
+	if _, ok := objects.actions[namespacedName]; !ok {
+		objects.actions[namespacedName] = &action
 	}
 
-	objects.actions[namespacedName] = &action
 	if aliasedName != "" {
-		if _, ok := objects.actions[aliasedName]; ok {
-			return ErrDuplicateDefinition.WithDescriptionf("duplicate action definition for action alias '%s'", aliasedName)
+		if _, ok := objects.actions[aliasedName]; !ok {
+			objects.actions[aliasedName] = &action
 		}
-
-		objects.actions[aliasedName] = &action
 	}
 
 	return nil

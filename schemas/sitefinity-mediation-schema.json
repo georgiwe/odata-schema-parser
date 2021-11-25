@@ -5763,6 +5763,2085 @@
     }
   },
   "Invocations": {
+    "Default.AddWidget": {
+      "Name": "AddWidget",
+      "BindingType": "entity",
+      "BoundTo": "Telerik.Sitefinity.Pages.Model.PageNode",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Pages.Model.PageNode",
+          "PropertyType": "relation",
+          "RelationCollection": "pages"
+        },
+        {
+          "Name": "widget",
+          "ValueType": "Telerik.Sitefinity.Renderer.Editor.DefaultAddWidgetContext",
+          "PropertyType": "structure"
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Renderer.Editor.WidgetState",
+        "PropertyType": "structure"
+      }
+    },
+    "Default.Analytics": {
+      "Name": "Analytics",
+      "BindingType": "entity",
+      "BoundTo": "Telerik.Sitefinity.Multisite.Model.Site",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Multisite.Model.Site",
+          "PropertyType": "relation",
+          "RelationCollection": "sites"
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Analytics.Server.Infrastructure.Web.Services.AnalyticsDto",
+        "PropertyType": "structure"
+      }
+    },
+    "Default.AnalyticsSettings": {
+      "Name": "AnalyticsSettings",
+      "BindingType": "collection",
+      "BoundTo": "Telerik.Sitefinity.Multisite.Model.Site",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Multisite.Model.Site",
+          "PropertyType": "relation",
+          "RelationCollection": "sites",
+          "IsCollection": true
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Analytics.Server.Infrastructure.Web.Services.AnalyticsSettingsDto",
+        "PropertyType": "structure"
+      }
+    },
+    "Default.AuthSettings": {
+      "Name": "AuthSettings",
+      "BindingType": "unbound",
+      "Arguments": [
+        {
+          "Name": "clientId",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Authentication.Web.Services.Dto.AuthSettings",
+        "PropertyType": "structure"
+      }
+    },
+    "Default.BackgroundTasks": {
+      "Name": "BackgroundTasks",
+      "BindingType": "collection",
+      "BoundTo": "Telerik.Sitefinity.Libraries.Model.Image",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Libraries.Model.Image",
+          "PropertyType": "relation",
+          "RelationCollection": "images",
+          "IsCollection": true
+        },
+        {
+          "Name": "taskType",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Scheduling.Web.Services.WcfScheduledTask",
+        "PropertyType": "structure",
+        "IsCollection": true
+      }
+    },
+    "Default.ChangeOwner": {
+      "Name": "ChangeOwner",
+      "BindingType": "collection",
+      "BoundTo": "Telerik.Sitefinity.Multisite.Model.Site",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Multisite.Model.Site",
+          "PropertyType": "relation",
+          "RelationCollection": "sites",
+          "IsCollection": true
+        },
+        {
+          "Name": "itemIds",
+          "ValueType": "string",
+          "PropertyType": "primitive",
+          "IsCollection": true
+        },
+        {
+          "Name": "userId",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      ],
+      "Result": {
+        "ValueType": "System.Void",
+        "PropertyType": "structure"
+      }
+    },
+    "Default.ChangePageTemplate": {
+      "Name": "ChangePageTemplate",
+      "BindingType": "collection",
+      "BoundTo": "Telerik.Sitefinity.Pages.Model.PageNode",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Pages.Model.PageNode",
+          "PropertyType": "relation",
+          "RelationCollection": "pages",
+          "IsCollection": true
+        },
+        {
+          "Name": "selectedPages",
+          "ValueType": "string",
+          "PropertyType": "primitive",
+          "IsCollection": true
+        },
+        {
+          "Name": "templateId",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        {
+          "Name": "templateName",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Web.Api.OData.Operations.OperationResults.BulkOperationResult",
+        "PropertyType": "structure"
+      }
+    },
+    "Default.ChangeSharedInSites": {
+      "Name": "ChangeSharedInSites",
+      "BindingType": "entity",
+      "BoundTo": "Telerik.Sitefinity.Pages.Model.PageTemplate",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Pages.Model.PageTemplate",
+          "PropertyType": "relation",
+          "RelationCollection": "templates"
+        },
+        {
+          "Name": "siteIds",
+          "ValueType": "string",
+          "PropertyType": "primitive",
+          "IsCollection": true
+        }
+      ],
+      "Result": {
+        "ValueType": "System.Void",
+        "PropertyType": "structure"
+      }
+    },
+    "Default.Diagnostics": {
+      "Name": "Diagnostics",
+      "BindingType": "unbound",
+      "Arguments": [
+        {
+          "Name": "data",
+          "ValueType": "Telerik.Sitefinity.Renderer.Diagnostics.RendererData",
+          "PropertyType": "structure"
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Renderer.Diagnostics.DiagnosticResult",
+        "PropertyType": "structure"
+      }
+    },
+    "Default.DocumentsRecursiveSearch": {
+      "Name": "DocumentsRecursiveSearch",
+      "BindingType": "collection",
+      "BoundTo": "Telerik.Sitefinity.Libraries.Model.Document",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Libraries.Model.Document",
+          "PropertyType": "relation",
+          "RelationCollection": "documents",
+          "IsCollection": true
+        },
+        {
+          "Name": "rootLibraryId",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Libraries.Model.Document",
+        "PropertyType": "relation",
+        "RelationCollection": "documents",
+        "IsCollection": true
+      }
+    },
+    "Default.DynamicFilters": {
+      "Name": "DynamicFilters",
+      "BindingType": "collection",
+      "BoundTo": "Telerik.Sitefinity.News.Model.NewsItem",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.News.Model.NewsItem",
+          "PropertyType": "relation",
+          "RelationCollection": "newsitems",
+          "IsCollection": true
+        },
+        {
+          "Name": "parentId",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Filters.FilterItem",
+        "PropertyType": "structure",
+        "IsCollection": true
+      }
+    },
+    "Default.ExecuteWidgetOperation": {
+      "Name": "ExecuteWidgetOperation",
+      "BindingType": "entity",
+      "BoundTo": "Telerik.Sitefinity.Pages.Model.PageNode",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Pages.Model.PageNode",
+          "PropertyType": "relation",
+          "RelationCollection": "pages"
+        },
+        {
+          "Name": "operation",
+          "ValueType": "Telerik.Sitefinity.Renderer.Editor.DefaultExecuteOperationContext",
+          "PropertyType": "structure"
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Renderer.Editor.WidgetOperationResult",
+        "PropertyType": "structure"
+      }
+    },
+    "Default.FieldSettings": {
+      "Name": "FieldSettings",
+      "BindingType": "unbound",
+      "Arguments": [
+        {
+          "Name": "types",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Web.Services.Contracts.Operations.Pages.PropertyEditor.Permissions.FieldSettingsContext",
+        "PropertyType": "structure"
+      }
+    },
+    "Default.FilterValues": {
+      "Name": "FilterValues",
+      "BindingType": "collection",
+      "BoundTo": "Telerik.Sitefinity.News.Model.NewsItem",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.News.Model.NewsItem",
+          "PropertyType": "relation",
+          "RelationCollection": "newsitems",
+          "IsCollection": true
+        },
+        {
+          "Name": "name",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Filters.Result",
+        "PropertyType": "structure",
+        "IsCollection": true
+      }
+    },
+    "Default.Filters": {
+      "Name": "Filters",
+      "BindingType": "collection",
+      "BoundTo": "Telerik.Sitefinity.News.Model.NewsItem",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.News.Model.NewsItem",
+          "PropertyType": "relation",
+          "RelationCollection": "newsitems",
+          "IsCollection": true
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Filters.FilterItem",
+        "PropertyType": "structure",
+        "IsCollection": true
+      }
+    },
+    "Default.FiltersCount": {
+      "Name": "FiltersCount",
+      "BindingType": "collection",
+      "BoundTo": "Telerik.Sitefinity.News.Model.NewsItem",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.News.Model.NewsItem",
+          "PropertyType": "relation",
+          "RelationCollection": "newsitems",
+          "IsCollection": true
+        },
+        {
+          "Name": "name",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      ],
+      "Result": {
+        "ValueType": "int32",
+        "PropertyType": "primitive"
+      }
+    },
+    "Default.FolderSearchById": {
+      "Name": "FolderSearchById",
+      "BindingType": "collection",
+      "BoundTo": "Telerik.Sitefinity.Libraries.Model.Image",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Libraries.Model.Image",
+          "PropertyType": "relation",
+          "RelationCollection": "images",
+          "IsCollection": true
+        },
+        {
+          "Name": "id",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Modules.Libraries.Web.Services.OperationProvider.ExtendedFolder",
+        "PropertyType": "structure"
+      }
+    },
+    "Default.FoldersRecursiveSearch": {
+      "Name": "FoldersRecursiveSearch",
+      "BindingType": "collection",
+      "BoundTo": "Telerik.Sitefinity.Libraries.Model.Image",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Libraries.Model.Image",
+          "PropertyType": "relation",
+          "RelationCollection": "images",
+          "IsCollection": true
+        },
+        {
+          "Name": "parentId",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Modules.Libraries.Web.Services.OperationProvider.ExtendedFolder",
+        "PropertyType": "structure",
+        "IsCollection": true
+      }
+    },
+    "Default.GetActivity": {
+      "Name": "GetActivity",
+      "BindingType": "collection",
+      "BoundTo": "Telerik.Sitefinity.ServiceHooks.Model.ServiceHook",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.ServiceHooks.Model.ServiceHook",
+          "PropertyType": "relation",
+          "RelationCollection": "servicehooks",
+          "IsCollection": true
+        },
+        {
+          "Name": "activityId",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.ServiceHooks.Model.ServiceHookActivityDto",
+        "PropertyType": "structure"
+      }
+    },
+    "Default.GetAvailableParentPages": {
+      "Name": "GetAvailableParentPages",
+      "BindingType": "entity",
+      "BoundTo": "Telerik.Sitefinity.Pages.Model.PageNode",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Pages.Model.PageNode",
+          "PropertyType": "relation",
+          "RelationCollection": "pages"
+        },
+        {
+          "Name": "parentId",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        {
+          "Name": "search",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        {
+          "Name": "recent",
+          "ValueType": "boolean",
+          "PropertyType": "primitive"
+        },
+        {
+          "Name": "excludeOptions",
+          "ValueType": "int32",
+          "PropertyType": "primitive"
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Web.Api.OData.Operations.Pages.SitemapPage",
+        "PropertyType": "structure",
+        "IsCollection": true
+      }
+    },
+    "Default.GetAvailableParentTaxons": {
+      "Name": "GetAvailableParentTaxons",
+      "BindingType": "entity",
+      "BoundTo": "Telerik.Sitefinity.Taxonomies.Model.HierarchicalTaxon",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Taxonomies.Model.HierarchicalTaxon",
+          "PropertyType": "relation",
+          "RelationCollection": "hierarchy-taxa"
+        },
+        {
+          "Name": "taxonomyId",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        {
+          "Name": "recent",
+          "ValueType": "boolean",
+          "PropertyType": "primitive"
+        },
+        {
+          "Name": "excludeOptions",
+          "ValueType": "int32",
+          "PropertyType": "primitive"
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Taxonomies.Model.HierarchicalTaxon",
+        "PropertyType": "relation",
+        "RelationCollection": "hierarchy-taxa",
+        "IsCollection": true
+      }
+    },
+    "Default.GetChoiceOptions": {
+      "Name": "GetChoiceOptions",
+      "BindingType": "collection",
+      "BoundTo": "Telerik.Sitefinity.ServiceHooks.Model.ServiceHook",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.ServiceHooks.Model.ServiceHook",
+          "PropertyType": "relation",
+          "RelationCollection": "servicehooks",
+          "IsCollection": true
+        },
+        {
+          "Name": "fieldName",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.ServiceHooks.Model.ServiceHookSettingChoice",
+        "PropertyType": "structure",
+        "IsCollection": true
+      }
+    },
+    "Default.GetComponentMetadata": {
+      "Name": "GetComponentMetadata",
+      "BindingType": "entity",
+      "BoundTo": "Telerik.Sitefinity.Pages.Model.PageNode",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Pages.Model.PageNode",
+          "PropertyType": "relation",
+          "RelationCollection": "pages"
+        },
+        {
+          "Name": "componentId",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Web.Services.Contracts.Operations.Pages.PropertyEditor.Adaptors.Model.ControlMetadata",
+        "PropertyType": "structure"
+      }
+    },
+    "Default.GetExternalConfig": {
+      "Name": "GetExternalConfig",
+      "BindingType": "unbound",
+      "Arguments": [],
+      "Result": {
+        "ValueType": "string",
+        "PropertyType": "primitive"
+      }
+    },
+    "Default.GetHistory": {
+      "Name": "GetHistory",
+      "BindingType": "entity",
+      "BoundTo": "Telerik.Sitefinity.ServiceHooks.Model.ServiceHook",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.ServiceHooks.Model.ServiceHook",
+          "PropertyType": "relation",
+          "RelationCollection": "servicehooks"
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.ServiceHooks.Model.ServiceHookActivityDto",
+        "PropertyType": "structure",
+        "IsCollection": true
+      }
+    },
+    "Default.GetItemById": {
+      "Name": "GetItemById",
+      "BindingType": "collection",
+      "BoundTo": "Telerik.Sitefinity.GenericContent.Model.ContentItem",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.GenericContent.Model.ContentItem",
+          "PropertyType": "relation",
+          "RelationCollection": "contentitems",
+          "IsCollection": true
+        },
+        {
+          "Name": "itemId",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.GenericContent.Model.ContentItem",
+        "PropertyType": "relation",
+        "RelationCollection": "contentitems"
+      }
+    },
+    "Default.GetItemTypesUsingTaxonomy": {
+      "Name": "GetItemTypesUsingTaxonomy",
+      "BindingType": "entity",
+      "BoundTo": "Telerik.Sitefinity.Taxonomies.Model.Taxonomy",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Taxonomies.Model.Taxonomy",
+          "PropertyType": "relation",
+          "RelationCollection": "taxonomies"
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Web.Api.OData.Operations.Taxonomies.Models.TypeInfo",
+        "PropertyType": "structure",
+        "IsCollection": true
+      }
+    },
+    "Default.GetItemWithFallback": {
+      "Name": "GetItemWithFallback",
+      "BindingType": "entity",
+      "BoundTo": "Telerik.Sitefinity.Libraries.Model.Image",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Libraries.Model.Image",
+          "PropertyType": "relation",
+          "RelationCollection": "images"
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Libraries.Model.Image",
+        "PropertyType": "relation",
+        "RelationCollection": "images"
+      }
+    },
+    "Default.GetMarkedItems": {
+      "Name": "GetMarkedItems",
+      "BindingType": "entity",
+      "BoundTo": "Telerik.Sitefinity.Taxonomies.Model.FlatTaxon",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Taxonomies.Model.FlatTaxon",
+          "PropertyType": "relation",
+          "RelationCollection": "flat-taxa"
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Web.Api.OData.Operations.Taxonomies.Models.MarkedItem",
+        "PropertyType": "structure",
+        "IsCollection": true
+      }
+    },
+    "Default.GetMediaFileLinks": {
+      "Name": "GetMediaFileLinks",
+      "BindingType": "entity",
+      "BoundTo": "Telerik.Sitefinity.Libraries.Model.Image",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Libraries.Model.Image",
+          "PropertyType": "relation",
+          "RelationCollection": "images"
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Modules.Libraries.Web.Services.OperationProvider.ExtendedMediaLink",
+        "PropertyType": "structure",
+        "IsCollection": true
+      }
+    },
+    "Default.GetOwner": {
+      "Name": "GetOwner",
+      "BindingType": "entity",
+      "BoundTo": "Telerik.Sitefinity.Multisite.Model.Site",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Multisite.Model.Site",
+          "PropertyType": "relation",
+          "RelationCollection": "sites"
+        }
+      ],
+      "Result": {
+        "ValueType": "string",
+        "PropertyType": "primitive"
+      }
+    },
+    "Default.GetPageByUrl": {
+      "Name": "GetPageByUrl",
+      "BindingType": "collection",
+      "BoundTo": "Telerik.Sitefinity.Pages.Model.PageNode",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Pages.Model.PageNode",
+          "PropertyType": "relation",
+          "RelationCollection": "pages",
+          "IsCollection": true
+        },
+        {
+          "Name": "url",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Pages.Model.PageNode",
+        "PropertyType": "relation",
+        "RelationCollection": "pages"
+      }
+    },
+    "Default.GetPageTemplates": {
+      "Name": "GetPageTemplates",
+      "BindingType": "collection",
+      "BoundTo": "Telerik.Sitefinity.Pages.Model.PageNode",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Pages.Model.PageNode",
+          "PropertyType": "relation",
+          "RelationCollection": "pages",
+          "IsCollection": true
+        },
+        {
+          "Name": "selectedPages",
+          "ValueType": "string",
+          "PropertyType": "primitive",
+          "IsCollection": true
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Web.Api.OData.Operations.Pages.Models.PageTemplateCategory",
+        "PropertyType": "structure",
+        "IsCollection": true
+      }
+    },
+    "Default.GetPreference": {
+      "Name": "GetPreference",
+      "BindingType": "unbound",
+      "Arguments": [
+        {
+          "Name": "keys",
+          "ValueType": "string",
+          "PropertyType": "primitive",
+          "IsCollection": true
+        }
+      ],
+      "Result": {
+        "ValueType": "string",
+        "PropertyType": "primitive"
+      }
+    },
+    "Default.GetPropertyValues": {
+      "Name": "GetPropertyValues",
+      "BindingType": "entity",
+      "BoundTo": "Telerik.Sitefinity.Pages.Model.PageNode",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Pages.Model.PageNode",
+          "PropertyType": "relation",
+          "RelationCollection": "pages"
+        },
+        {
+          "Name": "componentId",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Web.Services.Contracts.Operations.Pages.PropertyEditor.Adaptors.Model.PropertyValueGroupContainer",
+        "PropertyType": "structure"
+      }
+    },
+    "Default.GetRecent": {
+      "Name": "GetRecent",
+      "BindingType": "collection",
+      "BoundTo": "Telerik.Sitefinity.Multisite.Model.Site",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Multisite.Model.Site",
+          "PropertyType": "relation",
+          "RelationCollection": "sites",
+          "IsCollection": true
+        },
+        {
+          "Name": "excludedItemIds",
+          "ValueType": "string",
+          "PropertyType": "primitive",
+          "IsCollection": true
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Multisite.Model.Site",
+        "PropertyType": "relation",
+        "RelationCollection": "sites",
+        "IsCollection": true
+      }
+    },
+    "Default.GetRecentTaxons": {
+      "Name": "GetRecentTaxons",
+      "BindingType": "collection",
+      "BoundTo": "Telerik.Sitefinity.Multisite.Model.Site",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Multisite.Model.Site",
+          "PropertyType": "relation",
+          "RelationCollection": "sites",
+          "IsCollection": true
+        },
+        {
+          "Name": "excludedItemIds",
+          "ValueType": "string",
+          "PropertyType": "primitive",
+          "IsCollection": true
+        },
+        {
+          "Name": "taxonomyId",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Web.Api.OData.Operations.Taxonomies.Models.TaxonDTO",
+        "PropertyType": "structure",
+        "IsCollection": true
+      }
+    },
+    "Default.GetRelatedSites": {
+      "Name": "GetRelatedSites",
+      "BindingType": "entity",
+      "BoundTo": "Telerik.Sitefinity.Taxonomies.Model.Taxonomy",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Taxonomies.Model.Taxonomy",
+          "PropertyType": "relation",
+          "RelationCollection": "taxonomies"
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Web.Api.OData.Operations.Taxonomies.Models.RelatedSiteInfo",
+        "PropertyType": "structure",
+        "IsCollection": true
+      }
+    },
+    "Default.GetSharedInSites": {
+      "Name": "GetSharedInSites",
+      "BindingType": "entity",
+      "BoundTo": "Telerik.Sitefinity.Pages.Model.PageTemplate",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Pages.Model.PageTemplate",
+          "PropertyType": "relation",
+          "RelationCollection": "templates"
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Web.Api.OData.Operations.Pages.Models.SharedInSiteModel",
+        "PropertyType": "structure",
+        "IsCollection": true
+      }
+    },
+    "Default.GetState": {
+      "Name": "GetState",
+      "BindingType": "entity",
+      "BoundTo": "Telerik.Sitefinity.Pages.Model.PageNode",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Pages.Model.PageNode",
+          "PropertyType": "relation",
+          "RelationCollection": "pages"
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Renderer.Editor.EditorState",
+        "PropertyType": "structure"
+      }
+    },
+    "Default.GetTempForm": {
+      "Name": "GetTempForm",
+      "BindingType": "entity",
+      "BoundTo": "Telerik.Sitefinity.Forms.Model.FormDraft",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Forms.Model.FormDraft",
+          "PropertyType": "relation",
+          "RelationCollection": "form-drafts"
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Forms.Model.FormDraft",
+        "PropertyType": "relation",
+        "RelationCollection": "form-drafts"
+      }
+    },
+    "Default.GetTemplateStatistics": {
+      "Name": "GetTemplateStatistics",
+      "BindingType": "collection",
+      "BoundTo": "Telerik.Sitefinity.Pages.Model.PageNode",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Pages.Model.PageNode",
+          "PropertyType": "relation",
+          "RelationCollection": "pages",
+          "IsCollection": true
+        },
+        {
+          "Name": "templateNames",
+          "ValueType": "string",
+          "PropertyType": "primitive",
+          "IsCollection": true
+        },
+        {
+          "Name": "renderer",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Web.Api.OData.Operations.Pages.Models.TemplateStatistic",
+        "PropertyType": "structure",
+        "IsCollection": true
+      }
+    },
+    "Default.GetThumbnails": {
+      "Name": "GetThumbnails",
+      "BindingType": "entity",
+      "BoundTo": "Telerik.Sitefinity.Libraries.Model.Image",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Libraries.Model.Image",
+          "PropertyType": "relation",
+          "RelationCollection": "images"
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Web.Api.OData.Operations.Media.Models.ThumbnailModel",
+        "PropertyType": "structure",
+        "IsCollection": true
+      }
+    },
+    "Default.GetUserProviders": {
+      "Name": "GetUserProviders",
+      "BindingType": "unbound",
+      "Arguments": [],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Web.Services.Contracts.Operations.System.DataProviderModel",
+        "PropertyType": "structure",
+        "IsCollection": true
+      }
+    },
+    "Default.GetUsers": {
+      "Name": "GetUsers",
+      "BindingType": "unbound",
+      "Arguments": [
+        {
+          "Name": "provider",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        {
+          "Name": "search",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Web.Api.OData.Operations.Pages.Models.Owner",
+        "PropertyType": "structure",
+        "IsCollection": true
+      }
+    },
+    "Default.GetWidgetOperations": {
+      "Name": "GetWidgetOperations",
+      "BindingType": "entity",
+      "BoundTo": "Telerik.Sitefinity.Pages.Model.PageNode",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Pages.Model.PageNode",
+          "PropertyType": "relation",
+          "RelationCollection": "pages"
+        },
+        {
+          "Name": "widgetKey",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Modules.ItemOperation",
+        "PropertyType": "structure",
+        "IsCollection": true
+      }
+    },
+    "Default.HierarchicalWidgetModel": {
+      "Name": "HierarchicalWidgetModel",
+      "BindingType": "entity",
+      "BoundTo": "Telerik.Sitefinity.Pages.Model.PageNode",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Pages.Model.PageNode",
+          "PropertyType": "relation",
+          "RelationCollection": "pages"
+        },
+        {
+          "Name": "componentId",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Renderer.Editor.HierarchicalWidgetModelResponse",
+        "PropertyType": "structure"
+      }
+    },
+    "Default.Hierarchy": {
+      "Name": "Hierarchy",
+      "BindingType": "collection",
+      "BoundTo": "Telerik.Sitefinity.Pages.Model.PageNode",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Pages.Model.PageNode",
+          "PropertyType": "relation",
+          "RelationCollection": "pages",
+          "IsCollection": true
+        },
+        {
+          "Name": "parentId",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        {
+          "Name": "expandedPages",
+          "ValueType": "string",
+          "PropertyType": "primitive",
+          "IsCollection": true
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Web.Api.OData.Operations.Pages.SitemapPage",
+        "PropertyType": "structure",
+        "IsCollection": true
+      }
+    },
+    "Default.HierarhicalByLevelsResponse": {
+      "Name": "HierarhicalByLevelsResponse",
+      "BindingType": "collection",
+      "BoundTo": "Telerik.Sitefinity.Pages.Model.PageNode",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Pages.Model.PageNode",
+          "PropertyType": "relation",
+          "RelationCollection": "pages",
+          "IsCollection": true
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Web.Api.OData.Operations.Pages.FrontendPageNodeExtended",
+        "PropertyType": "structure",
+        "IsCollection": true
+      }
+    },
+    "Default.LazyComponents": {
+      "Name": "LazyComponents",
+      "BindingType": "entity",
+      "BoundTo": "Telerik.Sitefinity.Pages.Model.PageNode",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Pages.Model.PageNode",
+          "PropertyType": "relation",
+          "RelationCollection": "pages"
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Renderer.Web.Services.Dto.ComponentsResponseWithState",
+        "PropertyType": "structure"
+      }
+    },
+    "Default.Lock": {
+      "Name": "Lock",
+      "BindingType": "entity",
+      "BoundTo": "Telerik.Sitefinity.Pages.Model.PageNode",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Pages.Model.PageNode",
+          "PropertyType": "relation",
+          "RelationCollection": "pages"
+        },
+        {
+          "Name": "state",
+          "ValueType": "Telerik.Sitefinity.Renderer.Editor.LockContext",
+          "PropertyType": "structure"
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Renderer.Editor.EditorState",
+        "PropertyType": "structure"
+      }
+    },
+    "Default.ManageBackgroundTasks": {
+      "Name": "ManageBackgroundTasks",
+      "BindingType": "unbound",
+      "Arguments": [
+        {
+          "Name": "itemId",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        {
+          "Name": "taskType",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        {
+          "Name": "action",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Scheduling.Web.Services.WcfScheduledTask",
+        "PropertyType": "structure",
+        "IsCollection": true
+      }
+    },
+    "Default.MergeTaxon": {
+      "Name": "MergeTaxon",
+      "BindingType": "collection",
+      "BoundTo": "Telerik.Sitefinity.Taxonomies.Model.FlatTaxon",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Taxonomies.Model.FlatTaxon",
+          "PropertyType": "relation",
+          "RelationCollection": "flat-taxa",
+          "IsCollection": true
+        },
+        {
+          "Name": "taxonIds",
+          "ValueType": "string",
+          "PropertyType": "primitive",
+          "IsCollection": true
+        },
+        {
+          "Name": "targetTaxonId",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      ],
+      "Result": {
+        "ValueType": "System.Void",
+        "PropertyType": "structure"
+      }
+    },
+    "Default.Model": {
+      "Name": "Model",
+      "BindingType": "collection",
+      "BoundTo": "Telerik.Sitefinity.Pages.Model.PageNode",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Pages.Model.PageNode",
+          "PropertyType": "relation",
+          "RelationCollection": "pages",
+          "IsCollection": true
+        },
+        {
+          "Name": "url",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Renderer.Web.Services.Dto.PageDtoWithContext",
+        "PropertyType": "structure"
+      }
+    },
+    "Default.Move": {
+      "Name": "Move",
+      "BindingType": "collection",
+      "BoundTo": "Telerik.Sitefinity.Blogs.Model.BlogPost",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Blogs.Model.BlogPost",
+          "PropertyType": "relation",
+          "RelationCollection": "blogposts",
+          "IsCollection": true
+        },
+        {
+          "Name": "items",
+          "ValueType": "string",
+          "PropertyType": "primitive",
+          "IsCollection": true
+        },
+        {
+          "Name": "target",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      ],
+      "Result": {
+        "ValueType": "System.Void",
+        "PropertyType": "structure"
+      }
+    },
+    "Default.MoveTaxon": {
+      "Name": "MoveTaxon",
+      "BindingType": "collection",
+      "BoundTo": "Telerik.Sitefinity.Taxonomies.Model.FlatTaxon",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Taxonomies.Model.FlatTaxon",
+          "PropertyType": "relation",
+          "RelationCollection": "flat-taxa",
+          "IsCollection": true
+        },
+        {
+          "Name": "taxonIds",
+          "ValueType": "string",
+          "PropertyType": "primitive",
+          "IsCollection": true
+        },
+        {
+          "Name": "targetTaxonId",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      ],
+      "Result": {
+        "ValueType": "System.Void",
+        "PropertyType": "structure"
+      }
+    },
+    "Default.MoveWidget": {
+      "Name": "MoveWidget",
+      "BindingType": "entity",
+      "BoundTo": "Telerik.Sitefinity.Pages.Model.PageNode",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Pages.Model.PageNode",
+          "PropertyType": "relation",
+          "RelationCollection": "pages"
+        },
+        {
+          "Name": "widget",
+          "ValueType": "Telerik.Sitefinity.Renderer.Editor.DefaultAddWidgetContext",
+          "PropertyType": "structure"
+        }
+      ],
+      "Result": {
+        "ValueType": "System.Void",
+        "PropertyType": "structure"
+      }
+    },
+    "Default.RemoveItemFromTaxon": {
+      "Name": "RemoveItemFromTaxon",
+      "BindingType": "entity",
+      "BoundTo": "Telerik.Sitefinity.Taxonomies.Model.FlatTaxon",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Taxonomies.Model.FlatTaxon",
+          "PropertyType": "relation",
+          "RelationCollection": "flat-taxa"
+        },
+        {
+          "Name": "id",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        {
+          "Name": "contentType",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        {
+          "Name": "provider",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      ],
+      "Result": {
+        "ValueType": "System.Void",
+        "PropertyType": "structure"
+      }
+    },
+    "Default.Reorder": {
+      "Name": "Reorder",
+      "BindingType": "collection",
+      "BoundTo": "Telerik.Sitefinity.Taxonomies.Model.HierarchicalTaxon",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Taxonomies.Model.HierarchicalTaxon",
+          "PropertyType": "relation",
+          "RelationCollection": "hierarchy-taxa",
+          "IsCollection": true
+        },
+        {
+          "Name": "actions",
+          "ValueType": "Telerik.Sitefinity.Web.Api.OData.Operations.Models.ReorderAction",
+          "PropertyType": "structure",
+          "IsCollection": true
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Web.Api.OData.Operations.OperationResults.BulkOperationResult",
+        "PropertyType": "structure"
+      }
+    },
+    "Default.ReorderItems": {
+      "Name": "ReorderItems",
+      "BindingType": "collection",
+      "BoundTo": "Telerik.Sitefinity.Multisite.Model.Site",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Multisite.Model.Site",
+          "PropertyType": "relation",
+          "RelationCollection": "sites",
+          "IsCollection": true
+        },
+        {
+          "Name": "items",
+          "ValueType": "string",
+          "PropertyType": "primitive",
+          "IsCollection": true
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Multisite.Model.Site",
+        "PropertyType": "relation",
+        "RelationCollection": "sites",
+        "IsCollection": true
+      }
+    },
+    "Default.RunAgain": {
+      "Name": "RunAgain",
+      "BindingType": "collection",
+      "BoundTo": "Telerik.Sitefinity.ServiceHooks.Model.ServiceHook",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.ServiceHooks.Model.ServiceHook",
+          "PropertyType": "relation",
+          "RelationCollection": "servicehooks",
+          "IsCollection": true
+        },
+        {
+          "Name": "activityId",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      ],
+      "Result": {
+        "ValueType": "System.Void",
+        "PropertyType": "structure"
+      }
+    },
+    "Default.SaveSite": {
+      "Name": "SaveSite",
+      "BindingType": "entity",
+      "BoundTo": "Telerik.Sitefinity.Multisite.Model.Site",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Multisite.Model.Site",
+          "PropertyType": "relation",
+          "RelationCollection": "sites"
+        },
+        {
+          "Name": "siteConfiguration",
+          "ValueType": "Telerik.Sitefinity.Web.Api.OData.Operations.Sites.Models.SiteConfiguration",
+          "PropertyType": "structure"
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Multisite.Web.Services.ViewModel.SiteConfigurationViewModel",
+        "PropertyType": "structure"
+      }
+    },
+    "Default.SaveSiteDataSources": {
+      "Name": "SaveSiteDataSources",
+      "BindingType": "entity",
+      "BoundTo": "Telerik.Sitefinity.Multisite.Model.Site",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Multisite.Model.Site",
+          "PropertyType": "relation",
+          "RelationCollection": "sites"
+        },
+        {
+          "Name": "dataSourceConfigurations",
+          "ValueType": "Telerik.Sitefinity.Web.Api.OData.Operations.Sites.Models.DataSourceConfiguration",
+          "PropertyType": "structure",
+          "IsCollection": true
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Multisite.Web.Services.ViewModel.SiteConfigurationViewModel",
+        "PropertyType": "structure"
+      }
+    },
+    "Default.SaveTempForm": {
+      "Name": "SaveTempForm",
+      "BindingType": "entity",
+      "BoundTo": "Telerik.Sitefinity.Forms.Model.FormDraft",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Forms.Model.FormDraft",
+          "PropertyType": "relation",
+          "RelationCollection": "form-drafts"
+        },
+        {
+          "Name": "rules",
+          "ValueType": "Telerik.Sitefinity.Modules.Forms.Web.Services.Operations.FormRule",
+          "PropertyType": "structure",
+          "IsCollection": true
+        }
+      ],
+      "Result": {
+        "ValueType": "System.Void",
+        "PropertyType": "structure"
+      }
+    },
+    "Default.Search": {
+      "Name": "Search",
+      "BindingType": "collection",
+      "BoundTo": "Telerik.Sitefinity.Libraries.Model.Image",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Libraries.Model.Image",
+          "PropertyType": "relation",
+          "RelationCollection": "images",
+          "IsCollection": true
+        },
+        {
+          "Name": "searchFields",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Libraries.Model.Image",
+        "PropertyType": "relation",
+        "RelationCollection": "images",
+        "IsCollection": true
+      }
+    },
+    "Default.SetHomePage": {
+      "Name": "SetHomePage",
+      "BindingType": "collection",
+      "BoundTo": "Telerik.Sitefinity.Pages.Model.PageNode",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Pages.Model.PageNode",
+          "PropertyType": "relation",
+          "RelationCollection": "pages",
+          "IsCollection": true
+        },
+        {
+          "Name": "pageId",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      ],
+      "Result": {
+        "ValueType": "System.Void",
+        "PropertyType": "structure"
+      }
+    },
+    "Default.SetPreference": {
+      "Name": "SetPreference",
+      "BindingType": "unbound",
+      "Arguments": [
+        {
+          "Name": "key",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        {
+          "Name": "value",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      ],
+      "Result": {
+        "ValueType": "System.Void",
+        "PropertyType": "structure"
+      }
+    },
+    "Default.SetProperties": {
+      "Name": "SetProperties",
+      "BindingType": "entity",
+      "BoundTo": "Telerik.Sitefinity.Pages.Model.PageNode",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Pages.Model.PageNode",
+          "PropertyType": "relation",
+          "RelationCollection": "pages"
+        },
+        {
+          "Name": "propertyValueGroup",
+          "ValueType": "Telerik.Sitefinity.Web.Services.Contracts.Operations.Pages.PropertyEditor.Adaptors.Model.PropertyValueGroupContainer",
+          "PropertyType": "structure"
+        }
+      ],
+      "Result": {
+        "ValueType": "System.Void",
+        "PropertyType": "structure"
+      }
+    },
+    "Default.SfCountries": {
+      "Name": "SfCountries",
+      "BindingType": "unbound",
+      "Arguments": [],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Web.Services.Contracts.Operations.Address.CountryModel",
+        "PropertyType": "structure",
+        "IsCollection": true
+      }
+    },
+    "Default.SfDefaultTimeZone": {
+      "Name": "SfDefaultTimeZone",
+      "BindingType": "unbound",
+      "Arguments": [
+        {
+          "Name": "siteId",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Web.Services.Contracts.Operations.TimeZone.TimeZoneModel",
+        "PropertyType": "structure"
+      }
+    },
+    "Default.SfHelp": {
+      "Name": "SfHelp",
+      "BindingType": "collection",
+      "BoundTo": "Telerik.Sitefinity.Multisite.Model.Site",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Multisite.Model.Site",
+          "PropertyType": "relation",
+          "RelationCollection": "sites",
+          "IsCollection": true
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Multisite.Model.Site",
+        "PropertyType": "relation",
+        "RelationCollection": "sites"
+      }
+    },
+    "Default.SfProviders": {
+      "Name": "SfProviders",
+      "BindingType": "collection",
+      "BoundTo": "Telerik.Sitefinity.Multisite.Model.Site",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Multisite.Model.Site",
+          "PropertyType": "relation",
+          "RelationCollection": "sites",
+          "IsCollection": true
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Web.Services.Contracts.Operations.System.DataProviderModel",
+        "PropertyType": "structure",
+        "IsCollection": true
+      }
+    },
+    "Default.SfThumbnails": {
+      "Name": "SfThumbnails",
+      "BindingType": "collection",
+      "BoundTo": "Telerik.Sitefinity.Libraries.Model.Image",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Libraries.Model.Image",
+          "PropertyType": "relation",
+          "RelationCollection": "images",
+          "IsCollection": true
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Libraries.Model.Image",
+        "PropertyType": "relation",
+        "RelationCollection": "images"
+      }
+    },
+    "Default.SfTimeZones": {
+      "Name": "SfTimeZones",
+      "BindingType": "unbound",
+      "Arguments": [],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Web.Services.Contracts.Operations.TimeZone.TimeZoneModel",
+        "PropertyType": "structure",
+        "IsCollection": true
+      }
+    },
+    "Default.SharePreviewLink": {
+      "Name": "SharePreviewLink",
+      "BindingType": "entity",
+      "BoundTo": "Telerik.Sitefinity.Pages.Model.PageNode",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Pages.Model.PageNode",
+          "PropertyType": "relation",
+          "RelationCollection": "pages"
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Web.Api.OData.Operations.Pages.Models.SharePreviewLink",
+        "PropertyType": "structure"
+      }
+    },
+    "Default.SharedIn": {
+      "Name": "SharedIn",
+      "BindingType": "entity",
+      "BoundTo": "Telerik.Sitefinity.GenericContent.Model.ContentItem",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.GenericContent.Model.ContentItem",
+          "PropertyType": "relation",
+          "RelationCollection": "contentitems"
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Web.Api.OData.Operations.Models.SharedInLocation",
+        "PropertyType": "structure",
+        "IsCollection": true
+      }
+    },
+    "Default.SharedInCount": {
+      "Name": "SharedInCount",
+      "BindingType": "entity",
+      "BoundTo": "Telerik.Sitefinity.GenericContent.Model.ContentItem",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.GenericContent.Model.ContentItem",
+          "PropertyType": "relation",
+          "RelationCollection": "contentitems"
+        }
+      ],
+      "Result": {
+        "ValueType": "int32",
+        "PropertyType": "primitive"
+      }
+    },
+    "Default.Sorters": {
+      "Name": "Sorters",
+      "BindingType": "collection",
+      "BoundTo": "Telerik.Sitefinity.News.Model.NewsItem",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.News.Model.NewsItem",
+          "PropertyType": "relation",
+          "RelationCollection": "newsitems",
+          "IsCollection": true
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Web.Api.OData.Operations.Sorters.SortItem",
+        "PropertyType": "structure",
+        "IsCollection": true
+      }
+    },
+    "Default.Unlock": {
+      "Name": "Unlock",
+      "BindingType": "entity",
+      "BoundTo": "Telerik.Sitefinity.Pages.Model.PageNode",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Pages.Model.PageNode",
+          "PropertyType": "relation",
+          "RelationCollection": "pages"
+        }
+      ],
+      "Result": {
+        "ValueType": "System.Void",
+        "PropertyType": "structure"
+      }
+    },
+    "Default.UsedOnPages": {
+      "Name": "UsedOnPages",
+      "BindingType": "entity",
+      "BoundTo": "Telerik.Sitefinity.Pages.Model.PageTemplate",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Pages.Model.PageTemplate",
+          "PropertyType": "relation",
+          "RelationCollection": "templates"
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Web.Api.OData.Operations.Models.SharedInLocation",
+        "PropertyType": "structure",
+        "IsCollection": true
+      }
+    },
+    "Default.Validate": {
+      "Name": "Validate",
+      "BindingType": "collection",
+      "BoundTo": "Telerik.Sitefinity.News.Model.NewsItem",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.News.Model.NewsItem",
+          "PropertyType": "relation",
+          "RelationCollection": "newsitems",
+          "IsCollection": true
+        },
+        {
+          "Name": "forceFullValidation",
+          "ValueType": "boolean",
+          "PropertyType": "primitive"
+        },
+        {
+          "Name": "properties",
+          "ValueType": "Telerik.Sitefinity.Web.Api.OData.Operations.Validation.Models.ValidationRequest",
+          "PropertyType": "structure"
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Web.Api.OData.Operations.Validation.Models.ValidationResult",
+        "PropertyType": "structure"
+      }
+    },
+    "Default.Version": {
+      "Name": "Version",
+      "BindingType": "entity",
+      "BoundTo": "Telerik.Sitefinity.News.Model.NewsItem",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.News.Model.NewsItem",
+          "PropertyType": "relation",
+          "RelationCollection": "newsitems"
+        },
+        {
+          "Name": "id",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.News.Model.NewsItem",
+        "PropertyType": "relation",
+        "RelationCollection": "newsitems"
+      }
+    },
+    "Default.appliedTo": {
+      "Name": "appliedTo",
+      "BindingType": "entity",
+      "BoundTo": "Telerik.Sitefinity.Multisite.Model.Site",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Multisite.Model.Site",
+          "PropertyType": "relation",
+          "RelationCollection": "sites"
+        }
+      ],
+      "Result": {
+        "ValueType": "string",
+        "PropertyType": "primitive"
+      }
+    },
+    "Default.displaypages": {
+      "Name": "displaypages",
+      "BindingType": "entity",
+      "BoundTo": "Telerik.Sitefinity.Multisite.Model.Site",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Multisite.Model.Site",
+          "PropertyType": "relation",
+          "RelationCollection": "sites"
+        }
+      ],
+      "Result": {
+        "ValueType": "string",
+        "PropertyType": "primitive"
+      }
+    },
+    "Default.displaypagescount": {
+      "Name": "displaypagescount",
+      "BindingType": "entity",
+      "BoundTo": "Telerik.Sitefinity.Multisite.Model.Site",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Multisite.Model.Site",
+          "PropertyType": "relation",
+          "RelationCollection": "sites"
+        }
+      ],
+      "Result": {
+        "ValueType": "int32",
+        "PropertyType": "primitive"
+      }
+    },
+    "Default.dynamiclink": {
+      "Name": "dynamiclink",
+      "BindingType": "entity",
+      "BoundTo": "Telerik.Sitefinity.Multisite.Model.Site",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Multisite.Model.Site",
+          "PropertyType": "relation",
+          "RelationCollection": "sites"
+        },
+        {
+          "Name": "culture",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      ],
+      "Result": {
+        "ValueType": "string",
+        "PropertyType": "primitive"
+      }
+    },
+    "Default.folders": {
+      "Name": "folders",
+      "BindingType": "collection",
+      "BoundTo": "Telerik.Sitefinity.Libraries.Model.Album",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Libraries.Model.Album",
+          "PropertyType": "relation",
+          "RelationCollection": "albums",
+          "IsCollection": true
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Folder",
+        "PropertyType": "structure",
+        "IsCollection": true
+      }
+    },
+    "Default.itemmeta": {
+      "Name": "itemmeta",
+      "BindingType": "entity",
+      "BoundTo": "Telerik.Sitefinity.Multisite.Model.Site",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Multisite.Model.Site",
+          "PropertyType": "relation",
+          "RelationCollection": "sites"
+        },
+        {
+          "Name": "state",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      ],
+      "Result": {
+        "ValueType": "string",
+        "PropertyType": "primitive"
+      }
+    },
+    "Default.linkitems": {
+      "Name": "linkitems",
+      "BindingType": "entity",
+      "BoundTo": "Telerik.Sitefinity.Multisite.Model.Site",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Multisite.Model.Site",
+          "PropertyType": "relation",
+          "RelationCollection": "sites"
+        }
+      ],
+      "Result": {
+        "ValueType": "string",
+        "PropertyType": "primitive"
+      }
+    },
+    "Default.linkitemscount": {
+      "Name": "linkitemscount",
+      "BindingType": "entity",
+      "BoundTo": "Telerik.Sitefinity.Multisite.Model.Site",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Multisite.Model.Site",
+          "PropertyType": "relation",
+          "RelationCollection": "sites"
+        }
+      ],
+      "Result": {
+        "ValueType": "int32",
+        "PropertyType": "primitive"
+      }
+    },
+    "Default.mediaItemsRecursiveSearch": {
+      "Name": "mediaItemsRecursiveSearch",
+      "BindingType": "collection",
+      "BoundTo": "Telerik.Sitefinity.Libraries.Model.Album",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Libraries.Model.Album",
+          "PropertyType": "relation",
+          "RelationCollection": "albums",
+          "IsCollection": true
+        },
+        {
+          "Name": "parentId",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      ],
+      "Result": {
+        "ValueType": "Telerik.Sitefinity.Libraries.Model.Image",
+        "PropertyType": "relation",
+        "RelationCollection": "images",
+        "IsCollection": true
+      }
+    },
+    "Default.operation": {
+      "Name": "operation",
+      "BindingType": "collection",
+      "BoundTo": "Telerik.Sitefinity.Multisite.Model.Site",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Multisite.Model.Site",
+          "PropertyType": "relation",
+          "RelationCollection": "sites",
+          "IsCollection": true
+        },
+        {
+          "Name": "actionParameters",
+          "ValueType": "unknown (Default.parameters)",
+          "PropertyType": "unknown"
+        },
+        {
+          "Name": "action",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      ],
+      "Result": {
+        "ValueType": "string",
+        "PropertyType": "primitive"
+      }
+    },
+    "Default.operations": {
+      "Name": "operations",
+      "BindingType": "collection",
+      "BoundTo": "Telerik.Sitefinity.Multisite.Model.Site",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Multisite.Model.Site",
+          "PropertyType": "relation",
+          "RelationCollection": "sites",
+          "IsCollection": true
+        }
+      ],
+      "Result": {
+        "ValueType": "string",
+        "PropertyType": "primitive"
+      }
+    },
+    "Default.postcomment": {
+      "Name": "postcomment",
+      "BindingType": "entity",
+      "BoundTo": "Telerik.Sitefinity.Multisite.Model.Site",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Multisite.Model.Site",
+          "PropertyType": "relation",
+          "RelationCollection": "sites"
+        },
+        {
+          "Name": "message",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        {
+          "Name": "name",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      ],
+      "Result": {
+        "ValueType": "string",
+        "PropertyType": "primitive"
+      }
+    },
+    "Default.restore": {
+      "Name": "restore",
+      "BindingType": "entity",
+      "BoundTo": "Telerik.Sitefinity.Multisite.Model.Site",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Multisite.Model.Site",
+          "PropertyType": "relation",
+          "RelationCollection": "sites"
+        }
+      ],
+      "Result": {
+        "ValueType": "string",
+        "PropertyType": "primitive"
+      }
+    },
+    "Default.savetemp": {
+      "Name": "savetemp",
+      "BindingType": "entity",
+      "BoundTo": "Telerik.Sitefinity.Multisite.Model.Site",
+      "Arguments": [
+        {
+          "Name": "bindingParameter",
+          "ValueType": "Telerik.Sitefinity.Multisite.Model.Site",
+          "PropertyType": "relation",
+          "RelationCollection": "sites"
+        },
+        {
+          "Name": "model",
+          "ValueType": "Telerik.Sitefinity.Multisite.Model.Site",
+          "PropertyType": "relation",
+          "RelationCollection": "sites"
+        }
+      ],
+      "Result": {
+        "ValueType": "string",
+        "PropertyType": "primitive"
+      }
+    },
+    "Default.userpreferences": {
+      "Name": "userpreferences",
+      "BindingType": "unbound",
+      "Arguments": [
+        {
+          "Name": "value",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        },
+        {
+          "Name": "key",
+          "ValueType": "string",
+          "PropertyType": "primitive"
+        }
+      ],
+      "Result": {
+        "ValueType": "string",
+        "PropertyType": "primitive"
+      }
+    },
     "Telerik.Sitefinity.Web.Api.Help.sfhelp": {
       "Name": "sfhelp",
       "BindingType": "unbound",
