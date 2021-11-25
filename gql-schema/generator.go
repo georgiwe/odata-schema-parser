@@ -49,8 +49,8 @@ func typeToArray(typeName string) string {
 
 func propertyToFieldType(prop mschema.Property, types map[string]mschema.Type) string {
 	var fieldType string
-	if prop.PropertyType == "primitive" {
-		fieldType = strings.Title(prop.ValueType)
+	if prop.Kind == "primitive" {
+		fieldType = strings.Title(prop.Type)
 		if strings.HasPrefix(fieldType, "Int") || strings.HasPrefix(fieldType, "Float") {
 			fieldType = replaceLastDigitsRegexp.ReplaceAllString(fieldType, "")
 		}
@@ -60,7 +60,7 @@ func propertyToFieldType(prop mschema.Property, types map[string]mschema.Type) s
 			fieldType = "Float"
 		}
 	} else {
-		fieldType = getTypeName(prop.ValueType, types)
+		fieldType = getTypeName(prop.Type, types)
 	}
 
 	if prop.IsCollection {
@@ -115,7 +115,7 @@ func createInputType(entityType *mschema.EntityType, types map[string]mschema.Ty
 	typeDef.Name = getInputTypeName(typeDef.Name)
 	fields := []Field{}
 	for _, field := range *typeDef.Fields {
-		isStructuralProp := entityType.Properties[field.Name].PropertyType != "relation"
+		isStructuralProp := entityType.Properties[field.Name].Kind != "relation"
 		if field.Type != "ID" && isStructuralProp {
 			field.Required = false
 			fields = append(fields, field)
@@ -261,21 +261,6 @@ func typeDefToDefinition(service *mschema.Service) []Definition {
 	var gqlTypeDef Definition
 	var inputDef Definition
 
-	// typesToIterate := make(map[string]mschema.Type)
-	// i := 0
-	// for name, ttype := range service.Types {
-	// 	if i >= 2 {
-	// 		break
-	// 	}
-	// 	if getName(ttype) != "Site" && getName(ttype) != "CultureModel" {
-	// 		continue
-	// 	}
-	// 	typesToIterate[name] = ttype
-	// 	i += 1
-	// }
-
-	// fmt.Println(len(typesToIterate))
-
 	for name, typeDef := range service.Types {
 		switch typeDef.Kind {
 		case "EntityType":
@@ -303,40 +288,6 @@ func typeDefToDefinition(service *mschema.Service) []Definition {
 
 	return gqlTypes
 }
-
-// func invocationToMutation(invocation mschema.Invocation, types map[string]mschema.Type) Field {
-// 	retType := "System__Void"
-
-// 	if invocation.Result != nil {
-// 		retType = propertyToFieldType(*invocation.Result, types)
-// 	}
-
-// 	field := Field{
-// 		Type:      retType,
-// 		Arguments: &[]Field{},
-// 		Element:   Element{Name: utils.LowerFirstLetter(invocation.Name)},
-// 	}
-
-// 	if len(invocation.Arguments) > 0 {
-// 		fieldArgs := []Field{}
-
-// 		for _, arg := range invocation.Arguments {
-// 			fieldArgs = append(fieldArgs, propToField(arg.Name, arg.Property, types))
-// 		}
-
-// 		field.Arguments = &fieldArgs
-// 	}
-
-// 	return field
-// }
-
-// func invocationsToMutations(invocations map[string]mschema.Invocation, types map[string]mschema.Type) []Field {
-// 	result := []Field{}
-// 	for _, invocation := range invocations {
-// 		result = append(result, invocationToMutation(invocation, types))
-// 	}
-// 	return result
-// }
 
 func Generate(service *mschema.Service) string {
 	schema := Schema{
@@ -384,19 +335,6 @@ func Generate(service *mschema.Service) string {
 
 	// TODO: better way to append or not use pointer?
 	for _, collection := range service.Collections {
-		// skip := false
-		// for _, ttype := range schema.Types {
-		// 	idx := strings.LastIndex(collection.EntityType, ".")
-		// 	skip = ttype.Name != collection.EntityType[idx+1:]
-		// 	if !skip {
-		// 		break
-		// 	}
-		// }
-
-		// if skip {
-		// 	continue
-		// }
-
 		queryFields := createQueryFields(&collection, service)
 		queryFuncs := append(*schema.Query.Fields, queryFields...)
 		schema.Query.Fields = &queryFuncs

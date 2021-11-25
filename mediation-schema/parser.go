@@ -136,7 +136,7 @@ func mapFunction(funcName string, function *ods.Function, objects *edmObjects) (
 			}
 		}
 
-		inv.BoundTo = &inv.Arguments[0].ValueType
+		inv.BoundTo = &inv.Arguments[0].Type
 	}
 
 	return inv, nil
@@ -188,7 +188,7 @@ func mapAction(actionName string, action *ods.Action, objects *edmObjects) (Invo
 		}
 
 		// inv.BoundTo = &action.Parameters[0].Type
-		inv.BoundTo = &inv.Arguments[0].ValueType
+		inv.BoundTo = &inv.Arguments[0].Type
 	}
 
 	return inv, nil
@@ -331,13 +331,13 @@ func findCollectionsByEntityType(qualifiedName string, objects *edmObjects) []st
 
 func typeToProperty(typeName string, objects *edmObjects) (Property, error) {
 	result := Property{
-		PropertyType: "unknown",
-		ValueType:    fmt.Sprintf("unknown (%s)", typeName),
+		Kind:         "unknown",
+		Type:         fmt.Sprintf("unknown (%s)", typeName),
 		IsCollection: false,
 	}
 	if mappedType, err := mapEdmType(typeName); err == nil {
-		result.PropertyType = "primitive"
-		result.ValueType = mappedType
+		result.Kind = "primitive"
+		result.Type = mappedType
 	} else if strings.HasPrefix(typeName, collectionPrefix) {
 		actualType := typeName[len(collectionPrefix) : len(typeName)-1]
 		if mapped, err := typeToProperty(actualType, objects); err != nil {
@@ -347,8 +347,8 @@ func typeToProperty(typeName string, objects *edmObjects) (Property, error) {
 			result = mapped
 		}
 	} else if _, ok := objects.entityTypes[typeName]; ok {
-		result.ValueType = typeName
-		result.PropertyType = "relation"
+		result.Type = typeName
+		result.Kind = "relation"
 		collections := findCollectionsByEntityType(typeName, objects)
 		if len(collections) == 0 {
 			return Property{}, fmt.Errorf("unable to find collection for entity type '%s'", typeName)
@@ -359,11 +359,11 @@ func typeToProperty(typeName string, objects *edmObjects) (Property, error) {
 		// }
 		result.RelationCollection = &collections[0]
 	} else if _, ok := objects.complexTypes[typeName]; ok {
-		result.PropertyType = "structure"
-		result.ValueType = typeName
+		result.Kind = "structure"
+		result.Type = typeName
 	} else if _, ok := objects.enumTypes[typeName]; ok {
-		result.PropertyType = "enum"
-		result.ValueType = typeName
+		result.Kind = "enum"
+		result.Type = typeName
 	}
 	return result, nil
 }

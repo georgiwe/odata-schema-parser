@@ -60,16 +60,11 @@ type Enum struct {
 }
 
 type Property struct {
-	ValueType          string
-	PropertyType       string
+	Type               string
+	Kind               string
 	RelationCollection *string `json:",omitempty"`
 	IsCollection       bool    `json:",omitempty"`
 	Required           bool    `json:",omitempty"`
-}
-
-type Backend struct {
-	Name     string
-	Services []Service
 }
 
 type entityTypeSerializer struct {
